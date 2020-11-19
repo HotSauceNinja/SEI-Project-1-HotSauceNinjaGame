@@ -1,3 +1,12 @@
+/* COLOUR PALETTE:
+
+GAME AREA: #A7AF5F
+BODY: rgb(117, 150, 64) / #759640 
+
+
+
+*/
+
 
 * {
   box-sizing: border-box;
@@ -7,14 +16,15 @@ body {
   background-color: rgb(117, 150, 64);
   height: 100vh;
   margin: 0;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Roboto', sans-serif;
   text-align: center;
   font-size: 16px;
+  font-weight: 10;
 }
 
 h1 {
   font-family: 'Metal Mania', cursive;
-  font-size: 40px;
+  font-size: 44px;
 }
 
 /* GAMEPLAY AREA CSS */
@@ -23,11 +33,11 @@ h1 {
   display: flex;
   flex-flow: row;
   align-items: center;
-  
 }
 
 .grid-wrapper {
-  height: 100vh;
+  /* height: 100vh; Commented out as it pushes grid too low down the page but don't remove yet */
+  height: 60vh; 
   display: flex;
   align-items: center;
   justify-content: center;
@@ -35,25 +45,28 @@ h1 {
 }
 
 .grid {
-  background-color: rgb(167, 175, 95);
+  background-color: rgb(167, 175, 95); 
   box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.4);
   display: flex;
   flex-wrap: wrap;
-  align-items: center;justify-content: center;
+  align-items: center;
+  justify-content: center;
   height: 600px;
   width: 600px;
+  border-radius: 8px;
 }
 
 .grid-div {
   border: 1px solid rgb(207, 206, 137);
   flex-grow: 1;
-  height: 5%;
-  width: 5%;
+  height: 10%;
+  width: 10%;
+  border-radius: 60px;
 }
 
 /* NINJA CHARACTER */
 .grid-div.ninja {
-  background-image: url('../Ninja/ninja_two_up.png');
+  background-image: url('../Ninja/ninja_one_up.png');
   background-repeat: no-repeat;
   background-size: contain;
   cursor: pointer;
@@ -63,34 +76,43 @@ h1 {
 
 aside.current-game {
   height: 600px;
-  background-color: royalblue;
   display: flex;
   flex-grow: 1;
   flex-direction: column;
   margin-left: 5%;
+  margin-right: 2%;
   align-items: center;
 }
 
-.current-score {
+.player-info-div, .score-div {
   display: flex;
   flex-grow: 1;
-  border: 5px solidplum;
+}
+
+.current-score {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.display-current-score {
+  background-color: rgba(255, 255, 255, 0.4);
+  width: 100px;
 }
 
 .player-info {
   display: flex;
   flex-grow: 4;
-  border: plum;
+  background-color: rgba(255, 255, 255, 0.4);
 }
 
 /* RIGHT SIDE SECTION | SCORE BOARD CSS */
 
 aside.score-board {
   height: 600px;
-  background-color: pink;
+  background-color: rgba(255, 255, 255, 0.4);;
   display: flex;
   flex-grow: 1;
   flex-direction: column;
+  margin-left: 2%;
   margin-right: 5%;
   align-items: center;
 }

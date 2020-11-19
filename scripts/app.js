@@ -5,12 +5,12 @@ function init() {
   // ELEMENTS
   const grid = document.querySelector('.grid')
   
-  const width = 20
+  const width = 10
   const cellCount = width * width
   const cells = []
 
   const ninjaClass = 'ninja'
-  let ninjaPosition = 0
+  let ninjaPosition = 94
 
   // FUNCTIONS
 
