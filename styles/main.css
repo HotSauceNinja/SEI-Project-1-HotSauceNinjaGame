@@ -51,6 +51,14 @@ h1 {
   width: 5%;
 }
 
+/* NINJA CHARACTER */
+.grid-div.ninja {
+  background-image: url('../Ninja/ninja_two_up.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+}
+
 /* LEFT SIDE SECTION | PLAYER INFO CSS */
 
 aside.current-game {
