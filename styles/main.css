@@ -22,6 +22,8 @@ h1 {
 .game-wrapper {
   display: flex;
   flex-flow: row;
+  align-items: center;
+  
 }
 
 .grid-wrapper {
@@ -52,31 +54,37 @@ h1 {
 /* LEFT SIDE SECTION | PLAYER INFO CSS */
 
 aside.current-game {
+  height: 600px;
   background-color: royalblue;
   display: flex;
   flex-grow: 1;
   flex-direction: column;
   margin-left: 5%;
+  align-items: center;
 }
 
 .current-score {
   display: flex;
   flex-grow: 1;
+  border: 5px solidplum;
 }
 
 .player-info {
   display: flex;
   flex-grow: 4;
+  border: plum;
 }
 
 /* RIGHT SIDE SECTION | SCORE BOARD CSS */
 
 aside.score-board {
+  height: 600px;
   background-color: pink;
   display: flex;
   flex-grow: 1;
   flex-direction: column;
   margin-right: 5%;
+  align-items: center;
 }
 
 .points-left-to-beat-best-score {
