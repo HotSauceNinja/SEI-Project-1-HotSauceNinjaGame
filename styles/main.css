@@ -9,6 +9,7 @@ body {
   margin: 0;
   font-family: 'Open Sans', sans-serif;
   text-align: center;
+  font-size: 16px;
 }
 
 h1 {
@@ -16,11 +17,19 @@ h1 {
   font-size: 40px;
 }
 
+/* GAMEPLAY AREA CSS */
+
+.game-wrapper {
+  display: flex;
+  flex-flow: row;
+}
+
 .grid-wrapper {
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-grow: 3;
 }
 
 .grid {
@@ -39,3 +48,44 @@ h1 {
   height: 5%;
   width: 5%;
 }
+
+/* LEFT SIDE SECTION | PLAYER INFO CSS */
+
+aside.current-game {
+  background-color: royalblue;
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  margin-left: 5%;
+}
+
+.current-score {
+  display: flex;
+  flex-grow: 1;
+}
+
+.player-info {
+  display: flex;
+  flex-grow: 4;
+}
+
+/* RIGHT SIDE SECTION | SCORE BOARD CSS */
+
+aside.score-board {
+  background-color: pink;
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  margin-right: 5%;
+}
+
+.points-left-to-beat-best-score {
+  display: flex;
+  flex-grow: 1;
+}
+
+.best-scores {
+  display: flex;
+  flex-grow: 4;
+}
+

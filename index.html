@@ -10,11 +10,43 @@
 </head>
 <body>
   <h1>Hot Sauce Ninja Battle Arena</h1>
+  
+  <div class="game-wrapper">
 
-<!-- GAMEPLAY AREA | Contained within grid-wrapper div -->
-  <div class="grid-wrapper">
-    <div class="grid"></div>
-  </div>
+  <!-- LEFT SIDE SECTION | containing PLAYER INFO and score -->
+    <aside class="current-game">
+      <div class="current-score">
+        <h2>Current Score</h2>
+        <div class="display-current-score"></div>
+      </div>
+
+      <div class="player-info">
+        <h2>Player Name</h2>
+        <div class="player-name"></div>
+      </div>
+    </aside>
+
+    
+  <!-- GAMEPLAY AREA | contaning grid-wrapper div -->
+    <div class="grid-wrapper">
+      <div class="grid"></div>
+    </div>
+
+
+    <!-- RIGHT SIDE SECTION | containing SCORE BOARD -->
+
+  <aside class='score-board'>
+    <div class="points-left-to-beat-best-score">
+      <h2>Points left to beat best score</h2>
+      <div class="points-left"></div>
+    </div>
+
+    <div class="best-scores">
+      <h2>Spicy Board</h2>
+      <div class="display-best-scores"></div>
+    </div>
+  </aside>
+</div>
 
 </body>
 </html>
