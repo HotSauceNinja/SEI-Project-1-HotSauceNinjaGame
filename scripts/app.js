@@ -37,10 +37,16 @@ function init() {
     console.log({ position })
   }
   
-  
+  // Removing ninja from grid
+  function removeNinja(position) {
+    cells[position].classList.remove(ninjaClass)
+    console.log({ position })
+  }
   
   // CALLING THE FUNCTIONS
   createGrid(ninjaPosition) // To create the Gameplay Area
+
+  removeNinja(ninjaPosition)
 
 
 
