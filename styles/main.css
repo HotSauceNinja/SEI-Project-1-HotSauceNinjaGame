@@ -69,8 +69,15 @@ h1 {
 }
 
 /* DRUMSTICK CHARACTER */
-.grid-div.drumstick {
+.grid-div.drumstick-odd {
   background-image: url('../Food/drumstick_1.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+}
+
+.grid-div.drumstick-even {
+  background-image: url('../Food/drumstick_2.png');
   background-repeat: no-repeat;
   background-size: contain;
   cursor: pointer;

@@ -11,8 +11,9 @@ function init() {
   const ninjaClass = 'ninja'
   let ninjaPosition = 94
 
-  const drumstickClass = 'drumstick'
-  let drumstickPosition = 22
+  const drumstickClassOdd = 'drumstick-odd'
+  const drumstickClassEven = 'drumstick-even'
+  let drumstickPosition = 23
 
   
   // FUNCTIONS
@@ -83,13 +84,28 @@ function init() {
   // todo FOODS SECTION
   // Adding food to grid
   function addDrumsticks (position) {
-    cells[position].classList.add(drumstickClass)
-    console.log({ position })
+    if (position % 2 === 0) {
+      cells[position].classList.add(drumstickClassEven)
+      console.log({ position })
+    } else {
+      cells[position].classList.add(drumstickClassOdd)
+    }
+  }
+
+  // Removing food from grid
+  function removeDrumstick (position) {
+    if (position % 2 === 0) {
+      cells[position].classList.remove(drumstickClassEven)
+      console.log({ position })
+    } else {
+      cells[position].classList.remove(drumstickClassOdd)
+    }
   }
 
   // CALLING THE FUNCTIONS
   createGrid(ninjaPosition) // To create the Gameplay Area
 
+  // removeDrumstick(drumstickPosition)
 
   // EVENTS
 
@@ -100,6 +116,6 @@ function init() {
 window.addEventListener('DOMContentLoaded', init)
 
 // Explaining what following code does
-// todo Developer notes, code to be commented out before submitting project
+// todo Developer notes, code to be taken out before submitting project
 // ! Important note
 // ? Can also use this colour for something
