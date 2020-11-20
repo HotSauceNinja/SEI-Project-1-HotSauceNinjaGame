@@ -4,17 +4,44 @@ function init() {
 
   // ELEMENTS
   const grid = document.querySelector('.grid')
-  const width = 10
-  const cellCount = width * width
+  const gridWidth = 10
+  const gridLength = 10
+  const cellCount = gridWidth * gridLength
   const cells = []
 
   const ninjaClass = 'ninja'
   let ninjaPosition = 94
 
-  const drumstickClassOdd = 'drumstick-odd'
-  const drumstickClassEven = 'drumstick-even'
-  let drumstickPosition = 23
+  const foods = ['pizza', 'fries', 'egg', 'drumstick']
+  
+  // Establish number of foods per row and their start position
+  const numberOfFoodsPerRow = gridWidth - Math.floor(gridWidth / 2.5)
+  const foodStartPositionOnRow = (gridWidth - numberOfFoodsPerRow) / 2
+  
+  // Place first drumstick two rows from top 
+  let drumstickPosition = (gridLength * 2) + foodStartPositionOnRow 
 
+
+  // Assign different class names to odd and even columns to give impression of movement
+  const drumstickClassOdd = 'drumstickOdd'
+  const drumstickClassEven = 'drumstickEven'
+
+  const eggClassOdd = 'eggOdd'
+  const eggClassEven = 'eggEven'
+
+  
+  
+  // let foodPosition = null
+
+  // // Place first drumstick two rows from top 
+  // function placeFoods (foods) {
+  //   for (let i = 1; i < foods.length; i++) {
+  //     // console.log(`${foods[i]}'Position`)
+  //     `${foods[i]}Position` = (gridWidth * i ) + 2
+  //   }
+  // }
+
+  // placeFoods(foods)
   
   // FUNCTIONS
 
@@ -52,7 +79,7 @@ function init() {
   
   // Control ninja with keyboard
   function moveNinja(event) {
-    const horizontalPosition = ninjaPosition % width
+    const horizontalPosition = ninjaPosition % gridWidth
 
     removeNinja(ninjaPosition)
 
@@ -64,10 +91,10 @@ function init() {
         if (horizontalPosition > 0) ninjaPosition--
         break
       case 39: // right with right arrow
-        if (horizontalPosition < width - 1) ninjaPosition++
+        if (horizontalPosition < gridWidth - 1) ninjaPosition++
         break
       case 68: // right with d key
-        if (horizontalPosition < width - 1) ninjaPosition++
+        if (horizontalPosition < gridWidth - 1) ninjaPosition++
         break
       case 13: // Shoot with enter key
         console.log('Hot Sauce!')
@@ -90,6 +117,12 @@ function init() {
     } else {
       cells[position].classList.add(drumstickClassOdd)
     }
+  }
+
+  function addFoodItem (position) {
+    // if on row 0 to 9 add fries
+    // if on row 10 to 19 add eggs
+    // if on row 20 to 29 add drumstick
   }
 
   // Removing food from grid

@@ -69,15 +69,29 @@ h1 {
 }
 
 /* DRUMSTICK CHARACTER */
-.grid-div.drumstick-odd {
+.grid-div.drumstickOdd {
   background-image: url('../Food/drumstick_1.png');
   background-repeat: no-repeat;
   background-size: contain;
   cursor: pointer;
 }
 
-.grid-div.drumstick-even {
+.grid-div.drumstickEven {
   background-image: url('../Food/drumstick_2.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+}
+
+.grid-div.eggOdd {
+  background-image: url('../Food/egg_1.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+}
+
+.grid-div.eggEven {
+  background-image: url('../Food/egg_2.png');
   background-repeat: no-repeat;
   background-size: contain;
   cursor: pointer;
