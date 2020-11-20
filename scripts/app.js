@@ -17,32 +17,60 @@ function init() {
   const ninjaClass = 'ninja'
   let ninjaPosition = 94
 
-//todo LOOK FROM HERE ONWARDS
-  // Assign different class names to odd and even columns to give impression of movement
-  const drumstickClassOdd = 'drumstickOdd'
-  const drumstickClassEven = 'drumstickEven'
+  class foodsObject {
+    constructor(name) {
+      this.name = name
+    }
+    getIndexNumber() {
+      return `${foods.indexOf(this.name)}`
+    }
 
-  const eggClassOdd = 'eggOdd'
-  const eggClassEven = 'eggEven'
+    setStartPosition() {
+      if (((gridWidth * this.getIndexNumber() + foodStartPositionOnRow - gridWidth) > 0)) {
+        return (gridWidth * this.getIndexNumber()) + foodStartPositionOnRow - gridWidth
+      } else {
+        console.log('this is hidden')
+        return null
+      }
+    }
+    setOddClass() {
+      return this.name + 'Odd'
+    }
+    setEvenClass() {
+      return this.name + 'Even'
+    }
+  }
 
+  const pizzaObject = new foodsObject('pizza')
 
-  // Place first drumstick two rows from top 
-  let drumstickPosition = (gridLength * 2) + foodStartPositionOnRow 
+  const friesObject = new foodsObject('fries')
 
+  const eggObject = new foodsObject('egg')
+
+  const drumstickObject = new foodsObject('drumstick')
+
+  console.log(pizzaObject.setStartPosition())
+  console.log(friesObject.setStartPosition()) 
+
+  console.log(eggObject.setStartPosition())
+  console.log(drumstickObject.setStartPosition()) 
   
   // let foodPosition = null
 
   // Place first drumstick two rows from top 
-  function placeFoods (foods) {
-    for (let i = 1; i < foods.length; i++) {
-      let foodClass = `${foods[i]}Position`
-      // console.log(`${foods[i]}Position`)
-      let startPosition = (gridWidth * i ) + foodStartPositionOnRow 
-      console.log({ startPosition })
+  // function placeFoods (foods) {
+  //   for (let i = 1; i < foods.length; i++) {
       
-      cells[startPosition].classList.add(drumstickClassEven)
-    }
-  }
+  //     foodPosition.i = 
+
+  //     // let foodClass = `${foods[i]}Position`
+  //     // console.log(`${foods[i]}Position`)
+  //     let startPosition = (gridWidth * i ) + foodStartPositionOnRow 
+  //     console.log({ startPosition })
+      
+  //     cells[startPosition].classList.add(drumstickClassEven)
+  //   }
+  // }
 // todo UP TO HERE
   
   // FUNCTIONS
@@ -142,7 +170,7 @@ function init() {
   // CALLING THE FUNCTIONS
   createGrid(ninjaPosition) // To create the Gameplay Area
 
-  placeFoods(foods)
+  // placeFoods(foods)
 
   // removeDrumstick(drumstickPosition)
 

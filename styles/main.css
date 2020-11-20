@@ -97,6 +97,34 @@ h1 {
   cursor: pointer;
 }
 
+.grid-div.friesOdd {
+  background-image: url('../Food/fries_1.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+}
+
+.grid-div.friesEven {
+  background-image: url('../Food/fries_2.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+}
+
+.grid-div.pizzaOdd {
+  background-image: url('../Food/pizza_1.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+}
+
+.grid-div.pizzaEven {
+  background-image: url('../Food/pizza_2.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+}
+
 /* LEFT SIDE SECTION | PLAYER INFO CSS */
 
 aside.current-game {
