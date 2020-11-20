@@ -11,6 +11,9 @@ function init() {
   const ninjaClass = 'ninja'
   let ninjaPosition = 94
 
+  const drumstickClass = 'drumstick'
+  let drumstickPosition = 22
+
   
   // FUNCTIONS
 
@@ -28,9 +31,12 @@ function init() {
     } 
 
     addNinja(ninjaPosition)
-    console.log({ ninjaPosition })
+
+    addDrumsticks(drumstickPosition)
+    console.log({ drumstickPosition })
   }
 
+  // todo NINJA SECTION
   // Adding the ninja to grid
   function addNinja(position) {
     cells[position].classList.add(ninjaClass)
@@ -45,24 +51,22 @@ function init() {
   
   // Control ninja with keyboard
   function moveNinja(event) {
+    const horizontalPosition = ninjaPosition % width
+
     removeNinja(ninjaPosition)
 
     switch (event.keyCode) {
       case 37: // left with left arrow
-        ninjaPosition--
-        addNinja(ninjaPosition)
+        if (horizontalPosition > 0) ninjaPosition--
         break
       case 65: // left with a key
-        ninjaPosition--
-        addNinja(ninjaPosition)
+        if (horizontalPosition > 0) ninjaPosition--
         break
       case 39: // right with right arrow
-        ninjaPosition++
-        addNinja(ninjaPosition)
+        if (horizontalPosition < width - 1) ninjaPosition++
         break
       case 68: // right with d key
-        ninjaPosition++
-        addNinja(ninjaPosition)
+        if (horizontalPosition < width - 1) ninjaPosition++
         break
       case 13: // Shoot with enter key
         console.log('Hot Sauce!')
@@ -73,10 +77,19 @@ function init() {
       default:
         console.log('Invalid key')
     }
+    addNinja(ninjaPosition)
+  }
+
+  // todo FOODS SECTION
+  // Adding food to grid
+  function addDrumsticks (position) {
+    cells[position].classList.add(drumstickClass)
+    console.log({ position })
   }
 
   // CALLING THE FUNCTIONS
   createGrid(ninjaPosition) // To create the Gameplay Area
+
 
   // EVENTS
 

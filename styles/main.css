@@ -68,6 +68,14 @@ h1 {
   cursor: pointer;
 }
 
+/* DRUMSTICK CHARACTER */
+.grid-div.drumstick {
+  background-image: url('../Food/drumstick_1.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+}
+
 /* LEFT SIDE SECTION | PLAYER INFO CSS */
 
 aside.current-game {
