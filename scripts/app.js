@@ -1,6 +1,5 @@
 function init() {
-  // VARIABLES
-  const foods = ['pizza', 'fries', 'egg', 'drumstick']
+
 
   // ELEMENTS
   const grid = document.querySelector('.grid')
@@ -17,6 +16,10 @@ function init() {
   const ninjaClass = 'ninja'
   let ninjaPosition = 94
 
+  // VARIABLES
+  const foods = ['pizza', 'fries', 'egg', 'drumstick']
+
+  // Create food object class for all food properties and methods
   class foodsObject {
     constructor(name) {
       this.name = name
@@ -24,7 +27,6 @@ function init() {
     getIndexNumber() {
       return `${foods.indexOf(this.name)}`
     }
-
     setStartPosition() {
       if (((gridWidth * this.getIndexNumber() + foodStartPositionOnRow - gridWidth) > 0)) {
         return (gridWidth * this.getIndexNumber()) + foodStartPositionOnRow - gridWidth
@@ -41,26 +43,21 @@ function init() {
     }
   }
 
-  const pizzaObject = new foodsObject('pizza')
+  // Declaring and array and storing all food objects created automatically through for loop
+  let foodsObjectArray = []
+  for (let i = 0; i < foods.length; i++) {
+    foodsObjectArray.push(new foodsObject(foods[i]))
+  }
+  // console.log({ foodsObjectArray })
 
-  const friesObject = new foodsObject('fries')
+  // Placing foods on grid
 
-  const eggObject = new foodsObject('egg')
 
-  const drumstickObject = new foodsObject('drumstick')
-
-  console.log(pizzaObject.setStartPosition())
-  console.log(friesObject.setStartPosition()) 
-
-  console.log(eggObject.setStartPosition())
-  console.log(drumstickObject.setStartPosition()) 
-  
-  // let foodPosition = null
-
-  // Place first drumstick two rows from top 
+  // // Place first drumstick two rows from top 
   // function placeFoods (foods) {
   //   for (let i = 1; i < foods.length; i++) {
       
+  //     foods[i].setStartPosition()
   //     foodPosition.i = 
 
   //     // let foodClass = `${foods[i]}Position`
@@ -71,6 +68,7 @@ function init() {
   //     cells[startPosition].classList.add(drumstickClassEven)
   //   }
   // }
+
 // todo UP TO HERE
   
   // FUNCTIONS
@@ -87,13 +85,40 @@ function init() {
       cells.push(cell) // pushing each cell into the cells array
     } 
 
-    // Adding jinja in start position
+    // Adding ninja in start position
     addNinja(ninjaPosition)
 
     // // Adding drumsticks in start position
     // addDrumsticks(drumstickPosition)
 
     // todo call addFoods function
+  }
+
+// todo FOODS SECTION
+  // Adding food to grid
+  function addDrumsticks (position) {
+    if (position % 2 === 0) {
+      cells[position].classList.add(drumstickClassEven)
+      // console.log({ position })
+    } else {
+      cells[position].classList.add(drumstickClassOdd)
+    }
+  }
+
+  function addFoodItem (position) {
+    // if on row 0 to 9 add fries
+    // if on row 10 to 19 add eggs
+    // if on row 20 to 29 add drumstick
+  }
+
+  // Removing food from grid
+  function removeDrumstick (position) {
+    if (position % 2 === 0) {
+      cells[position].classList.remove(drumstickClassEven)
+      // console.log({ position })
+    } else {
+      cells[position].classList.remove(drumstickClassOdd)
+    }
   }
 
 
@@ -140,32 +165,6 @@ function init() {
     addNinja(ninjaPosition)
   }
 
-  // todo FOODS SECTION
-  // Adding food to grid
-  function addDrumsticks (position) {
-    if (position % 2 === 0) {
-      cells[position].classList.add(drumstickClassEven)
-      // console.log({ position })
-    } else {
-      cells[position].classList.add(drumstickClassOdd)
-    }
-  }
-
-  function addFoodItem (position) {
-    // if on row 0 to 9 add fries
-    // if on row 10 to 19 add eggs
-    // if on row 20 to 29 add drumstick
-  }
-
-  // Removing food from grid
-  function removeDrumstick (position) {
-    if (position % 2 === 0) {
-      cells[position].classList.remove(drumstickClassEven)
-      // console.log({ position })
-    } else {
-      cells[position].classList.remove(drumstickClassOdd)
-    }
-  }
 
   // CALLING THE FUNCTIONS
   createGrid(ninjaPosition) // To create the Gameplay Area
