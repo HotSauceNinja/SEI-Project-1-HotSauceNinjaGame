@@ -1,6 +1,6 @@
 function init() {
   // VARIABLES
-
+  const foods = ['pizza', 'fries', 'egg', 'drumstick']
 
   // ELEMENTS
   const grid = document.querySelector('.grid')
@@ -9,19 +9,15 @@ function init() {
   const cellCount = gridWidth * gridLength
   const cells = []
 
-  const ninjaClass = 'ninja'
-  let ninjaPosition = 94
-
-  const foods = ['pizza', 'fries', 'egg', 'drumstick']
-  
   // Establish number of foods per row and their start position
   const numberOfFoodsPerRow = gridWidth - Math.floor(gridWidth / 2.5)
   const foodStartPositionOnRow = (gridWidth - numberOfFoodsPerRow) / 2
   
-  // Place first drumstick two rows from top 
-  let drumstickPosition = (gridLength * 2) + foodStartPositionOnRow 
+  // Set ninja class & start position
+  const ninjaClass = 'ninja'
+  let ninjaPosition = 94
 
-
+//todo LOOK FROM HERE ONWARDS
   // Assign different class names to odd and even columns to give impression of movement
   const drumstickClassOdd = 'drumstickOdd'
   const drumstickClassEven = 'drumstickEven'
@@ -29,25 +25,30 @@ function init() {
   const eggClassOdd = 'eggOdd'
   const eggClassEven = 'eggEven'
 
-  
+
+  // Place first drumstick two rows from top 
+  let drumstickPosition = (gridLength * 2) + foodStartPositionOnRow 
+
   
   // let foodPosition = null
 
-  // // Place first drumstick two rows from top 
-  // function placeFoods (foods) {
-  //   for (let i = 1; i < foods.length; i++) {
-  //     // console.log(`${foods[i]}'Position`)
-  //     `${foods[i]}Position` = (gridWidth * i ) + 2
-  //   }
-  // }
-
-  // placeFoods(foods)
+  // Place first drumstick two rows from top 
+  function placeFoods (foods) {
+    for (let i = 1; i < foods.length; i++) {
+      let foodClass = `${foods[i]}Position`
+      // console.log(`${foods[i]}Position`)
+      let startPosition = (gridWidth * i ) + foodStartPositionOnRow 
+      console.log({ startPosition })
+      
+      cells[startPosition].classList.add(drumstickClassEven)
+    }
+  }
+// todo UP TO HERE
   
   // FUNCTIONS
 
   // Creating the Gameplay Area
   function createGrid(ninjaPosition) {
-
     // Creating the cells and adding them on the board
     for (let i = 0; i < cellCount; i++) {
       const cell = document.createElement('div')
@@ -58,23 +59,26 @@ function init() {
       cells.push(cell) // pushing each cell into the cells array
     } 
 
+    // Adding jinja in start position
     addNinja(ninjaPosition)
 
-    addDrumsticks(drumstickPosition)
-    console.log({ drumstickPosition })
+    // // Adding drumsticks in start position
+    // addDrumsticks(drumstickPosition)
+
+    // todo call addFoods function
   }
+
+
 
   // todo NINJA SECTION
   // Adding the ninja to grid
   function addNinja(position) {
     cells[position].classList.add(ninjaClass)
-    console.log({ position })
   }
   
   // Removing ninja from grid
   function removeNinja(position) {
     cells[position].classList.remove(ninjaClass)
-    console.log({ position })
   }
   
   // Control ninja with keyboard
@@ -113,7 +117,7 @@ function init() {
   function addDrumsticks (position) {
     if (position % 2 === 0) {
       cells[position].classList.add(drumstickClassEven)
-      console.log({ position })
+      // console.log({ position })
     } else {
       cells[position].classList.add(drumstickClassOdd)
     }
@@ -129,7 +133,7 @@ function init() {
   function removeDrumstick (position) {
     if (position % 2 === 0) {
       cells[position].classList.remove(drumstickClassEven)
-      console.log({ position })
+      // console.log({ position })
     } else {
       cells[position].classList.remove(drumstickClassOdd)
     }
@@ -137,6 +141,8 @@ function init() {
 
   // CALLING THE FUNCTIONS
   createGrid(ninjaPosition) // To create the Gameplay Area
+
+  placeFoods(foods)
 
   // removeDrumstick(drumstickPosition)
 
