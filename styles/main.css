@@ -34,7 +34,6 @@ h1 {
 
 .grid-wrapper {
   /* height: 100vh; Commented out as it pushes grid too low down the page but don't remove yet */
-  height: 60vh; 
   display: flex;
   align-items: center;
   justify-content: center;
@@ -48,8 +47,8 @@ h1 {
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  height: 600px;
-  width: 600px;
+  height: 800px;
+  width: 800px;
   border-radius: 8px;
 }
 
