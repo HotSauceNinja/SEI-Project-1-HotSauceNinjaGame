@@ -4,7 +4,6 @@ function init() {
 
   // ELEMENTS
   const grid = document.querySelector('.grid')
-  
   const width = 10
   const cellCount = width * width
   const cells = []
@@ -12,6 +11,7 @@ function init() {
   const ninjaClass = 'ninja'
   let ninjaPosition = 94
 
+  
   // FUNCTIONS
 
   // Creating the Gameplay Area
@@ -43,12 +43,44 @@ function init() {
     console.log({ position })
   }
   
+  // Control ninja with keyboard
+  function moveNinja(event) {
+    removeNinja(ninjaPosition)
+
+    switch (event.keyCode) {
+      case 37: // left with left arrow
+        ninjaPosition--
+        addNinja(ninjaPosition)
+        break
+      case 65: // left with a key
+        ninjaPosition--
+        addNinja(ninjaPosition)
+        break
+      case 39: // right with right arrow
+        ninjaPosition++
+        addNinja(ninjaPosition)
+        break
+      case 68: // right with d key
+        ninjaPosition++
+        addNinja(ninjaPosition)
+        break
+      case 13: // Shoot with enter key
+        console.log('Hot Sauce!')
+        break
+      case 32: // Shoot with space key
+        console.log('Hot Sauce!')
+        break
+      default:
+        console.log('Invalid key')
+    }
+  }
+
   // CALLING THE FUNCTIONS
   createGrid(ninjaPosition) // To create the Gameplay Area
 
-  removeNinja(ninjaPosition)
+  // EVENTS
 
-
+  document.addEventListener('keydown', moveNinja)
 
 }
 
