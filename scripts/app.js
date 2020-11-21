@@ -19,9 +19,7 @@ function init() {
 
   // Establish the position a food item must reach to trigger game over
   const gameOverPosition = (gridLength - 2) * gridWidth
-  
-  // Declare array for storing food position for each food item
-  
+
   // Creating food object class for all food properties and methods
   class foodsObject {
     constructor(name) {
@@ -34,8 +32,6 @@ function init() {
     }
 
     setStartPosition() { //decides start position number for each food item
-      // todo for loop with number of foods per row
-
       if (((gridWidth * this.getIndexNumber() + foodStartPositionOnRow - gridWidth) > 0)) {
         return (gridWidth * this.getIndexNumber()) + foodStartPositionOnRow - gridWidth
       } else {
@@ -54,7 +50,7 @@ function init() {
     }
   }
 
-  // Declaring an array and storing all food objects created automatically through for loop
+  // Declaring an array and storing all food objects created automatically through the for loop
   const foodsObjectArray = []
   for (let i = 0; i < foods.length; i++) {
     foodsObjectArray.push(new foodsObject(foods[i]))
@@ -68,7 +64,7 @@ function init() {
     for (let i = 0; i < cellCount; i++) {
       const cell = document.createElement('div')
       cell.setAttribute('class', 'grid-div') // setting class to each cell -> space them out evenly & highlight borders
-      cell.textContent = i // todo To count the cells for easier navigation during game development
+      cell.textContent = i // ! In place to count the cells for easier navigation during game development, take out at the end
 
       grid.appendChild(cell) // placing cell on grid
       cells.push(cell) // pushing each cell into the cells array
@@ -77,13 +73,13 @@ function init() {
     // Adding ninja in start position
     addNinja(ninjaPosition)
 
-    // addFoods function
-    addFoodToGrid()
+    // add foods in start position
+    addFoodToGridInStartPosition()
   }
 
   // todo FOODS SECTION
   // Adding all food to grid in start position
-  function addFoodToGrid () {
+  function addFoodToGridInStartPosition () {
     // set start position for each food in the foods object array
     for (let i = 1; i < foodsObjectArray.length; i++) {
       let position
@@ -95,27 +91,31 @@ function init() {
         //push the position of each created element into the positionOnGrid element array
         foodsObjectArray[i].positionOnGrid.push(position)
 
-        // add different classlist depending on if column is odd or even
-        if (position % 2 === 0) {
-          cells[position].classList.add(foodsObjectArray[i].linkEvenClass())
-          // cells[position].classList.add(ninjaClass)
-        } else {
-          cells[position].classList.add(foodsObjectArray[i].linkOddClass())
-        }
+        addClassOfItem(foodsObjectArray[i], position)
       }
     }
   }
   // console.log(foodsObjectArray[1].positionOnGrid)
 
+  function addClassOfItem(object, position) {
+    // add different classlist depending on if column is odd or even
+    if (position % 2 === 0) {
+      cells[position].classList.add(object.linkEvenClass())
+      // cells[position].classList.add(ninjaClass)
+    } else {
+      cells[position].classList.add(object.linkOddClass())
+    }
+  }
+
+
   // Removing item from a position on grid
-  function removeItemFromGrid (position) {
+  function removeItemFromGrid(position) {
     cells[position].setAttribute('class', 'grid-div')
   }
 
   // todo FOODS MOVEMENT SECTION
 
   // after drawing grid and placing elements, start timer
-
   // for each element of each food object, in the position array - increase position with 1 every half a second
   // if element is at the end of the row, move at (position + 1) + index of element place in his array
   // when element reaches gameOverPosition (row before last), end game
@@ -130,8 +130,11 @@ function init() {
 
       // increases the index number of each with 1 to push the element to the next position on grid
       for (let j = 0; j < foodsObjectArray[i].positionOnGrid.length; j++) {
-        
+        removeItemFromGrid(foodsObjectArray[i].positionOnGrid[j])
         foodsObjectArray[i].positionOnGrid[j] ++
+
+        
+
         console.log(`${foodsObjectArray[i].name} ${foodsObjectArray[i].positionOnGrid[j]}`)
       }
     }
@@ -148,20 +151,22 @@ function init() {
     } 
   }
 
-  const timerId = setInterval(() => {
-    // if index of any number reaches gameOverPosition, stop moving that item and pop it out of the list
-    stopMoving()
+  // todo UNCOMMENT HERE WHEN DONE
+  // const timerId = setInterval(() => {
+  //   // if index of any number reaches gameOverPosition, stop moving that item and pop it out of the list
+  //   stopMoving()
 
-    // looping through all food objects except pizza which is at index 0
-    increaseIndexNumberByOne()
+  //   // looping through all food objects except pizza which is at index 0
+  //   increaseIndexNumberByOne()
 
-    //   console.log('do action every second', i)
+  //   //   console.log('do action every second', i)
 
-  }, 100)
+  // }, 100)
 
-  setTimeout(() => {
-    clearInterval(timerId)
-  }, 50000) // stop after 5 seconds
+  // setTimeout(() => {
+  //   clearInterval(timerId)
+  // }, 50000) // stop after 5 seconds
+  // todo UNTIL HERE
 
 
   // todo NINJA SECTION
@@ -226,5 +231,5 @@ window.addEventListener('DOMContentLoaded', init)
 
 // Explaining what following code does
 // todo Developer notes, code to be taken out before submitting project
-// ! Important note
+// ! Important note, remember to take this out
 // ? Can also use this colour for something
