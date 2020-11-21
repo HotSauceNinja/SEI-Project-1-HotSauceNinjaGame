@@ -127,7 +127,6 @@ function init() {
   function increaseIndexNumberByOne () {
     // looping through all food objects except pizza which is at index 0
     for (let i = 1; i < foodsObjectArray.length; i++) {
-
       // increases the index number of each with 1 to push the element to the next position on grid
       for (let j = foodsObjectArray[i].positionOnGrid.length - 1; j >= 0; j--) {
         removeItemFromGrid(foodsObjectArray[i].positionOnGrid[j])
@@ -138,6 +137,72 @@ function init() {
       }
     }
   }
+
+  function decreaseIndexNumberByOne () {
+    // looping through all food objects except pizza which is at index 0
+    for (let i = foodsObjectArray.length - 1; i > 0; i--) {
+      // decreases the index number of each with 1 to push the element to the previous position on grid
+      for (let j = 0; j < foodsObjectArray[i].positionOnGrid.length; j++) {
+        removeItemFromGrid(foodsObjectArray[i].positionOnGrid[j])
+        foodsObjectArray[i].positionOnGrid[j] --
+        addClassOfItem(foodsObjectArray[i], foodsObjectArray[i].positionOnGrid[j])
+      }
+    }
+  }
+
+  function moveToNextRow () {
+
+  }
+  // function increaseIndexNumberByOne () {
+  //   // looping through all food objects except pizza which is at index 0
+  //   for (let i = 1; i < foodsObjectArray.length; i++) {
+  //     const itemPosition = foodsObjectArray[i].positionOnGrid
+
+  //     // if the position of the last element of the array is at the end of the row
+  //     if ((itemPosition[itemPosition.length - 1] + 1) % gridWidth === 0) {
+  //       console.log(' end of the row ')
+
+  //       // move on row below
+  //       for (let j = 0; j < itemPosition.length; j++) {
+  //         console.log(itemPosition)
+  //         removeItemFromGrid(itemPosition[j])
+  //         itemPosition.splice(j, 1, itemPosition[j] + gridWidth - 1)
+  //         console.log(itemPosition)
+  //         addClassOfItem(foodsObjectArray[i], itemPosition[j])
+  //       }
+
+  //       // if row is odd
+  //     } else if ( Math.ceiling(itemPosition / gridWidth) % 2 === 0 )
+
+  //       for (let k = 0; k < itemPosition.length; k++) {
+  //         removeItemFromGrid(itemPosition[k])
+  //         itemPosition[k] --
+  //         addClassOfItem(foodsObjectArray[i], itemPosition[k])
+
+  //       // for (let j = foodsObjectArray[i].positionOnGrid.length - 1; j >= 0; j--) {
+  //       //   removeItemFromGrid(foodsObjectArray[i].positionOnGrid[j])
+  //       //   foodsObjectArray[i].positionOnGrid[j] = foodsObjectArray[i].positionOnGrid[j] + gridWidth
+  //       //   addClassOfItem(foodsObjectArray[i], foodsObjectArray[i].positionOnGrid[j])
+  //       // // and move to the left
+  //     } } 
+
+  //     // increases the index number of each with 1 to push the element to the next position on grid
+  //     for (let j = itemPosition.length - 1; j >= 0; j--) {
+  //       removeItemFromGrid(itemPosition[j])
+  //       itemPosition[j] ++
+  //       addClassOfItem(foodsObjectArray[i], itemPosition[j])
+
+  //       console.log(`${foodsObjectArray[i].name} ${itemPosition[j]}`)
+  //     }
+  //   }
+  // }
+
+
+
+
+
+
+
 
   function stopMoving() { // if any index number >= gameOverPosition stop movement and pop item out of array
     for (let i = 1; i < foodsObjectArray.length; i++) {
@@ -156,15 +221,18 @@ function init() {
     stopMoving()
 
     // looping through all food objects except pizza which is at index 0
-    increaseIndexNumberByOne()
+    // increaseIndexNumberByOne()
+
+    // decrease index number by 1
+    // decreaseIndexNumberByOne()
 
     //   console.log('do action every second', i)
 
-  }, 100)
+  }, 800)
 
   setTimeout(() => {
     clearInterval(timerId)
-  }, 5000) // stop after 5 seconds
+  }, 50000) // stop after 5 seconds
   // todo UNTIL HERE
 
 
