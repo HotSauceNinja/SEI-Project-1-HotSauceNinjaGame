@@ -134,12 +134,16 @@ function init() {
     }
   }
 
-  function stopMoving() { // if any index number >= 80 stop movement
-    let firstFoodItem = foodsObjectArray[foodsObjectArray.length - 1].positionOnGrid
-
-    if (firstFoodItem[firstFoodItem.length - 1] >= 80) {
-      console.log('stop')
-    }
+  function stopMoving() { // if any index number >= 80 stop movement and pop item out of array
+    for (let i = 1; i < foodsObjectArray.length; i++) {
+      for (let j = 0; j < foodsObjectArray[i].positionOnGrid.length; j++) {       
+        if (foodsObjectArray[i].positionOnGrid[j] >= 80) {
+          console.log('STOP') // todo replace with calling function to pop element out
+          foodsObjectArray[i].positionOnGrid.pop(foodsObjectArray[i].positionOnGrid[j])
+        }
+        
+      }
+    } 
   }
 
   const timerId = setInterval(() => {
