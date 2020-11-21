@@ -129,11 +129,10 @@ function init() {
     for (let i = 1; i < foodsObjectArray.length; i++) {
 
       // increases the index number of each with 1 to push the element to the next position on grid
-      for (let j = 0; j < foodsObjectArray[i].positionOnGrid.length; j++) {
+      for (let j = foodsObjectArray[i].positionOnGrid.length - 1; j >= 0; j--) {
         removeItemFromGrid(foodsObjectArray[i].positionOnGrid[j])
         foodsObjectArray[i].positionOnGrid[j] ++
-
-        
+        addClassOfItem(foodsObjectArray[i], foodsObjectArray[i].positionOnGrid[j])
 
         console.log(`${foodsObjectArray[i].name} ${foodsObjectArray[i].positionOnGrid[j]}`)
       }
@@ -152,20 +151,20 @@ function init() {
   }
 
   // todo UNCOMMENT HERE WHEN DONE
-  // const timerId = setInterval(() => {
-  //   // if index of any number reaches gameOverPosition, stop moving that item and pop it out of the list
-  //   stopMoving()
+  const timerId = setInterval(() => {
+    // if index of any number reaches gameOverPosition, stop moving that item and pop it out of the list
+    stopMoving()
 
-  //   // looping through all food objects except pizza which is at index 0
-  //   increaseIndexNumberByOne()
+    // looping through all food objects except pizza which is at index 0
+    increaseIndexNumberByOne()
 
-  //   //   console.log('do action every second', i)
+    //   console.log('do action every second', i)
 
-  // }, 100)
+  }, 100)
 
-  // setTimeout(() => {
-  //   clearInterval(timerId)
-  // }, 50000) // stop after 5 seconds
+  setTimeout(() => {
+    clearInterval(timerId)
+  }, 5000) // stop after 5 seconds
   // todo UNTIL HERE
 
 
