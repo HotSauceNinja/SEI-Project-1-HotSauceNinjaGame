@@ -151,8 +151,46 @@ function init() {
   }
 
   function moveToNextRow () {
+    // looping through all food objects except pizza which is at index 0
+    for (let i = foodsObjectArray.length - 1; i > 0; i--) {
 
+      // if the last item in object positionOnGrid array is at the end of the row
+      if ((foodsObjectArray[i].positionOnGrid[foodsObjectArray[i].positionOnGrid.length - 1]) % gridWidth === 0) {
+
+        // for all elements from last index backwards
+        for (let j = foodsObjectArray[i].positionOnGrid.length - 1; j >= 0; j--) {
+          removeItemFromGrid(foodsObjectArray[i].positionOnGrid[j])
+          foodsObjectArray[i].positionOnGrid[j] = foodsObjectArray[i].positionOnGrid[j] + gridWidth - 1
+          addClassOfItem(foodsObjectArray[i], foodsObjectArray[i].positionOnGrid[j])
+
+          // } else if (((foodsObjectArray[i].positionOnGrid[0] + 1) % gridWidth) === 0) {
+          //    // for all array elements from index 0 to end, 
+          //   for (let j = 0; j < foodsObjectArray[i].positionOnGrid.length; j++) {
+          //     removeItemFromGrid(foodsObjectArray[i].positionOnGrid[j])
+          //     foodsObjectArray[i].positionOnGrid.splice(j, 1, foodsObjectArray[i].positionOnGrid[j] + gridWidth - 1)
+
+          //     addClassOfItem(foodsObjectArray[i], foodsObjectArray[i].positionOnGrid[j])
+          //   }
+          //   console.log(' beginning of the row ')
+        }
+      }
+    }
   }
+
+  // function moveToNextRow() {
+  //   // looping through all food objects except pizza which is at index 0
+  //   for (let i = 1; i < foodsObjectArray.length; i++) {
+
+  //     for (let j = 0; j < foodsObjectArray[i].positionOnGrid.length; j++) {
+
+  //       removeItemFromGrid(foodsObjectArray[i].positionOnGrid[j])
+  //       foodsObjectArray[i].positionOnGrid.splice(j, 1, foodsObjectArray[i].positionOnGrid[j] + gridWidth - 1)
+
+  //       addClassOfItem(foodsObjectArray[i], foodsObjectArray[i].positionOnGrid[j])
+  //     }
+  //   }
+  // }
+
   // function increaseIndexNumberByOne () {
   //   // looping through all food objects except pizza which is at index 0
   //   for (let i = 1; i < foodsObjectArray.length; i++) {
@@ -179,28 +217,13 @@ function init() {
   //         itemPosition[k] --
   //         addClassOfItem(foodsObjectArray[i], itemPosition[k])
 
-  //       // for (let j = foodsObjectArray[i].positionOnGrid.length - 1; j >= 0; j--) {
-  //       //   removeItemFromGrid(foodsObjectArray[i].positionOnGrid[j])
-  //       //   foodsObjectArray[i].positionOnGrid[j] = foodsObjectArray[i].positionOnGrid[j] + gridWidth
-  //       //   addClassOfItem(foodsObjectArray[i], foodsObjectArray[i].positionOnGrid[j])
-  //       // // and move to the left
+  // for (let j = foodsObjectArray[i].positionOnGrid.length - 1; j >= 0; j--) {
+  //   removeItemFromGrid(foodsObjectArray[i].positionOnGrid[j])
+  //   foodsObjectArray[i].positionOnGrid[j] = foodsObjectArray[i].positionOnGrid[j] + gridWidth
+  //   addClassOfItem(foodsObjectArray[i], foodsObjectArray[i].positionOnGrid[j])
+
   //     } } 
-
-  //     // increases the index number of each with 1 to push the element to the next position on grid
-  //     for (let j = itemPosition.length - 1; j >= 0; j--) {
-  //       removeItemFromGrid(itemPosition[j])
-  //       itemPosition[j] ++
-  //       addClassOfItem(foodsObjectArray[i], itemPosition[j])
-
-  //       console.log(`${foodsObjectArray[i].name} ${itemPosition[j]}`)
-  //     }
-  //   }
   // }
-
-
-
-
-
 
 
 
@@ -221,7 +244,9 @@ function init() {
     stopMoving()
 
     // looping through all food objects except pizza which is at index 0
-    // increaseIndexNumberByOne()
+    increaseIndexNumberByOne()
+    moveToNextRow()
+
 
     // decrease index number by 1
     // decreaseIndexNumberByOne()
