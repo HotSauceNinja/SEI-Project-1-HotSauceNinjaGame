@@ -12,15 +12,18 @@ function init() {
   // Set ninja class & start position
   const ninjaClass = 'ninja'
   let ninjaPosition = 94  
-  
+
   // Establish number of foods per row and their start position
   const numberOfFoodsPerRow = gridWidth - Math.floor(gridWidth / 2.5)
   const foodStartPositionOnRow = (gridWidth - numberOfFoodsPerRow) / 2
+  
+  // Declare array for storing food position for each food item
   
   // Creating food object class for all food properties and methods
   class foodsObject {
     constructor(name) {
       this.name = name
+      this.positionOnGrid = [] //will store grid position of each food item 
     }
 
     getIndexNumber() {
@@ -48,12 +51,11 @@ function init() {
     }
   }
 
-  // Declaring and array and storing all food objects created automatically through for loop
+  // Declaring an array and storing all food objects created automatically through for loop
   const foodsObjectArray = []
   for (let i = 0; i < foods.length; i++) {
     foodsObjectArray.push(new foodsObject(foods[i]))
   }
-  // console.log({ foodsObjectArray })
 
 
   // todo FUNCTIONS
@@ -78,14 +80,15 @@ function init() {
   }
 
   // todo FOODS SECTION
-  // Adding food to grid
+  // Adding all food to grid in start position
   function addFoodToGrid () {
     // set start position for each food in the foods object array
     for (let i = 1; i < foodsObjectArray.length; i++) {
       let position
-      
+
       for (let j = 0; j < numberOfFoodsPerRow; j++) {
         position = foodsObjectArray[i].setStartPosition() + j
+        foodsObjectArray[i].positionOnGrid.push(position)
 
         // add different classlist depending on if column is odd or even
         if (position % 2 === 0) {
@@ -97,6 +100,8 @@ function init() {
       }
     }
   }
+
+  console.log(foodsObjectArray[1].positionOnGrid)
 
   // Removing food from grid
   function removeItemFromGrid (position) {
