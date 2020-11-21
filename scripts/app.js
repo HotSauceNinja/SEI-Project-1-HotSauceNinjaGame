@@ -26,7 +26,7 @@ function init() {
       this.positionOnGrid = [] //will store grid position of each food item 
     }
 
-    getIndexNumber() {
+    getIndexNumber() { // returns the index of this food in the foods array
       return `${foods.indexOf(this.name)}`
     }
 
@@ -59,7 +59,7 @@ function init() {
 
 
   // todo FUNCTIONS
-  // Creating the Gameplay Area
+  // Creating the initial Gameplay Area, adding characters
   function createGrid(ninjaPosition) {
     // Creating the cells and adding them on the board
     for (let i = 0; i < cellCount; i++) {
@@ -76,7 +76,6 @@ function init() {
 
     // addFoods function
     addFoodToGrid()
-
   }
 
   // todo FOODS SECTION
@@ -86,8 +85,11 @@ function init() {
     for (let i = 1; i < foodsObjectArray.length; i++) {
       let position
 
+      // for each food type add the required number of elements on grid
       for (let j = 0; j < numberOfFoodsPerRow; j++) {
         position = foodsObjectArray[i].setStartPosition() + j
+
+        //push the position of each created element into the positionOnGrid element array
         foodsObjectArray[i].positionOnGrid.push(position)
 
         // add different classlist depending on if column is odd or even
@@ -100,13 +102,60 @@ function init() {
       }
     }
   }
+  // console.log(foodsObjectArray[1].positionOnGrid)
 
-  console.log(foodsObjectArray[1].positionOnGrid)
-
-  // Removing food from grid
+  // Removing item from a position on grid
   function removeItemFromGrid (position) {
     cells[position].setAttribute('class', 'grid-div')
   }
+
+  // todo FOODS MOVEMENT SECTION
+
+  // after drawing grid and placing elements, start timer
+
+  // for each element of each food object, in the position array - increase position with 1 every half a second
+  // if element is at the end of the row, move at (position + 1) + index of element place in his array
+  // when element reaches position 80(row before last), end game
+
+  // after drawing grid and placing elements, set new timer starting at 0
+  const gameStartTime = new Date(0)
+  console.log(gameStartTime.getTime())
+
+  function increaseIndexNumberByOne () {
+    // looping through all food objects except pizza which is at index 0
+    for (let i = 1; i < foodsObjectArray.length; i++) {
+
+      // increases the index number of each with 1 to push the element to the next position on grid
+      for (let j = 0; j < foodsObjectArray[i].positionOnGrid.length; j++) {
+        
+        foodsObjectArray[i].positionOnGrid[j] ++
+        console.log(`${foodsObjectArray[i].name} ${foodsObjectArray[i].positionOnGrid[j]}`)
+      }
+    }
+  }
+
+  function stopMoving() { // if any index number >= 80 stop movement
+    let firstFoodItem = foodsObjectArray[foodsObjectArray.length - 1].positionOnGrid
+
+    if (firstFoodItem[firstFoodItem.length - 1] >= 80) {
+      console.log('stop')
+    }
+  }
+
+  const timerId = setInterval(() => {
+    stopMoving()
+
+    // looping through all food objects except pizza which is at index 0
+    increaseIndexNumberByOne()
+
+    // for (let i = 0; i < 2; i++) {
+    //   console.log('do action every second', i)
+    // }
+  }, 100)
+
+  setTimeout(() => {
+    clearInterval(timerId)
+  }, 50000) // stop after 5 seconds
 
 
   // todo NINJA SECTION
@@ -155,6 +204,9 @@ function init() {
   // CALLING THE FUNCTIONS
   createGrid(ninjaPosition) // To create the Gameplay Area
 
+  // // date & time at the moment
+  // //  const now = new Date()
+  //  // console.log(now.getTime())
   // remove item from grid
   // removeItemFromGrid(2)
 
