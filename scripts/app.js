@@ -16,6 +16,9 @@ function init() {
   // Establish number of foods per row and their start position
   const numberOfFoodsPerRow = gridWidth - Math.floor(gridWidth / 2.5)
   const foodStartPositionOnRow = (gridWidth - numberOfFoodsPerRow) / 2
+
+  // Establish the position a food item must reach to trigger game over
+  const gameOverPosition = (gridLength - 2) * gridWidth
   
   // Declare array for storing food position for each food item
   
@@ -115,7 +118,7 @@ function init() {
 
   // for each element of each food object, in the position array - increase position with 1 every half a second
   // if element is at the end of the row, move at (position + 1) + index of element place in his array
-  // when element reaches position 80(row before last), end game
+  // when element reaches gameOverPosition (row before last), end game
 
   // after drawing grid and placing elements, set new timer starting at 0
   const gameStartTime = new Date(0)
@@ -134,27 +137,26 @@ function init() {
     }
   }
 
-  function stopMoving() { // if any index number >= 80 stop movement and pop item out of array
+  function stopMoving() { // if any index number >= gameOverPosition stop movement and pop item out of array
     for (let i = 1; i < foodsObjectArray.length; i++) {
       for (let j = 0; j < foodsObjectArray[i].positionOnGrid.length; j++) {       
-        if (foodsObjectArray[i].positionOnGrid[j] >= 80) {
+        if (foodsObjectArray[i].positionOnGrid[j] >= gameOverPosition) {
           console.log('STOP') // todo replace with calling function to pop element out
           foodsObjectArray[i].positionOnGrid.pop(foodsObjectArray[i].positionOnGrid[j])
         }
-        
       }
     } 
   }
 
   const timerId = setInterval(() => {
+    // if index of any number reaches gameOverPosition, stop moving that item and pop it out of the list
     stopMoving()
 
     // looping through all food objects except pizza which is at index 0
     increaseIndexNumberByOne()
 
-    // for (let i = 0; i < 2; i++) {
     //   console.log('do action every second', i)
-    // }
+
   }, 100)
 
   setTimeout(() => {
