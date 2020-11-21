@@ -124,16 +124,27 @@ function init() {
   const gameStartTime = new Date(0)
   console.log(gameStartTime.getTime())
 
+  function stopMoving() { // if any index number >= gameOverPosition stop movement and pop item out of array
+    for (let i = 1; i < foodsObjectArray.length; i++) {
+      for (let j = 0; j < foodsObjectArray[i].positionOnGrid.length; j++) {       
+        if (foodsObjectArray[i].positionOnGrid[j] >= gameOverPosition) {
+          console.log('STOP') // todo replace with calling function to pop element out
+          foodsObjectArray[i].positionOnGrid.pop(foodsObjectArray[i].positionOnGrid[j])
+        }
+      }
+    } 
+  }
+
   function increaseIndexNumberByOne () {
+
     // looping through all food objects except pizza which is at index 0
     for (let i = 1; i < foodsObjectArray.length; i++) {
+
       // increases the index number of each with 1 to push the element to the next position on grid
       for (let j = foodsObjectArray[i].positionOnGrid.length - 1; j >= 0; j--) {
         removeItemFromGrid(foodsObjectArray[i].positionOnGrid[j])
         foodsObjectArray[i].positionOnGrid[j] ++
         addClassOfItem(foodsObjectArray[i], foodsObjectArray[i].positionOnGrid[j])
-
-        console.log(`${foodsObjectArray[i].name} ${foodsObjectArray[i].positionOnGrid[j]}`)
       }
     }
   }
@@ -150,115 +161,31 @@ function init() {
     }
   }
 
-  function moveToNextRow () {
-    // looping through all food objects except pizza which is at index 0
-    for (let i = foodsObjectArray.length - 1; i > 0; i--) {
-
-      // if the last item in object positionOnGrid array is at the end of the row
-      if ((foodsObjectArray[i].positionOnGrid[foodsObjectArray[i].positionOnGrid.length - 1]) % gridWidth === 0) {
-
-        // for all elements from last index backwards
-        for (let j = foodsObjectArray[i].positionOnGrid.length - 1; j >= 0; j--) {
-          removeItemFromGrid(foodsObjectArray[i].positionOnGrid[j])
-          foodsObjectArray[i].positionOnGrid[j] = foodsObjectArray[i].positionOnGrid[j] + gridWidth - 1
-          addClassOfItem(foodsObjectArray[i], foodsObjectArray[i].positionOnGrid[j])
-
-          // } else if (((foodsObjectArray[i].positionOnGrid[0] + 1) % gridWidth) === 0) {
-          //    // for all array elements from index 0 to end, 
-          //   for (let j = 0; j < foodsObjectArray[i].positionOnGrid.length; j++) {
-          //     removeItemFromGrid(foodsObjectArray[i].positionOnGrid[j])
-          //     foodsObjectArray[i].positionOnGrid.splice(j, 1, foodsObjectArray[i].positionOnGrid[j] + gridWidth - 1)
-
-          //     addClassOfItem(foodsObjectArray[i], foodsObjectArray[i].positionOnGrid[j])
-          //   }
-          //   console.log(' beginning of the row ')
-        }
-      }
-    }
-  }
-
-  // function moveToNextRow() {
-  //   // looping through all food objects except pizza which is at index 0
-  //   for (let i = 1; i < foodsObjectArray.length; i++) {
-
-  //     for (let j = 0; j < foodsObjectArray[i].positionOnGrid.length; j++) {
-
-  //       removeItemFromGrid(foodsObjectArray[i].positionOnGrid[j])
-  //       foodsObjectArray[i].positionOnGrid.splice(j, 1, foodsObjectArray[i].positionOnGrid[j] + gridWidth - 1)
-
-  //       addClassOfItem(foodsObjectArray[i], foodsObjectArray[i].positionOnGrid[j])
-  //     }
-  //   }
-  // }
-
-  // function increaseIndexNumberByOne () {
-  //   // looping through all food objects except pizza which is at index 0
-  //   for (let i = 1; i < foodsObjectArray.length; i++) {
-  //     const itemPosition = foodsObjectArray[i].positionOnGrid
-
-  //     // if the position of the last element of the array is at the end of the row
-  //     if ((itemPosition[itemPosition.length - 1] + 1) % gridWidth === 0) {
-  //       console.log(' end of the row ')
-
-  //       // move on row below
-  //       for (let j = 0; j < itemPosition.length; j++) {
-  //         console.log(itemPosition)
-  //         removeItemFromGrid(itemPosition[j])
-  //         itemPosition.splice(j, 1, itemPosition[j] + gridWidth - 1)
-  //         console.log(itemPosition)
-  //         addClassOfItem(foodsObjectArray[i], itemPosition[j])
-  //       }
-
-  //       // if row is odd
-  //     } else if ( Math.ceiling(itemPosition / gridWidth) % 2 === 0 )
-
-  //       for (let k = 0; k < itemPosition.length; k++) {
-  //         removeItemFromGrid(itemPosition[k])
-  //         itemPosition[k] --
-  //         addClassOfItem(foodsObjectArray[i], itemPosition[k])
-
-  // for (let j = foodsObjectArray[i].positionOnGrid.length - 1; j >= 0; j--) {
-  //   removeItemFromGrid(foodsObjectArray[i].positionOnGrid[j])
-  //   foodsObjectArray[i].positionOnGrid[j] = foodsObjectArray[i].positionOnGrid[j] + gridWidth
-  //   addClassOfItem(foodsObjectArray[i], foodsObjectArray[i].positionOnGrid[j])
-
-  //     } } 
-  // }
+  // function to move to next row
 
 
-
-  function stopMoving() { // if any index number >= gameOverPosition stop movement and pop item out of array
-    for (let i = 1; i < foodsObjectArray.length; i++) {
-      for (let j = 0; j < foodsObjectArray[i].positionOnGrid.length; j++) {       
-        if (foodsObjectArray[i].positionOnGrid[j] >= gameOverPosition) {
-          console.log('STOP') // todo replace with calling function to pop element out
-          foodsObjectArray[i].positionOnGrid.pop(foodsObjectArray[i].positionOnGrid[j])
-        }
-      }
-    } 
-  }
-
-  // todo UNCOMMENT HERE WHEN DONE
   const timerId = setInterval(() => {
+    
     // if index of any number reaches gameOverPosition, stop moving that item and pop it out of the list
     stopMoving()
 
     // looping through all food objects except pizza which is at index 0
     increaseIndexNumberByOne()
-    moveToNextRow()
 
 
-    // decrease index number by 1
+    // decrease index number by one
     // decreaseIndexNumberByOne()
 
     //   console.log('do action every second', i)
 
-  }, 800)
+  }, 100)
 
   setTimeout(() => {
     clearInterval(timerId)
-  }, 50000) // stop after 5 seconds
-  // todo UNTIL HERE
+  }, 9000) // stop after 5 seconds
+
+
+  // todo ==============================================================================================
 
 
   // todo NINJA SECTION
