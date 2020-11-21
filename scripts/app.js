@@ -82,14 +82,18 @@ function init() {
   function addFoodToGrid () {
     // set start position for each food in the foods object array
     for (let i = 1; i < foodsObjectArray.length; i++) {
-      const position = foodsObjectArray[i].setStartPosition()
+      let position
+      
+      for (let j = 0; j < numberOfFoodsPerRow; j++) {
+        position = foodsObjectArray[i].setStartPosition() + j
 
-      // add different classlist depending on if column is odd or even
-      if (position % 2 === 0) {
-        cells[position].classList.add(foodsObjectArray[i].linkEvenClass())
-        // cells[position].classList.add(ninjaClass)
-      } else {
-        cells[position].classList.add(foodsObjectArray[i].linkOddClass())
+        // add different classlist depending on if column is odd or even
+        if (position % 2 === 0) {
+          cells[position].classList.add(foodsObjectArray[i].linkEvenClass())
+          // cells[position].classList.add(ninjaClass)
+        } else {
+          cells[position].classList.add(foodsObjectArray[i].linkOddClass())
+        }
       }
     }
   }
@@ -98,9 +102,6 @@ function init() {
   function removeItemFromGrid (position) {
     cells[position].setAttribute('class', 'grid-div')
   }
-
-
-
 
 
   // todo NINJA SECTION
@@ -114,7 +115,6 @@ function init() {
     cells[position].classList.remove(ninjaClass)
   }
 
-  
   // Control ninja with keyboard
   function moveNinja(event) {
     const horizontalPosition = ninjaPosition % gridWidth
@@ -150,10 +150,8 @@ function init() {
   // CALLING THE FUNCTIONS
   createGrid(ninjaPosition) // To create the Gameplay Area
 
-  // placeFoods(foods)
-
   // remove item from grid
-  removeItemFromGrid()
+  // removeItemFromGrid(2)
 
   // EVENTS
 
