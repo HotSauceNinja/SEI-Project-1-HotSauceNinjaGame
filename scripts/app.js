@@ -17,8 +17,8 @@ function init() {
   const numberOfFoodsPerRow = gridWidth - Math.floor(gridWidth / 2.5)
   const foodStartPositionOnRow = (gridWidth - numberOfFoodsPerRow) / 2
 
-  // Establish the position a food item must reach to trigger game over
-  const gameOverPosition = (gridLength - 2) * gridWidth
+  // Establish the position a food item must reach to trigger game over //todo COMMENTED OUT TEMPORARY
+  // const gameOverPosition = (gridLength - 2) * gridWidth
 
   // Creating food object class for all food properties and methods
   class foodsObject {
@@ -164,16 +164,17 @@ function init() {
   const gameStartTime = new Date(0)
   console.log(gameStartTime.getTime())
 
-  function stopMoving() { // if any index number >= gameOverPosition stop movement and pop item out of array
-    for (let i = 1; i < foodsObjectArray.length; i++) {
-      for (let j = 0; j < foodsObjectArray[i].positionOnGrid.length; j++) {       
-        if (foodsObjectArray[i].positionOnGrid[j] >= gameOverPosition) {
-          console.log('STOP') // todo replace with calling function to pop element out
-          foodsObjectArray[i].positionOnGrid.pop(foodsObjectArray[i].positionOnGrid[j])
-        }
-      }
-    } 
-  }
+  //todo GOOD FUNCTION COMMENTED OUT TEMPORARY
+  // function stopMoving() { // if any index number >= gameOverPosition stop movement and pop item out of array
+  //   for (let i = 1; i < foodsObjectArray.length; i++) {
+  //     for (let j = 0; j < foodsObjectArray[i].positionOnGrid.length; j++) {       
+  //       if (foodsObjectArray[i].positionOnGrid[j] >= gameOverPosition) {
+  //         console.log('STOP') // todo replace with calling function to pop element out
+  //         foodsObjectArray[i].positionOnGrid.pop(foodsObjectArray[i].positionOnGrid[j])
+  //       }
+  //     }
+  //   } 
+  // }
 
   function foodsMoveOneRight() {
     // looping through all food objects except pizza which is at index 0
@@ -200,14 +201,17 @@ function init() {
     }
   }
 
-  // function  moveFourLeft() {
-  //   const timer = setInterval(() => {
-  //     foodsMoveOneLeft()
-  //   }, 1000)
-  //   setTimeout(() => {
-  //     clearInterval(timer)
-  //   }, 4000) // stop after 4 seconds
-  // }
+  function foodsMoveOneDown() {
+    // looping through all food objects except pizza which is at index 0
+    for (let i = foodsObjectArray.length - 1; i > 0; i--) {
+      // looping through all food positions from the right to the left
+      for (let j = foodsObjectArray[i].positionOnGrid.length - 1; j >= 0; j--) {
+        removeItemFromGrid(foodsObjectArray[i].positionOnGrid[j])
+        foodsObjectArray[i].positionOnGrid[j] = foodsObjectArray[i].positionOnGrid[j] + gridWidth
+        addClassOfItem(foodsObjectArray[i], foodsObjectArray[i].positionOnGrid[j])
+      }
+    }
+  }
 
   // function to move to next row
 
@@ -216,12 +220,18 @@ function init() {
   setTimeout(foodsMoveOneRight, 1000)
   setTimeout(foodsMoveOneRight, 2000)
 
+  // set timeout move one down
+  setTimeout(foodsMoveOneDown, 3000)
+
   // set timeout move four left
   setTimeout(foodsMoveOneLeft, 4000)
   setTimeout(foodsMoveOneLeft, 5000)
   setTimeout(foodsMoveOneLeft, 6000)
   setTimeout(foodsMoveOneLeft, 7000)
   
+  // set timeout move one down
+  setTimeout(foodsMoveOneDown, 8000)
+
   // const timerId = setInterval(() => {
     
   //   // if index of any number reaches gameOverPosition, stop moving that item and pop it out of the list
@@ -246,15 +256,6 @@ function init() {
 
   // todo ===================================CALLING THE FUNCTIONS===================================
   createGrid(ninjaPosition) // To create the Gameplay Area
-
-  moveTwoRight()
-  moveFourLeft()
-
-  // // date & time at the moment
-  // //  const now = new Date()
-  //  // console.log(now.getTime())
-  // remove item from grid
-  // removeItemFromGrid(2)
 
   // todo ===================================EVENTS===================================
 
