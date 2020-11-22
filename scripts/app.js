@@ -1,5 +1,5 @@
 function init() {
-  // todo VARIABLES
+  // todo ===================================VARIABLES===================================
   const foods = ['pizza', 'fries', 'egg', 'drumstick']  
   
   // todo ELEMENTS
@@ -57,7 +57,7 @@ function init() {
   }
 
 
-  // todo FUNCTIONS
+  // todo ===================================FUNCTIONS===================================
   // Creating the initial Gameplay Area, adding characters
   function createGrid(ninjaPosition) {
     // Creating the cells and adding them on the board
@@ -75,6 +75,46 @@ function init() {
 
     // add foods in start position
     addFoodToGridInStartPosition()
+  }
+
+  // todo NINJA SECTION
+  // Adding the ninja to grid
+  function addNinja(position) {
+    cells[position].classList.add(ninjaClass)
+  }
+  // Removing ninja from grid
+  function removeNinja(position) {
+    cells[position].classList.remove(ninjaClass)
+  }
+  // Control ninja with keyboard
+  function moveNinja(event) {
+    const horizontalPosition = ninjaPosition % gridWidth
+
+    removeNinja(ninjaPosition)
+
+    switch (event.keyCode) {
+      case 37: // left with left arrow
+        if (horizontalPosition > 0) ninjaPosition--
+        break
+      case 65: // left with a key
+        if (horizontalPosition > 0) ninjaPosition--
+        break
+      case 39: // right with right arrow
+        if (horizontalPosition < gridWidth - 1) ninjaPosition++
+        break
+      case 68: // right with d key
+        if (horizontalPosition < gridWidth - 1) ninjaPosition++
+        break
+      case 13: // Shoot with enter key
+        console.log('Hot Sauce!')
+        break
+      case 32: // Shoot with space key
+        console.log('Hot Sauce!')
+        break
+      default:
+        console.log('Invalid key')
+    }
+    addNinja(ninjaPosition)
   }
 
   // todo FOODS SECTION
@@ -115,8 +155,8 @@ function init() {
 
   // todo FOODS MOVEMENT SECTION
 
-  // after drawing grid and placing elements, start timer
-  // for each element of each food object, in the position array - increase position with 1 every half a second
+  // for each element of each food object, in the position array - increase position every second as follows:
+  // increase 
   // if element is at the end of the row, move at (position + 1) + index of element place in his array
   // when element reaches gameOverPosition (row before last), end game
 
@@ -135,8 +175,7 @@ function init() {
     } 
   }
 
-  function increaseIndexNumberByOne () {
-
+  function foodsMoveOneRight() {
     // looping through all food objects except pizza which is at index 0
     for (let i = 1; i < foodsObjectArray.length; i++) {
 
@@ -149,7 +188,7 @@ function init() {
     }
   }
 
-  function decreaseIndexNumberByOne () {
+  function foodsMoveOneLeft() {
     // looping through all food objects except pizza which is at index 0
     for (let i = foodsObjectArray.length - 1; i > 0; i--) {
       // decreases the index number of each with 1 to push the element to the previous position on grid
@@ -163,75 +202,45 @@ function init() {
 
   // function to move to next row
 
-
-  const timerId = setInterval(() => {
-    
-    // if index of any number reaches gameOverPosition, stop moving that item and pop it out of the list
-    stopMoving()
-
-    // looping through all food objects except pizza which is at index 0
-    increaseIndexNumberByOne()
-
-
-    // decrease index number by one
-    // decreaseIndexNumberByOne()
-
-    //   console.log('do action every second', i)
-
-  }, 100)
-
+  //todo ===================================TIMERS===================================
+  const timerMoveTwoRight = setInterval(() => {
+    foodsMoveOneRight()
+  }, 1000)
   setTimeout(() => {
-    clearInterval(timerId)
-  }, 9000) // stop after 5 seconds
+    clearInterval(timerMoveTwoRight)
+  }, 2000) // stop after 2 seconds
 
 
-  // todo ==============================================================================================
+  const timerMoveFourLeft = setInterval(() => {
+    foodsMoveOneLeft()
+  }, 1000)
+  setTimeout(() => {
+    clearInterval(timerMoveFourLeft)
+  }, 4000) // stop after 4 seconds
+
+  // const timerId = setInterval(() => {
+    
+  //   // if index of any number reaches gameOverPosition, stop moving that item and pop it out of the list
+  //   stopMoving()
+
+  //   // looping through all food objects except pizza which is at index 0
+  //   foodsMoveOneRight()
 
 
-  // todo NINJA SECTION
-  // Adding the ninja to grid
-  function addNinja(position) {
-    cells[position].classList.add(ninjaClass)
-  }
+  //   // decrease index number by one
+  //   // foodsMoveOneLeft()
+
+  //   //   console.log('do action every second', i)
+
+  // }, 100)
+
+  // setTimeout(() => {
+  //   clearInterval(timerId)
+  // }, 9000) // stop after 5 seconds
   
-  // Removing ninja from grid
-  function removeNinja(position) {
-    cells[position].classList.remove(ninjaClass)
-  }
-
-  // Control ninja with keyboard
-  function moveNinja(event) {
-    const horizontalPosition = ninjaPosition % gridWidth
-
-    removeNinja(ninjaPosition)
-
-    switch (event.keyCode) {
-      case 37: // left with left arrow
-        if (horizontalPosition > 0) ninjaPosition--
-        break
-      case 65: // left with a key
-        if (horizontalPosition > 0) ninjaPosition--
-        break
-      case 39: // right with right arrow
-        if (horizontalPosition < gridWidth - 1) ninjaPosition++
-        break
-      case 68: // right with d key
-        if (horizontalPosition < gridWidth - 1) ninjaPosition++
-        break
-      case 13: // Shoot with enter key
-        console.log('Hot Sauce!')
-        break
-      case 32: // Shoot with space key
-        console.log('Hot Sauce!')
-        break
-      default:
-        console.log('Invalid key')
-    }
-    addNinja(ninjaPosition)
-  }
 
 
-  // CALLING THE FUNCTIONS
+  // todo ===================================CALLING THE FUNCTIONS===================================
   createGrid(ninjaPosition) // To create the Gameplay Area
 
   // // date & time at the moment
@@ -240,7 +249,7 @@ function init() {
   // remove item from grid
   // removeItemFromGrid(2)
 
-  // EVENTS
+  // todo ===================================EVENTS===================================
 
   document.addEventListener('keydown', moveNinja)
 
