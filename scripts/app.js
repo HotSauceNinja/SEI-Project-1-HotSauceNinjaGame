@@ -14,7 +14,7 @@ function init() {
   const ninjaAfterThrow = 'ninja-down'
   let ninjaPosition = 94 
   const hotsauceClass = 'hotsauce' 
-  let hotsaucePosition = ninjaPosition - gridWidth
+  // let hotsaucePosition = ninjaPosition - gridWidth NOT SURE I AM USING THIS BUT WILL KEEP FOR NOW
 
 
   // Establish number of foods per row and their start position
@@ -61,7 +61,7 @@ function init() {
     foodsObjectArray.push(new foodsObject(foods[i]))
   }
 
-  console.log(foodsObjectArray)
+  // console.log(foodsObjectArray)
 
 
   // todo ===================================FUNCTIONS===================================
@@ -106,6 +106,7 @@ function init() {
   // Control ninja with keyboard
   function moveNinja(event) {
     const horizontalPosition = ninjaPosition % gridWidth
+    // let hotsaucePosition = ninjaPosition + gridWidth
 
     removeNinja(ninjaPosition)
     removeNinjaAfterThrow(ninjaPosition)
@@ -125,32 +126,54 @@ function init() {
         break
       case 13: // Shoot with enter key
         console.log('Hot Sauce enter!')
-        addHotSauce(ninjaPosition - gridWidth)
+        addHotSauce(ninjaPosition)
         addNinjaAfterThrow(ninjaPosition)
         break
       case 32: // Shoot with space key
         console.log('Hot Sauce space!')
-        addHotSauce(ninjaPosition - gridWidth)
+        addHotSauce(ninjaPosition)
         addNinjaAfterThrow(ninjaPosition)
         break
       default:
         console.log('Invalid key')
-    }
-    
+    }  
     addNinja(ninjaPosition)
+  }
+
+  function removeHotSauce(position) {
+    cells[position].classList.remove(hotsauceClass)
   }
 
   function addHotSauce(position) {
     // when player presses key put the image of hot sauce on position above player
-    cells[position].classList.add(hotsauceClass)
-    
+    cells[position - gridWidth].classList.add(hotsauceClass)
+    removeHotSauce(position)
+  
     //put timer so that bottle keeps going up 
+    counter(position)
+    
     //if bottle reaches position with foodsClass make it explode 
   }
+  
+  function counter (hotsaucePosition) {
+    let count = 100
+    const timerIdOne = window.setInterval(() => {
 
-  // function removeHotSauce(hotsaucePosition) {
-  //   cells[hotsaucePosition].classList.remove(hotsauceClass)
-  // }
+      console.log('Hey I am counting')
+      count++
+      removeHotSauce(hotsaucePosition)
+      hotsaucePosition = hotsaucePosition - gridWidth
+      addHotSauce(hotsaucePosition)
+      
+
+      if (count > 5) {
+        window.clearInterval(timerIdOne)
+      }
+    }, 500)
+  }
+
+
+
 
   // todo FOODS SECTION
   // Adding all food to grid in start position
