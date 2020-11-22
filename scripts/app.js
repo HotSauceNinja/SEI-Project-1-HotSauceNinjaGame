@@ -58,6 +58,7 @@ function init() {
 
 
   // todo ===================================FUNCTIONS===================================
+  
   // Creating the initial Gameplay Area, adding characters
   function createGrid(ninjaPosition) {
     // Creating the cells and adding them on the board
@@ -135,8 +136,6 @@ function init() {
       }
     }
   }
-  // console.log(foodsObjectArray[1].positionOnGrid)
-
   function addClassOfItem(object, position) {
     // add different classlist depending on if column is odd or even
     if (position % 2 === 0) {
@@ -146,35 +145,13 @@ function init() {
       cells[position].classList.add(object.linkOddClass())
     }
   }
-
-
   // Removing item from a position on grid
   function removeItemFromGrid(position) {
     cells[position].setAttribute('class', 'grid-div')
   }
 
   // todo FOODS MOVEMENT SECTION
-
-  // for each element of each food object, in the position array - increase position every second as follows:
-  // increase 
-  // if element is at the end of the row, move at (position + 1) + index of element place in his array
-  // when element reaches gameOverPosition (row before last), end game
-
-  // after drawing grid and placing elements, set new timer starting at 0
-  const gameStartTime = new Date(0)
-  console.log(gameStartTime.getTime())
-
-  function stopMoving() { // if any index number >= gameOverPosition stop movement and pop item out of array
-    for (let i = 1; i < foodsObjectArray.length; i++) {
-      for (let j = 0; j < foodsObjectArray[i].positionOnGrid.length; j++) {       
-        if (foodsObjectArray[i].positionOnGrid[j] >= gameOverPosition) {
-          console.log('STOP') // todo replace with calling function to pop element out
-          foodsObjectArray[i].positionOnGrid.pop(foodsObjectArray[i].positionOnGrid[j])
-        }
-      }
-    } 
-  }
-
+  // move foods to the right
   function foodsMoveOneRight() {
     // looping through all food objects except pizza which is at index 0
     for (let i = 1; i < foodsObjectArray.length; i++) {
@@ -187,7 +164,7 @@ function init() {
       }
     }
   }
-
+  // move foods to the left
   function foodsMoveOneLeft() {
     // looping through all food objects except pizza which is at index 0
     for (let i = foodsObjectArray.length - 1; i > 0; i--) {
@@ -199,7 +176,7 @@ function init() {
       }
     }
   }
-
+  // move foods to down
   function foodsMoveOneDown() {
     // looping through all food objects except pizza which is at index 0
     for (let i = foodsObjectArray.length - 1; i > 0; i--) {
@@ -211,10 +188,21 @@ function init() {
       }
     }
   }
-
-  // function to move to next row
+  // when element reaches gameOverPosition (row before last), end game // todo I don't think this function is working
+  function stopMoving() { 
+    // if any index number >= gameOverPosition stop movement and pop item out of array
+    for (let i = 1; i < foodsObjectArray.length; i++) {
+      for (let j = 0; j < foodsObjectArray[i].positionOnGrid.length; j++) {       
+        if (foodsObjectArray[i].positionOnGrid[j] >= gameOverPosition) {
+          console.log('STOP') // todo replace with calling function to pop element out
+          foodsObjectArray[i].positionOnGrid.pop(foodsObjectArray[i].positionOnGrid[j])
+        }
+      }
+    } 
+  }
 
   //todo ===================================TIMERS===================================
+  // ? Do I put timeouts below in the createGrid function?
   // set timeout move two right
   setTimeout(foodsMoveOneRight, 1000)
   setTimeout(foodsMoveOneRight, 2000)
@@ -264,22 +252,10 @@ function init() {
   setTimeout(foodsMoveOneLeft, 26000)
   setTimeout(foodsMoveOneLeft, 27000)
 
-  stopMoving()
-  
+  stopMoving() // I don't think this function is working ...
+
   // const timerId = setInterval(() => {
-    
-  //   // if index of any number reaches gameOverPosition, stop moving that item and pop it out of the list
-
-
-  //   // looping through all food objects except pizza which is at index 0
-  //   foodsMoveOneRight()
-
-
-  //   // decrease index number by one
-  //   // foodsMoveOneLeft()
-
   //   //   console.log('do action every second', i)
-
   // }, 100)
 
   // setTimeout(() => {
@@ -287,9 +263,9 @@ function init() {
   // }, 9000) // stop after 5 seconds
   
 
-
-  // todo ===================================CALLING THE FUNCTIONS===================================
+  // todo =================================CALLING THE FUNCTIONS=================================
   createGrid(ninjaPosition) // To create the Gameplay Area
+  
 
   // todo ===================================EVENTS===================================
 
