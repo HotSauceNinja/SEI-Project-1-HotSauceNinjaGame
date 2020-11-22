@@ -9,13 +9,13 @@ function init() {
   const cellCount = gridWidth * gridLength
   const cells = []
 
-  // Set ninja class & start position
+  // Get ninja class & start position
   const ninjaClass = 'ninja'
   const ninjaAfterThrow = 'ninja-down'
   let ninjaPosition = 94 
-  const hotsauceClass = 'hotsauce' 
-  // let hotsaucePosition = ninjaPosition - gridWidth NOT SURE I AM USING THIS BUT WILL KEEP FOR NOW
 
+  // Get hot sauce class
+  const hotsauceClass = 'hotsauce' 
 
   // Establish number of foods per row and their start position
   const numberOfFoodsPerRow = gridWidth - Math.floor(gridWidth / 2.5)
@@ -140,6 +140,7 @@ function init() {
     addNinja(ninjaPosition)
   }
 
+  // todo HOT SAUCE BOTTLE MOVEMENT SECTION
   function removeHotSauce(position) {
     cells[position].classList.remove(hotsauceClass)
   }
