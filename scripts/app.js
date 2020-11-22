@@ -200,24 +200,28 @@ function init() {
     }
   }
 
+  // function  moveFourLeft() {
+  //   const timer = setInterval(() => {
+  //     foodsMoveOneLeft()
+  //   }, 1000)
+  //   setTimeout(() => {
+  //     clearInterval(timer)
+  //   }, 4000) // stop after 4 seconds
+  // }
+
   // function to move to next row
 
   //todo ===================================TIMERS===================================
-  const timerMoveTwoRight = setInterval(() => {
-    foodsMoveOneRight()
-  }, 1000)
-  setTimeout(() => {
-    clearInterval(timerMoveTwoRight)
-  }, 2000) // stop after 2 seconds
+  // set timeout move two right
+  setTimeout(foodsMoveOneRight, 1000)
+  setTimeout(foodsMoveOneRight, 2000)
 
-
-  const timerMoveFourLeft = setInterval(() => {
-    foodsMoveOneLeft()
-  }, 1000)
-  setTimeout(() => {
-    clearInterval(timerMoveFourLeft)
-  }, 4000) // stop after 4 seconds
-
+  // set timeout move four left
+  setTimeout(foodsMoveOneLeft, 4000)
+  setTimeout(foodsMoveOneLeft, 5000)
+  setTimeout(foodsMoveOneLeft, 6000)
+  setTimeout(foodsMoveOneLeft, 7000)
+  
   // const timerId = setInterval(() => {
     
   //   // if index of any number reaches gameOverPosition, stop moving that item and pop it out of the list
@@ -242,6 +246,9 @@ function init() {
 
   // todo ===================================CALLING THE FUNCTIONS===================================
   createGrid(ninjaPosition) // To create the Gameplay Area
+
+  moveTwoRight()
+  moveFourLeft()
 
   // // date & time at the moment
   // //  const now = new Date()
