@@ -144,6 +144,12 @@ function init() {
     cells[position].classList.remove(hotsauceClass)
   }
 
+  function moveHotSauce(position) {
+    removeHotSauce(position)
+    position = position - gridWidth
+    cells[position].classList.add(hotsauceClass)
+  }
+
   function addHotSauce(position) {
     // when player presses key put the image of hot sauce on position above player
     cells[position - gridWidth].classList.add(hotsauceClass)
@@ -151,25 +157,24 @@ function init() {
   
     //put timer so that bottle keeps going up 
     counter(position)
-    
+
     //if bottle reaches position with foodsClass make it explode 
   }
   
   function counter (hotsaucePosition) {
-    let count = 100
+    let count = 0
     const timerIdOne = window.setInterval(() => {
 
-      console.log('Hey I am counting')
-      count++
-      removeHotSauce(hotsaucePosition)
-      hotsaucePosition = hotsaucePosition - gridWidth
-      addHotSauce(hotsaucePosition)
-      
+      console.log({ hotsaucePosition })
+      count = count + 1
 
+      moveHotSauce(hotsaucePosition)
+      hotsaucePosition = hotsaucePosition - gridWidth
+      
       if (count > 5) {
         window.clearInterval(timerIdOne)
       }
-    }, 500)
+    }, 200)
   }
 
 
