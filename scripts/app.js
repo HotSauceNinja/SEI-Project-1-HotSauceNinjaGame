@@ -145,9 +145,16 @@ function init() {
   }
 
   function moveHotSauce(position) {
-    removeHotSauce(position)
     position = position - gridWidth
-    cells[position].classList.add(hotsauceClass)
+    
+    if (position >= 0) {
+      cells[position].classList.add(hotsauceClass)
+      removeHotSauce(position + gridWidth)
+    } else {
+      cells[position + gridWidth].classList.add(hotsauceClass)
+      // removeHotSauce(position + gridWidth)
+    }
+    
   }
 
   function addHotSauce(position) {
@@ -166,12 +173,16 @@ function init() {
     const timerIdOne = window.setInterval(() => {
 
       console.log({ hotsaucePosition })
-      count = count + 1
-
-      moveHotSauce(hotsaucePosition)
-      hotsaucePosition = hotsaucePosition - gridWidth
+      console.log({ count })
       
-      if (count > 5) {
+      hotsaucePosition = hotsaucePosition - gridWidth
+      moveHotSauce(hotsaucePosition) 
+      count ++
+
+      // If bottle reaches end, make it disappear and stop timer
+      if (count > (gridWidth - 2)) {
+        removeHotSauce(hotsaucePosition)
+
         window.clearInterval(timerIdOne)
       }
     }, 200)
