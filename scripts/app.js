@@ -25,6 +25,7 @@ function init() {
     constructor(name) {
       this.name = name
       this.positionOnGrid = [] //will store grid position of each food item 
+      this.classList = 'foodsClass'
     }
 
     getIndexNumber() { // returns the index of this food in the foods array
@@ -56,6 +57,8 @@ function init() {
     foodsObjectArray.push(new foodsObject(foods[i]))
   }
 
+  console.log(foodsObjectArray)
+
 
   // todo ===================================FUNCTIONS===================================
   
@@ -86,6 +89,11 @@ function init() {
   // Removing ninja from grid
   function removeNinja(position) {
     cells[position].classList.remove(ninjaClass)
+  }
+  function throwHotSauce() {
+    // when player presses key put the image of hot sauce on position above player
+    //put timer so that bottle keeps going up 
+    //if bottle reaches position with foodsClass make it explode 
   }
   // Control ninja with keyboard
   function moveNinja(event) {
@@ -140,9 +148,10 @@ function init() {
     // add different classlist depending on if column is odd or even
     if (position % 2 === 0) {
       cells[position].classList.add(object.linkEvenClass())
-      // cells[position].classList.add(ninjaClass)
+      cells[position].classList.add('foodsClass')
     } else {
       cells[position].classList.add(object.linkOddClass())
+      cells[position].classList.add('foodsClass')
     }
   }
   // Removing item from a position on grid
@@ -265,7 +274,7 @@ function init() {
 
   // todo =================================CALLING THE FUNCTIONS=================================
   createGrid(ninjaPosition) // To create the Gameplay Area
-  
+
 
   // todo ===================================EVENTS===================================
 

@@ -67,6 +67,12 @@ h1 {
   background-size: contain;
   cursor: pointer;
 }
+.grid-div.hotsauce {
+  background-image: url('../Ninja/hotsauce.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+}
 
 /* DRUMSTICK CHARACTER */
 .grid-div.drumstickOdd {
