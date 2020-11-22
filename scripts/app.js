@@ -11,7 +11,10 @@ function init() {
 
   // Set ninja class & start position
   const ninjaClass = 'ninja'
-  let ninjaPosition = 94  
+  let ninjaPosition = 94 
+  const hotsauceClass = 'hotsauce' 
+  let hotsaucePosition = ninjaPosition - gridWidth
+
 
   // Establish number of foods per row and their start position
   const numberOfFoodsPerRow = gridWidth - Math.floor(gridWidth / 2.5)
@@ -90,11 +93,6 @@ function init() {
   function removeNinja(position) {
     cells[position].classList.remove(ninjaClass)
   }
-  function throwHotSauce() {
-    // when player presses key put the image of hot sauce on position above player
-    //put timer so that bottle keeps going up 
-    //if bottle reaches position with foodsClass make it explode 
-  }
   // Control ninja with keyboard
   function moveNinja(event) {
     const horizontalPosition = ninjaPosition % gridWidth
@@ -115,16 +113,30 @@ function init() {
         if (horizontalPosition < gridWidth - 1) ninjaPosition++
         break
       case 13: // Shoot with enter key
-        console.log('Hot Sauce!')
+        console.log('Hot Sauce enter!')
+        addHotSauce(ninjaPosition - gridWidth)
         break
       case 32: // Shoot with space key
-        console.log('Hot Sauce!')
+        console.log('Hot Sauce space!')
+        addHotSauce(ninjaPosition - gridWidth)
         break
       default:
         console.log('Invalid key')
     }
     addNinja(ninjaPosition)
   }
+
+  function addHotSauce(position) {
+    // when player presses key put the image of hot sauce on position above player
+    cells[position].classList.add(hotsauceClass)
+    
+    //put timer so that bottle keeps going up 
+    //if bottle reaches position with foodsClass make it explode 
+  }
+
+  // function removeHotSauce(hotsaucePosition) {
+  //   cells[hotsaucePosition].classList.remove(hotsauceClass)
+  // }
 
   // todo FOODS SECTION
   // Adding all food to grid in start position
@@ -279,6 +291,7 @@ function init() {
   // todo ===================================EVENTS===================================
 
   document.addEventListener('keydown', moveNinja)
+  // document.addEventListener('keyup', throwHotSauce)
 
 }
 
