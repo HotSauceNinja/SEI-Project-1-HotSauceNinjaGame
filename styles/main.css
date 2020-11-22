@@ -4,7 +4,6 @@ GAME AREA: #A7AF5F
 BODY: rgb(117, 150, 64) / #759640 
 */
 
-
 * {
   box-sizing: border-box;
 }
@@ -75,6 +74,7 @@ h1 {
   cursor: pointer;
 }
 
+/* HOT SAUCE */
 .grid-div.hotsauce {
   background-image: url('../Ninja/hotsauce.png');
   background-repeat: no-repeat;
@@ -82,7 +82,7 @@ h1 {
   cursor: pointer;
 }
 
-/* DRUMSTICK CHARACTER */
+/* FOODS CHARACTERS */
 .grid-div.drumstickOdd {
   background-image: url('../Food/drumstick_1.png');
   background-repeat: no-repeat;
@@ -134,6 +134,14 @@ h1 {
 
 .grid-div.pizzaEven {
   background-image: url('../Food/pizza_2.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+}
+
+/* FORK */
+.grid-div.fork {
+  background-image: url('../Food/fork.png');
   background-repeat: no-repeat;
   background-size: contain;
   cursor: pointer;

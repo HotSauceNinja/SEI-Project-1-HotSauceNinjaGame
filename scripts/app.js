@@ -14,8 +14,9 @@ function init() {
   const ninjaAfterThrow = 'ninja-down'
   let ninjaPosition = 94 
 
-  // Get hot sauce class
+  // Get hot sauce & fork classes
   const hotsauceClass = 'hotsauce' 
+  // const forkClass = 'fork'
 
   // Establish number of foods per row and their start position
   const numberOfFoodsPerRow = gridWidth - Math.floor(gridWidth / 2.5)
@@ -83,6 +84,21 @@ function init() {
 
     // add foods in start position
     addFoodToGridInStartPosition()
+
+    // ! Bit below might be useful but not using for now
+    // // using math random generate random forks 
+    // // random number 
+    // const foodsObjectArrayNumber = Math.ceil(Math.random() * (foodsObjectArray.length - 1))
+    // console.log({ foodsObjectArrayNumber })
+
+    // const positionOnGridNumber = Math.floor(Math.random() * foodsObjectArray[foodsObjectArrayNumber].positionOnGrid.length)
+    // console.log({ positionOnGridNumber })
+
+    // const randomShot = foodsObjectArray[foodsObjectArrayNumber].positionOnGrid[positionOnGridNumber]
+
+    // console.log({ randomShot })
+    // shootFork(randomShot + (gridWidth * foodsObjectArrayNumber))
+    // ! bit ends here
   }
 
   // todo NINJA SECTION
@@ -172,24 +188,26 @@ function init() {
   function counter (hotsaucePosition) {
     let count = 0
     const timerIdOne = window.setInterval(() => {
-
-      console.log({ hotsaucePosition })
-      console.log({ count })
-      
+      // repeat bottle movement and increase count each time
       hotsaucePosition = hotsaucePosition - gridWidth
       moveHotSauce(hotsaucePosition) 
       count ++
 
-      // If bottle reaches end, make it disappear and stop timer
+      // If bottle reaches end of grid, make it disappear and stop counting
       if (count > (gridWidth - 2)) {
         removeHotSauce(hotsaucePosition)
-
         window.clearInterval(timerIdOne)
       }
     }, 200)
   }
 
+  // todo HOT SAUCE BOTTLE HITS FOOD
 
+  // if hot sauce bottle hits food, 
+  // remove food and hotsauce classes
+  // make food element falsy and make it not show up on grid 
+  // replace them with a boom class on a 1 second counter
+  // increase score with 100
 
 
   // todo FOODS SECTION
@@ -225,8 +243,17 @@ function init() {
     cells[position].setAttribute('class', 'grid-div')
   }
 
+  // ! HERE DOWN - shoot forks function - to do after having sucesfully shot ships
+  // function shootFork (position) {
+  //   console.log({ forkClass })
+  //   cells[position].classList.add(forkClass)
+  // }
+  // shootFork()
+  // ! HERE UP
+
   // todo FOODS MOVEMENT SECTION
   // move foods to the right
+  
   function foodsMoveOneRight() {
     // looping through all food objects except pizza which is at index 0
     for (let i = 1; i < foodsObjectArray.length; i++) {
