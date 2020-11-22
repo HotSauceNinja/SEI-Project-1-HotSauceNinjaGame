@@ -67,6 +67,14 @@ h1 {
   background-size: contain;
   cursor: pointer;
 }
+
+.grid-div.ninja-down {
+  background-image: url('../Ninja/ninja_down.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+}
+
 .grid-div.hotsauce {
   background-image: url('../Ninja/hotsauce.png');
   background-repeat: no-repeat;

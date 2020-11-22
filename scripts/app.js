@@ -11,6 +11,7 @@ function init() {
 
   // Set ninja class & start position
   const ninjaClass = 'ninja'
+  const ninjaAfterThrow = 'ninja-down'
   let ninjaPosition = 94 
   const hotsauceClass = 'hotsauce' 
   let hotsaucePosition = ninjaPosition - gridWidth
@@ -93,11 +94,21 @@ function init() {
   function removeNinja(position) {
     cells[position].classList.remove(ninjaClass)
   }
+  // Adding the ninja after throw to grid
+  function addNinjaAfterThrow(position) {
+    cells[position].classList.add(ninjaAfterThrow)
+  }
+  // Removing ninja after throw from grid
+  function removeNinjaAfterThrow(position) {
+    cells[position].classList.remove(ninjaAfterThrow)
+  }
+  
   // Control ninja with keyboard
   function moveNinja(event) {
     const horizontalPosition = ninjaPosition % gridWidth
 
     removeNinja(ninjaPosition)
+    removeNinjaAfterThrow(ninjaPosition)
 
     switch (event.keyCode) {
       case 37: // left with left arrow
@@ -115,14 +126,17 @@ function init() {
       case 13: // Shoot with enter key
         console.log('Hot Sauce enter!')
         addHotSauce(ninjaPosition - gridWidth)
+        addNinjaAfterThrow(ninjaPosition)
         break
       case 32: // Shoot with space key
         console.log('Hot Sauce space!')
         addHotSauce(ninjaPosition - gridWidth)
+        addNinjaAfterThrow(ninjaPosition)
         break
       default:
         console.log('Invalid key')
     }
+    
     addNinja(ninjaPosition)
   }
 
