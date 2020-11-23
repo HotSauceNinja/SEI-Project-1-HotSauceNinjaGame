@@ -62,8 +62,6 @@ function init() {
     foodsObjectArray.push(new foodsObject(foods[i]))
   }
 
-  // console.log(foodsObjectArray)
-
 
   // todo ===================================FUNCTIONS===================================
   
@@ -101,6 +99,26 @@ function init() {
     // ! bit ends here
   }
 
+  // Check if item is at the end of the grid
+  function checkIfEndOfRow(position) {
+    const horizontalPosition = position % gridWidth
+
+    // if item is at right end of row
+    if (horizontalPosition === gridWidth - 1) {
+      console.log('right end')
+      return true
+
+    // if item is at left end of row
+    } else if (horizontalPosition % 10 === 0) {
+      console.log('left end')
+      return true
+    }
+    
+    return false
+  }
+
+  checkIfEndOfRow(0)
+
   // todo NINJA SECTION
   // Adding the ninja to grid
   function addNinja(position) {
@@ -122,7 +140,6 @@ function init() {
   // Control ninja with keyboard
   function moveNinja(event) {
     const horizontalPosition = ninjaPosition % gridWidth
-    // let hotsaucePosition = ninjaPosition + gridWidth
 
     removeNinja(ninjaPosition)
     removeNinjaAfterThrow(ninjaPosition)
@@ -181,8 +198,6 @@ function init() {
   
     //put timer so that bottle keeps going up 
     counter(position)
-
-    //if bottle reaches position with foodsClass make it explode 
   }
   
   function counter (hotsaucePosition) {
@@ -191,7 +206,34 @@ function init() {
       // repeat bottle movement and increase count each time
       hotsaucePosition = hotsaucePosition - gridWidth
       moveHotSauce(hotsaucePosition) 
+
+      //if hotsaucePosition includes foodsClass
+      if (cells[hotsaucePosition].classList.contains('foodsClass')) {
+
+        // check each food object in the foodsObjectArray
+        foodsObjectArray.forEach(item => {
+
+          // if the item positions array includes the position where the bottle hit
+          if (item.positionOnGrid.includes(hotsaucePosition)) {
+
+            // find the index of that position
+            const elementToRemoveIndex = item.positionOnGrid.indexOf(hotsaucePosition)
+
+            // and take the element out of the array
+            item.positionOnGrid.splice(elementToRemoveIndex, 1)
+          }
+        })
+
+        // the remove both food item and bottle from the grid 
+        removeItemFromGrid(hotsaucePosition)
+        removeHotSauce(hotsaucePosition - gridWidth)
+
+        // and stop timer for this bottle movement
+        window.clearInterval(timerIdOne)
+      }
+    
       count ++
+
 
       // If bottle reaches end of grid, make it disappear and stop counting
       if (count > (gridWidth - 2)) {
@@ -305,6 +347,8 @@ function init() {
 
   //todo ===================================TIMERS===================================
   // ? Do I put timeouts below in the createGrid function?
+
+
   // set timeout move two right
   setTimeout(foodsMoveOneRight, 1000)
   setTimeout(foodsMoveOneRight, 2000)
