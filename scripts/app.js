@@ -113,11 +113,9 @@ function init() {
       console.log('left end')
       return true
     }
-    
+
     return false
   }
-
-  checkIfEndOfRow(0)
 
   // todo NINJA SECTION
   // Adding the ninja to grid
@@ -348,6 +346,38 @@ function init() {
   //todo ===================================TIMERS===================================
   // ? Do I put timeouts below in the createGrid function?
 
+  function foodsBlockMovement() {
+    let trackTime = 0
+
+    // let min = foodsObjectArray[foodsObjectArray.length - 1].positionOnGrid[0]
+    // let max = foodsObjectArray[foodsObjectArray.length - 1].positionOnGrid[0]
+
+    // let newArray = foodsObjectArray[foodsObjectArray.length - 1].positionOnGrid
+
+    for (let i = 1; i < foodsObjectArray.length; i++) {
+      console.log(foodsObjectArray[i].positionOnGrid[0])
+    }
+
+      // for (let i = 0; i < duplicateArray.length - 1; i++) {
+      //   duplicateArray[i] = duplicateArray[i] % 10
+      // }      
+      // let duplicateArray = item.positionOnGrid.forEach(element => {
+      //   element = element % gridWidth        
+      // })
+
+      // console.log({ duplicateArray })
+      // minValue = Math.min(duplicateArray)
+      // maxValue = Math.max(duplicateArray) 
+
+      // if (minValue < min) {
+      //   min = minValue
+      // } else if (maxValue > max) {
+      //   max = maxValue
+      // }
+    // })
+  }
+
+  foodsBlockMovement()
 
   // set timeout move two right
   setTimeout(foodsMoveOneRight, 1000)
