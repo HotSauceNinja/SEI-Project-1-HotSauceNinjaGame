@@ -169,6 +169,7 @@ function init() {
   }
 
   // todo HOT SAUCE BOTTLE MOVEMENT SECTION
+  // ! to fix tomorrow --------------------------------------------------
   function removeHotSauce(position) {
     console.log('remove hot sauce function')
     cells[position].classList.remove(hotsauceClass)
@@ -178,11 +179,11 @@ function init() {
     console.log('move hotsauce function')
     position = position - gridWidth
     
-    if (position >= 0) {
+    if (position >= 10) {
       cells[position].classList.add(hotsauceClass)
       removeHotSauce(position + gridWidth)
-    } else {
-      cells[position + gridWidth].classList.add(hotsauceClass)
+    } else if (position >= 0) {
+      cells[position].classList.add(hotsauceClass)
       // removeHotSauce(position + gridWidth)
     }
     
@@ -192,13 +193,13 @@ function init() {
     console.log('add hot sauce function')
     // when player presses key put the image of hot sauce on position above player
     cells[position - gridWidth].classList.add(hotsauceClass)
-    removeHotSauce(position)
+    // removeHotSauce(position) // not sure this is required
   
     //put timer so that bottle keeps going up 
-    counter(position)
+    counterForHotsauce(position)
   }
 
-  // ! to check this again, nor sure it goes to the right place to check case for the switch statement
+  // ! to check this again, nor sure it goes to the right place to check case for the switch statement-----------------------------------------
   function scoreHit(position) {
     // if hotSauce position contains food, increase points
     switch (cells[position].classList.contains) {
@@ -233,7 +234,7 @@ function init() {
     console.log({ score })
   }
   
-  function counter (hotsaucePosition) {
+  function counterForHotsauce (hotsaucePosition) {
     console.log('counter for hot sauce bottle function')
     let count = 0
     const timerIdOne = window.setInterval(() => {
@@ -323,7 +324,7 @@ function init() {
     cells[position].setAttribute('class', 'grid-div')
   }
 
-  // ! HERE DOWN - shoot forks function 
+  // ! HERE DOWN - shoot forks function -------------------------------
   function shootFork() {
     console.log('shoot fork function')
 
