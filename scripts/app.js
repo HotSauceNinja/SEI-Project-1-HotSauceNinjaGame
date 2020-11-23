@@ -1,7 +1,7 @@
 function init() {
   // todo ===================================VARIABLES===================================
   const foods = ['pizza', 'fries', 'egg', 'drumstick']  
-  // let score = 0
+  let score = 0
   let lives = 3
   
   // todo ELEMENTS
@@ -18,9 +18,7 @@ function init() {
 
   // Get hot sauce & fork classes
   const hotsauceClass = 'hotsauce' 
-  // !! ----------------------------------------FORK
   const forkClass = 'fork'
-  // console.log(forkClass)
 
   // Establish number of foods per row and their start position
   const numberOfFoodsPerRow = gridWidth - Math.floor(gridWidth / 2.5)
@@ -199,6 +197,41 @@ function init() {
     //put timer so that bottle keeps going up 
     counter(position)
   }
+
+  // ! to check this again, nor sure it goes to the right place to check case for the switch statement
+  function scoreHit(position) {
+    // if hotSauce position contains food, increase points
+    switch (cells[position].classList.contains) {
+      case 'pizzaOdd':
+        score = score + Math.floor(Math.random() * 500)
+        break
+      case 'pizzaEven':
+        score = score + Math.floor(Math.random() * 500)
+        break
+      case 'friesOdd':
+        score = score + 300
+        break
+      case 'friesEven':
+        score = score + 300
+        break
+      case 'eggOdd':
+        score = score + 200
+        break
+      case 'eggEven':
+        score = score + 200
+        break
+      case 'drumstickOdd':
+        score = score + 100
+        break
+      case 'drumstickEven':
+        score = score + 100
+        break
+      default:
+        console.log('Missed!')
+        break
+    }
+    console.log({ score })
+  }
   
   function counter (hotsaucePosition) {
     console.log('counter for hot sauce bottle function')
@@ -210,6 +243,8 @@ function init() {
 
       //if hotsaucePosition includes foodsClass remove both items
       if (cells[hotsaucePosition].classList.contains('foodsClass')) {
+        
+        scoreHit(hotsaucePosition)
 
         // check each food object in the foodsObjectArray
         foodsObjectArray.forEach(item => {
@@ -288,7 +323,7 @@ function init() {
     cells[position].setAttribute('class', 'grid-div')
   }
 
-  // ! HERE DOWN - shoot forks function - to do after having sucesfully shot ships
+  // ! HERE DOWN - shoot forks function 
   function shootFork() {
     console.log('shoot fork function')
 
@@ -345,8 +380,13 @@ function init() {
     const timerIdTwo = window.setInterval(() => {
       // repeat fork movement and increase count each time
       console.log({ count })
+      
+      forkPosition = forkPosition + gridWidth
+      moveFork(forkPosition)
 
-      // todo if forkPosition includes ninjaClass remove both items and decrease ninjaLives with 1
+      count++
+
+      // if forkPosition includes ninjaClass remove both items and decrease ninjaLives with 1
       if (cells[forkPosition].classList.contains(ninjaClass)) {
         removeItemFromGrid(forkPosition)
         removeNinja(forkPosition)
@@ -356,27 +396,21 @@ function init() {
         // and stop timer for this bottle movement
         window.clearInterval(timerIdTwo)
 
+        // then add ninja back on board
         addNinja(94)
       }
-      
-      forkPosition = forkPosition + gridWidth
-      moveFork(forkPosition)
-
-      count++
 
       // if fork reaches end of grid, make it disappear and stop counting
-      if (count > (gridWidth - 4)) {
+      if (forkPosition >= ((gridLength * gridWidth) - gridWidth)) {
         removeFork(forkPosition) 
         window.clearInterval(timerIdTwo)
       }
     }, 200)
   }
 
-  // ! HERE UP
-
   // todo FOODS MOVEMENT SECTION
-  // move foods to the right
   
+  // move foods to the right
   function foodsMoveOneRight() {
     console.log('foods move right function')
     // looping through all food objects except pizza which is at index 0
@@ -439,6 +473,7 @@ function init() {
     let trackTime = 0
     trackTime ++
     console.log(trackTime)
+
     shootFork()
 
     function findMinAndMax() {
