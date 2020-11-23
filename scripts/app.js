@@ -2,6 +2,7 @@ function init() {
   // todo ===================================VARIABLES===================================
   const foods = ['pizza', 'fries', 'egg', 'drumstick']  
   // let score = 0
+  let lives = 3
   
   // todo ELEMENTS
   const grid = document.querySelector('.grid')
@@ -224,7 +225,7 @@ function init() {
           }
         })
 
-        // the remove both food item and bottle from the grid 
+        // then remove both food item and bottle from the grid 
         removeItemFromGrid(hotsaucePosition)
         removeHotSauce(hotsaucePosition - gridWidth)
 
@@ -343,16 +344,29 @@ function init() {
     let count = 0
     const timerIdTwo = window.setInterval(() => {
       // repeat fork movement and increase count each time
-      forkPosition = forkPosition + gridWidth
-      moveFork(forkPosition)
+      console.log({ count })
 
       // todo if forkPosition includes ninjaClass remove both items and decrease ninjaLives with 1
+      if (cells[forkPosition].classList.contains(ninjaClass)) {
+        removeItemFromGrid(forkPosition)
+        removeNinja(forkPosition)
+        lives--
+        console.log({ lives })
+
+        // and stop timer for this bottle movement
+        window.clearInterval(timerIdTwo)
+
+        addNinja(94)
+      }
+      
+      forkPosition = forkPosition + gridWidth
+      moveFork(forkPosition)
 
       count++
 
       // if fork reaches end of grid, make it disappear and stop counting
       if (count > (gridWidth - 4)) {
-        removeFork(forkPosition) // todo to write
+        removeFork(forkPosition) 
         window.clearInterval(timerIdTwo)
       }
     }, 200)
