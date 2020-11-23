@@ -1,6 +1,7 @@
 function init() {
   // todo ===================================VARIABLES===================================
   const foods = ['pizza', 'fries', 'egg', 'drumstick']  
+  // let score = 0
   
   // todo ELEMENTS
   const grid = document.querySelector('.grid')
@@ -289,6 +290,7 @@ function init() {
   // ! HERE DOWN - shoot forks function - to do after having sucesfully shot ships
   function shootFork() {
     console.log('shoot fork function')
+
     // using math random generate random forks 
     // accessing objects using math.ceil and (Math.random + 1) because I don't want to catch object 0 'Pizza', which behaves differently from rest
     const foodsObjectArrayNumber = Math.ceil((Math.random() + 0.01) * (foodsObjectArray.length - 1)) // returns number btw 1 and 3
@@ -299,7 +301,7 @@ function init() {
     // generating random food element that will throw a fork 
     let randomShot = foodsObjectArray[foodsObjectArrayNumber].positionOnGrid[positionOnGridNumber]
 
-    // function checking if there is another food element below, and if yes, pushign the fork down on the first empty row
+    // function checking if there is another food element below, and if yes, pushing the fork down on the first empty row
     function containsFoodClass() {
       if (cells[randomShot].classList.contains('foodsClass')) {
         randomShot = randomShot + gridWidth
@@ -309,10 +311,53 @@ function init() {
     }
     containsFoodClass()
 
-    // shooting the fork
+    // adding fork to the space below the food that shot it
     cells[randomShot].classList.add(forkClass)
+
+    // put timer so fork continues going down
+    counterForFork(randomShot)
+  }
+
+  function removeFork(position) {
+    console.log('removing fork from page')
+    cells[position].classList.remove(forkClass)
+  }
+
+  function moveFork(position) {
+    removeFork(position - gridWidth)
+    console.log('moving fork down')
+    // position = position + gridWidth
+
+    if (position <= 89) {
+      removeFork(position)
+      cells[position + gridWidth].classList.add(forkClass)
+      
+    } else if (position <= 99) {
+      cells[position].classList.add(forkClass)
+    }
   }
   
+  function counterForFork(forkPosition) {
+    console.log('counter for the fork progression down page function')
+
+    let count = 0
+    const timerIdTwo = window.setInterval(() => {
+      // repeat fork movement and increase count each time
+      forkPosition = forkPosition + gridWidth
+      moveFork(forkPosition)
+
+      // todo if forkPosition includes ninjaClass remove both items and decrease ninjaLives with 1
+
+      count++
+
+      // if fork reaches end of grid, make it disappear and stop counting
+      if (count > (gridWidth - 4)) {
+        removeFork(forkPosition) // todo to write
+        window.clearInterval(timerIdTwo)
+      }
+    }, 200)
+  }
+
   // ! HERE UP
 
   // todo FOODS MOVEMENT SECTION
@@ -382,35 +427,46 @@ function init() {
     console.log(trackTime)
     shootFork()
 
-    // ! WHY ARE THESE RETURNING UNDEFINED??
-    const min = foodsObjectArray[foodsObjectArray.length - 1].positionOnGrid[0] // change to let once the function is working
-    const max = foodsObjectArray[foodsObjectArray.length - 1].positionOnGrid[0] // change to let once the function is working
+    function findMinAndMax() {
+      let min = foodsObjectArray[foodsObjectArray.length - 1].positionOnGrid[0] 
+      let max = foodsObjectArray[foodsObjectArray.length - 1].positionOnGrid[0] 
 
-    console.log('min is ', min)
-    console.log('max is ', max)
+      console.log('min is ', min)
+      console.log('max is ', max)
 
-    const newArray = foodsObjectArray[foodsObjectArray.length - 1].positionOnGrid
-    console.log(newArray[0])
+      foodsObjectArray.forEach(item => {
+        // for (let i = 0; i < duplicateArray.length - 1; i++) {
+        //   duplicateArray[i] = duplicateArray[i] % 10
+        // }  
+        const duplicateArray = item.positionOnGrid
+            
+        // duplicateArray.forEach(element => {
+        //   element = element % gridWidth   
+        //   console.log('the new array element is ', element)
+        // })
+      
+        console.log({ duplicateArray })
+      
+        const minValue = Math.min(duplicateArray)
+        const maxValue = Math.max(duplicateArray) 
+      
+        if (minValue < min) {
+          min = minValue
+        } else if (maxValue > max) {
+          max = maxValue
+        }
+      })
+
+      console.log('minimum elememnt is', min)
+      console.log('maximum element is', max)
+    }
+
+    findMinAndMax()
 
     checkIfEndOfRow() // remove this function  call later
 
     stopMoving() // I don't think this function is working ...
   }
-
-  // ! WHEN I CAN ACCESS THE SAME PROPERTY HERE?!?!
-  // // check each food object in the foodsObjectArray
-  // foodsObjectArray.forEach(item => {
-
-  //   // if the item positions array includes the position where the bottle hit
-  //   if (item.positionOnGrid.includes(hotsaucePosition)) {
-
-  //     // find the index of that position
-  //     const elementToRemoveIndex = item.positionOnGrid.indexOf(hotsaucePosition)
-
-  //     // and take the element out of the array
-  //     item.positionOnGrid.splice(elementToRemoveIndex, 1)
-  //   }
-  // })
 
   // ! Trying to find min and max values of each of the food position arrays does not work because it cannot access the array items. why???
   // foodsObjectArray.forEach(item => {
