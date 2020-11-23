@@ -16,7 +16,9 @@ function init() {
 
   // Get hot sauce & fork classes
   const hotsauceClass = 'hotsauce' 
-  // const forkClass = 'fork'
+  // !! ----------------------------------------FORK
+  const forkClass = 'fork'
+  console.log(forkClass)
 
   // Establish number of foods per row and their start position
   const numberOfFoodsPerRow = gridWidth - Math.floor(gridWidth / 2.5)
@@ -116,6 +118,7 @@ function init() {
 
     return false
   }
+  checkIfEndOfRow() // remove this function  call later
 
   // todo NINJA SECTION
   // Adding the ninja to grid
@@ -346,38 +349,63 @@ function init() {
   //todo ===================================TIMERS===================================
   // ? Do I put timeouts below in the createGrid function?
 
+  // function to automatically check if outermost elements on the left and right of the food block are at the end of the row, and if yes to get the food to move one down and start in opposite direction
   function foodsBlockMovement() {
     let trackTime = 0
+    trackTime ++
+    console.log(trackTime)
 
-    // let min = foodsObjectArray[foodsObjectArray.length - 1].positionOnGrid[0]
-    // let max = foodsObjectArray[foodsObjectArray.length - 1].positionOnGrid[0]
+    // ! WHY ARE THESE RETURNING UNDEFINED??
+    const min = foodsObjectArray[foodsObjectArray.length - 1].positionOnGrid[0] // change to let once the function is working
+    const max = foodsObjectArray[foodsObjectArray.length - 1].positionOnGrid[0] // change to let once the function is working
+    console.log(min)
+    console.log(max)
 
-    // let newArray = foodsObjectArray[foodsObjectArray.length - 1].positionOnGrid
-
-    for (let i = 1; i < foodsObjectArray.length; i++) {
-      console.log(foodsObjectArray[i].positionOnGrid[0])
-    }
-
-      // for (let i = 0; i < duplicateArray.length - 1; i++) {
-      //   duplicateArray[i] = duplicateArray[i] % 10
-      // }      
-      // let duplicateArray = item.positionOnGrid.forEach(element => {
-      //   element = element % gridWidth        
-      // })
-
-      // console.log({ duplicateArray })
-      // minValue = Math.min(duplicateArray)
-      // maxValue = Math.max(duplicateArray) 
-
-      // if (minValue < min) {
-      //   min = minValue
-      // } else if (maxValue > max) {
-      //   max = maxValue
-      // }
-    // })
+    const newArray = foodsObjectArray[foodsObjectArray.length - 1].positionOnGrid
+    console.log(newArray[0])
   }
 
+  // ! WHEN I CAN ACCESS THE SAME PROPERTY HERE?!?!
+  // // check each food object in the foodsObjectArray
+  // foodsObjectArray.forEach(item => {
+
+  //   // if the item positions array includes the position where the bottle hit
+  //   if (item.positionOnGrid.includes(hotsaucePosition)) {
+
+  //     // find the index of that position
+  //     const elementToRemoveIndex = item.positionOnGrid.indexOf(hotsaucePosition)
+
+  //     // and take the element out of the array
+  //     item.positionOnGrid.splice(elementToRemoveIndex, 1)
+  //   }
+  // })
+
+  // ! Trying to find min and max values of each of the food position arrays does not work because it cannot access the array items. why???
+  //   foodsObjectArray.forEach(item => {
+  //     // for (let i = 0; i < duplicateArray.length - 1; i++) {
+  //     //   duplicateArray[i] = duplicateArray[i] % 10
+  //     // }      
+  //     let duplicateArray = item.positionOnGrid.forEach(element => {
+  //       element = element % gridWidth        
+  //     })
+
+  //     console.log({ duplicateArray })
+
+  //     minValue = Math.min(duplicateArray)
+  //     maxValue = Math.max(duplicateArray) 
+
+  //     if (minValue < min) {
+  //       min = minValue
+  //     } else if (maxValue > max) {
+  //       max = maxValue
+  //     }
+  //   })
+  // }
+
   foodsBlockMovement()
+
+
+
 
   // set timeout move two right
   setTimeout(foodsMoveOneRight, 1000)
