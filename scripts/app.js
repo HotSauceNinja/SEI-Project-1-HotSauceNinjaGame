@@ -26,10 +26,9 @@ function init() {
   const numberOfFoodsPerRow = gridWidth - Math.floor(gridWidth / 2.5)
   const foodStartPositionOnRow = (gridWidth - numberOfFoodsPerRow) / 2
 
-  // Linking score with the website score display
+  // Linking score and lives left with the website score display
   const scoreDisplay = document.getElementsByClassName('display-current-score')[0]
-
-
+  const livesLeft = document.getElementsByClassName('display-lives-left')[0]
 
   // ! Establish the position a food item must reach to trigger game over 
   const gameOverPosition = (gridLength - 2) * gridWidth
@@ -365,6 +364,7 @@ function init() {
   
   function counterForFork(forkPosition) {
     let count = 0
+    console.log(count)
 
     const timerIdTwo = window.setInterval(() => {
       // repeat fork movement and increase count each time
@@ -380,6 +380,7 @@ function init() {
         removeItemFromGrid(forkPosition)
         removeNinja(forkPosition)
         lives--
+        livesLeft.innerHTML = lives
         console.log({ lives })
 
         // and stop timer for this bottle movement
@@ -387,14 +388,21 @@ function init() {
 
         // then add ninja back on board
         if (lives > 0) {
-          addNinja(94)
+          addNinja(ninjaPosition)
           window.clearInterval(timerIdTwo)
         } else {
           window.clearInterval(timerIdTwo)
           gameOver()
-          
         }
       }
+
+      // // if forkPosition includes hotsauceClass remove both items
+      // if (cells[forkPosition].classList.contains(hotsauceClass)) {
+      //   removeItemFromGrid(forkPosition)
+
+      //   // and stop timer for this bottle movement
+      //   window.clearInterval(timerIdTwo)
+      // }
 
       // if fork reaches end of grid, make it disappear and stop counting
       if (forkPosition >= ((gridLength * gridWidth) - gridWidth)) {
@@ -606,20 +614,13 @@ function init() {
       // console.log('shoot fork counter is ', count)
       count++
 
-      // if no more foods to shoot fork, stop function
-      // if (food array empty) {
-      //   // and stop timer for this bottle movement
-      //   window.clearInterval(timerIdThree)
-      // }
-          
-      // if fork reaches end of grid, make it disappear and stop counting
       // todo this will tunr into if endgame when the endgame function is done
       if (count > 50) {
         window.clearInterval(timerIdThree)
       }
     }, 900)
   }
-  // ! +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
   function gameOver() {
     const fullArray = foodsObjectArray[1].positionOnGrid.concat(foodsObjectArray[2].positionOnGrid).concat(foodsObjectArray[3].positionOnGrid)
 
@@ -631,21 +632,16 @@ function init() {
     } else if (fullArray.length === 0) {
       youWonAlert()
     }
-
     return true
   }
 
   function gameOverAlert() {
-
     window.alert(`Game Over, your score is ${score} and you have ${lives} lives left`)
-
     return true
   }
 
   function youWonAlert() {
-
     window.alert(`You won, you swift spicy lightining! Your score is ${score} and you have ${lives} lives left`)
-
     return true
   }
 
@@ -657,7 +653,6 @@ function init() {
 
   document.addEventListener('keydown', moveNinja)
   // document.addEventListener('keyup', throwHotSauce)
-
 }
 
 window.addEventListener('DOMContentLoaded', init)

@@ -178,6 +178,13 @@ aside.current-game {
   width: 150px;
 }
 
+.display-lives-left {
+  background-color: rgba(255, 255, 255, 0.2);
+  display: flex;
+  height: 40px;
+  width: 150px;
+}
+
 /* RIGHT SIDE SECTION | SCORE BOARD CSS */
 
 aside.score-board {
