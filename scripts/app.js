@@ -187,7 +187,6 @@ function init() {
     counterForHotsauce(position)
   }
 
-  // ! to check this again, nor sure it goes to the right place to check case for the switch statement-----------------------------------------
   function scoreHit(position) {
     const positionOfFood = cells[position].classList
     // if hotSauce position contains food, increase points
@@ -222,7 +221,6 @@ function init() {
     scoreDisplay.innerHTML = score
     // replace them with a boom class on a 1 second counter
   }
-
 
   function counterForHotsauce (hotsaucePosition) {
     // console.log('counter for hot sauce bottle function')
@@ -616,15 +614,19 @@ function init() {
   function gameOver() {
     const max = findMax()
     if (max >= gameOverPosition) {
+      gameOverAlert()
       return true
     }
+
+
 
   }
 
   function gameOverAlert() {
-    window.clearInterval(timerIdOne)
 
-    window.alert(`Game Over, your score is ${score}`)
+    window.alert(`Game Over, your score is ${score} and you have ${lives} lives left`)
+
+    return true
   }
 
   // todo ==================CALLING THE FUNCTIONS===================
