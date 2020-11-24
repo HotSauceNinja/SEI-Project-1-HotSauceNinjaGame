@@ -66,7 +66,12 @@ function init() {
 
 
   // todo ===================================FUNCTIONS===================================
-  
+  function startGame() {
+    createGrid(ninjaPosition) // to create grid 
+
+    foodsBlockMovement() // to start moving the food block
+  }
+
   // Creating the initial Gameplay Area, adding characters
   function createGrid(ninjaPosition) {// console.log('create grid function')
 
@@ -85,33 +90,11 @@ function init() {
 
     // add foods in start position
     addFoodToGridInStartPosition()
-
-    foodsBlockMovement()
-  }
-
-  // Check if item is at the end of the grid
-  function checkIfEndOfRow(position) {// console.log('check if end of row function')
-    
-    const horizontalPosition = position % gridWidth
-
-    // if item is at right end of row
-    if (horizontalPosition === gridWidth - 1) {
-      console.log('right end')
-      return true
-
-    // if item is at left end of row
-    } else if (horizontalPosition % 10 === 0) {
-      console.log('left end')
-      return true
-    }
-
-    return false
   }
 
   // todo NINJA SECTION
   // Adding the ninja to grid
   function addNinja(position) {// console.log('add ninja function')
-    
     cells[position].classList.add(ninjaClass)
   }
   // Removing ninja from grid
@@ -129,7 +112,6 @@ function init() {
     // console.log('remove ninja after throw function')
     cells[position].classList.remove(ninjaAfterThrow)
   }
-  
   // Control ninja with keyboard
   function moveNinja(event) {
     // console.log('move ninja function')
@@ -306,6 +288,7 @@ function init() {
       }
     }
   }
+
   function addClassOfItem(object, position) {
     // console.log('add class of item function')
     // add different classlist depending on if column is odd or even
@@ -317,6 +300,7 @@ function init() {
       cells[position].classList.add('foodsClass')
     }
   }
+
   // Removing item from a position on grid
   function removeItemFromGrid(position) {
     // console.log('remove item from grid function')
@@ -461,6 +445,25 @@ function init() {
     } 
   }
 
+  // Check if item is at the end of the grid
+  function checkIfEndOfRow(position) {// console.log('check if end of row function')
+    
+    const horizontalPosition = position % gridWidth
+
+    // if item is at right end of row
+    if (horizontalPosition === gridWidth - 1) {
+      console.log('right end')
+      return true
+
+    // if item is at left end of row
+    } else if (horizontalPosition % 10 === 0) {
+      console.log('left end')
+      return true
+    }
+
+    return false
+  }
+
   //todo ===================================TIMERS===================================
   // ? Do I put timeouts below in the createGrid function?
 
@@ -492,42 +495,19 @@ function init() {
     fullArray = fullArray.concat(foodsObjectArray[3].positionOnGrid)
 
     console.log('full array is ', fullArray)
-    
-    const max = Math.max(fullArray)
+
+    const max = Math.max(...fullArray)
     console.log('max is ', max)
   }
 
   function findMin() {
-    let min = foodsObjectArray[foodsObjectArray.length - 1].positionOnGrid[0] 
-    console.log('min is ', min)    
-    // let max = 0 
-    // console.log('max is ', max)
-      
-    // for each object in the foodsObjectArray
-    // NOTE: cannot use foodsObjectArray.forEach because it would also take into account object 0 (pizza), ehich has a different movement from the rest of the block and would cause errors in finding min and max
-    for (let i = 1; i < foodsObjectArray.length; i++) {
-  
-      // create a duplicate positionOnGrid array that we can work on without affecting positionOnGrid and make all arrays comparable by applying modulo to all their elements to get range in between 0 and 9 depending on row position
-      const duplicateArray = foodsObjectArray[i].positionOnGrid.map(item => item % 10)
-  
-      console.log('the duplicate array is ', duplicateArray)
-          
-      const minValue = Math.min(duplicateArray)
-  
-      console.log('min value is ', minValue)
-      // const maxValue = Math.max(duplicateArray) 
-          
-      if (minValue < min) {
-        min = minValue
-        // } else if (maxValue > max) {
-        //   max = maxValue
-      }
+    let fullArray = foodsObjectArray[1].positionOnGrid.concat(foodsObjectArray[2].positionOnGrid)
+    fullArray = fullArray.concat(foodsObjectArray[3].positionOnGrid)
 
-      return min
-    }
+    console.log('full array is ', fullArray)
 
-    console.log('minimum element is', min)
-    // console.log('maximum element is', max)
+    const min = Math.min(...fullArray)
+    console.log('min is ', min)
   }
 
   function counterForShootFork() {
@@ -554,27 +534,6 @@ function init() {
 
 
   // ! Trying to find min and max values of each of the food position arrays does not work because it cannot access the array items. why???
-  // foodsObjectArray.forEach(item => {
-  //   // for (let i = 0; i < duplicateArray.length - 1; i++) {
-  //   //   duplicateArray[i] = duplicateArray[i] % 10
-  //   // }      
-  //   let duplicateArray = item.positionOnGrid.forEach(element => {
-  //     element = element % gridWidth        
-  //   })
-
-  //   console.log({ duplicateArray })
-
-  //   minValue = Math.min(duplicateArray)
-  //   maxValue = Math.max(duplicateArray) 
-
-  //   if (minValue < min) {
-  //     min = minValue
-  //   } else if (maxValue > max) {
-  //     max = maxValue
-  //   }
-  // })
-
-
 
 
   // set timeout move two right
@@ -637,7 +596,7 @@ function init() {
   
 
   // todo =================================CALLING THE FUNCTIONS=================================
-  createGrid(ninjaPosition) // To create the Gameplay Area
+  startGame()
 
 
   // todo ===================================EVENTS===================================
