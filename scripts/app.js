@@ -513,24 +513,6 @@ function init() {
     foodsBlockMovement(movingRight)
   }
 
-  // ? =================================================================
-
-  // ! LEAVE AS IS LOOK AT THIS LATER - FUNCTION STOP MOVING
-  // when element reaches gameOverPosition (row before last), end game // todo I don't think this function is working
-  // function stopMoving() { 
-  //   console.log('stop moving function')
-  //   // if any index number >= gameOverPosition stop movement and pop item out of array
-  //   for (let i = 1; i < foodsObjectArray.length; i++) {
-  //     for (let j = 0; j < foodsObjectArray[i].positionOnGrid.length; j++) {       
-  //       if (foodsObjectArray[i].positionOnGrid[j] >= gameOverPosition) {
-  //         console.log('STOP') // todo replace with calling function to pop element out
-  //         foodsObjectArray[i].positionOnGrid.pop(foodsObjectArray[i].positionOnGrid[j])
-  //       }
-  //     }
-  //   } 
-  // }
-  // ! UP TO HERE
-
   // Check if min item is at the left end of the grid
   
   function checkIfMinItemIsAtLeftEndOfRow(position) {
@@ -586,11 +568,9 @@ function init() {
     console.log('track time is ', trackTime)
  
     counterForShootFork()
-
-    // stopMoving() // I don't think this function is working ...
   }
 
-  // todo functions finding min and max to store the outermost elements on the left(min) and on the right(max) of the moving positionOnGrid arrays 
+  // functions finding min and max to store the outermost elements on the left(min) and on the right(max) of the moving positionOnGrid arrays 
   function findMax () {
     const fullArray = foodsObjectArray[1].positionOnGrid.concat(foodsObjectArray[2].positionOnGrid).concat(foodsObjectArray[3].positionOnGrid)
     // console.log('full array is ', fullArray)
@@ -608,14 +588,17 @@ function init() {
 
   function counterForShootFork() {
     // console.log('counter for the shoot fork function')
+    const fullArray = foodsObjectArray[1].positionOnGrid.concat(foodsObjectArray[2].positionOnGrid).concat(foodsObjectArray[3].positionOnGrid)
+
     let count = 0
+    console.log(count)
+    
     const timerIdThree = window.setInterval(() => {
       shootFork()
       // console.log('shoot fork counter is ', count)
       count++
 
-      // todo this will tunr into if endgame when the endgame function is done
-      if (count > 50) {
+      if ((lives === 0) || (findMax() >= gameOverPosition) || (fullArray.length === 0)) {
         window.clearInterval(timerIdThree)
       }
     }, 900)
@@ -624,8 +607,7 @@ function init() {
   function gameOver() {
     const fullArray = foodsObjectArray[1].positionOnGrid.concat(foodsObjectArray[2].positionOnGrid).concat(foodsObjectArray[3].positionOnGrid)
 
-    const max = findMax()
-    if (max >= gameOverPosition) {
+    if (findMax() >= gameOverPosition) {
       gameOverAlert()
     } else if (lives <= 0) {
       gameOverAlert()
