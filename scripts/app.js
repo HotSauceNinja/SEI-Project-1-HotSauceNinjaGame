@@ -4,7 +4,7 @@ function init() {
   let score = 0
   let lives = 3
   let movingRight = true
-  
+
   // todo ELEMENTS
   const grid = document.querySelector('.grid')
   const gridWidth = 10
@@ -390,8 +390,9 @@ function init() {
           addNinja(94)
           window.clearInterval(timerIdTwo)
         } else {
-          gameOverAlert()
           window.clearInterval(timerIdTwo)
+          gameOver()
+          
         }
       }
 
@@ -557,9 +558,13 @@ function init() {
 
     // keep looping until game over (currently set to if any food reaches game over position)
     const timerIdFour = window.setInterval(() => {
-      if (gameOver()) {
-        window.clearInterval(timerIdFour)
+
+      const fullArray = foodsObjectArray[1].positionOnGrid.concat(foodsObjectArray[2].positionOnGrid).concat(foodsObjectArray[3].positionOnGrid)
+
+      if (fullArray.length === 0) {
+        gameOver()
       }
+
       trackTime ++
       
       //function call to function which moves foods
@@ -612,19 +617,30 @@ function init() {
   }
   // ! +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   function gameOver() {
+    const fullArray = foodsObjectArray[1].positionOnGrid.concat(foodsObjectArray[2].positionOnGrid).concat(foodsObjectArray[3].positionOnGrid)
+
     const max = findMax()
     if (max >= gameOverPosition) {
       gameOverAlert()
-      return true
+    } else if (lives <= 0) {
+      gameOverAlert()
+    } else if (fullArray.length === 0) {
+      youWonAlert()
     }
 
-
-
+    return true
   }
 
   function gameOverAlert() {
 
     window.alert(`Game Over, your score is ${score} and you have ${lives} lives left`)
+
+    return true
+  }
+
+  function youWonAlert() {
+
+    window.alert(`You won, you swift spicy lightining! Your score is ${score} and you have ${lives} lives left`)
 
     return true
   }
