@@ -1,5 +1,5 @@
 function init() {
-  // todo ===================================VARIABLES===================================
+  // todo ===========================VARIABLES=============================
   const foods = ['pizza', 'fries', 'egg', 'drumstick']  
   let score = 0
   let lives = 3
@@ -25,7 +25,7 @@ function init() {
   const numberOfFoodsPerRow = gridWidth - Math.floor(gridWidth / 2.5)
   const foodStartPositionOnRow = (gridWidth - numberOfFoodsPerRow) / 2
 
-  // Establish the position a food item must reach to trigger game over 
+  // ! Establish the position a food item must reach to trigger game over 
   const gameOverPosition = (gridLength - 2) * gridWidth
 
   // Creating food object class for all food properties and methods
@@ -66,7 +66,7 @@ function init() {
   }
 
 
-  // todo ===================================FUNCTIONS===================================
+  // todo =======================FUNCTIONS=========================
   function startGame() {
     createGrid(ninjaPosition) // to create grid 
 
@@ -194,38 +194,39 @@ function init() {
 
   // ! to check this again, nor sure it goes to the right place to check case for the switch statement-----------------------------------------
   function scoreHit(position) {
+    const positionOfFood = cells[position].classList
     // if hotSauce position contains food, increase points
-    switch (cells[position].classList.contains) {
-      case 'pizzaOdd':
-        score = score + Math.floor(Math.random() * 500)
-        break
-      case 'pizzaEven':
-        score = score + Math.floor(Math.random() * 500)
-        break
-      case 'friesOdd':
-        score = score + 300
-        break
-      case 'friesEven':
-        score = score + 300
-        break
-      case 'eggOdd':
-        score = score + 200
-        break
-      case 'eggEven':
-        score = score + 200
-        break
-      case 'drumstickOdd':
-        score = score + 100
-        break
-      case 'drumstickEven':
-        score = score + 100
-        break
-      default:
-        console.log('Missed!')
-        break
+
+    if (positionOfFood.contains('drumstickEven')) {
+      score = score + 100
+
+    } else if (positionOfFood.contains('drumstickOdd')) {
+      score = score + 100
+
+    } else if (positionOfFood.contains('eggEven')) {
+      score = score + 200
+
+    } else if (positionOfFood.contains('eggOdd')) {
+      score = score + 200
+
+    } else if (positionOfFood.contains('friesEven')) {
+      score = score + 300
+
+    } else if (positionOfFood.contains('friesOdd')) {
+      score = score + 300
+
+    } else if (positionOfFood.contains('pizzaEven')) {
+      score = score + Math.floor(Math.random() * 500)
+
+    } else if (positionOfFood.contains('pizzaOdd')) {
+      score = score + Math.floor(Math.random() * 500)
+  
+    } else {
+      console.log('missed!')
     }
-    console.log({ score })
   }
+
+    
   // todo HOT SAUCE BOTTLE HITS FOOD
   // replace them with a boom class on a 1 second counter
   // increase score with 100
@@ -395,9 +396,11 @@ function init() {
     }, 200)
   }
 
+
+  // ? =================================================================
+
   // todo FOODS MOVEMENT SECTION
   // Foods block movement 
-
   function foodsBlockMovement(movingRight) {
 
     if (movingRight === true) {
@@ -415,7 +418,7 @@ function init() {
     const maxElement = findMax()
   
     if (checkIfMaxItemIsAtRightEndOfRow(maxElement)) {
-      return foodsMoveOneDown()
+      return foodsMoveOneDown(movingRight)
 
     } else {
       // looping through all food objects except pizza which is at index 0
@@ -439,7 +442,7 @@ function init() {
     console.log('minimum element is', minElement)
 
     if (checkIfMinItemIsAtLeftEndOfRow(minElement)) {
-      foodsMoveOneDown()
+      foodsMoveOneDown(movingRight)
 
     } else {
     // looping through all food objects except pizza which is at index 0
@@ -494,6 +497,8 @@ function init() {
     foodsBlockMovement(movingRight)
   }
 
+  // ? =================================================================
+
   // ! LEAVE AS IS LOOK AT THIS LATER - FUNCTION STOP MOVING
   // when element reaches gameOverPosition (row before last), end game // todo I don't think this function is working
   // function stopMoving() { 
@@ -543,16 +548,15 @@ function init() {
     // track time variable declared to store the number of cycles the movement goes through and stop when it gets to bottom of grid 
     let trackTime = 0
 
-
-    // keep looping until game over (currently set to trackTime is over 50)
+    // keep looping until game over (currently set to if any food reaches game over position)
     const timerIdFour = window.setInterval(() => {
-      if (trackTime > 10) {
+      if (gameOver()) {
         window.clearInterval(timerIdFour)
       }
       trackTime ++
       
       //function call to function which moves foods
-      foodsBlockMovement()
+      foodsBlockMovement(movingRight)
     }, 900)      
       
     console.log('track time is ', trackTime)
@@ -599,7 +603,14 @@ function init() {
       }
     }, 900)
   }
+// ! +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  function gameOver() {
+    const max = findMax()
+    if (max >= gameOverPosition) {
+      return true
+    }
 
+  }
 
   // todo ==================CALLING THE FUNCTIONS===================
   startGame()
