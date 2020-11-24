@@ -471,19 +471,17 @@ function init() {
   // function to automatically check if outermost elements on the left and right of the food block are at the end of the row, and if yes to get the food to move one down and start in opposite direction
   function foodsBlockMovement() {
     console.log('foods block movement function')
+    
+    let min = foodsObjectArray[foodsObjectArray.length - 1].positionOnGrid[0] 
+    let max = foodsObjectArray[foodsObjectArray.length - 1].positionOnGrid[0] 
+    console.log('min is ', min)
+    console.log('max is ', max)
+
     let trackTime = 0
     trackTime ++
     console.log(trackTime)
 
-    shootFork()
-
     function findMinAndMax() {
-      let min = foodsObjectArray[foodsObjectArray.length - 1].positionOnGrid[0] 
-      let max = foodsObjectArray[foodsObjectArray.length - 1].positionOnGrid[0] 
-
-      console.log('min is ', min)
-      console.log('max is ', max)
-
       foodsObjectArray.forEach(item => {
         // for (let i = 0; i < duplicateArray.length - 1; i++) {
         //   duplicateArray[i] = duplicateArray[i] % 10
@@ -510,13 +508,38 @@ function init() {
       console.log('minimum elememnt is', min)
       console.log('maximum element is', max)
     }
-
     findMinAndMax()
+
+    function counterForShootFork() {
+      console.log('counter for the shoot fork function')
+      let count = 0
+      const timerIdThree = window.setInterval(() => {
+        shootFork()
+        console.log('shoot fork counter is ', count)
+        count++
+  
+        // if no more foods to shoot fork, stop function
+        if (max >= 79) {
+  
+          // and stop timer for this bottle movement
+          window.clearInterval(timerIdThree)
+        }
+            
+        // if fork reaches end of grid, make it disappear and stop counting
+        // todo this will tunr into if endgame when the endgame function is done
+        if (count > 50) {
+          window.clearInterval(timerIdThree)
+        }
+      }, 500)
+    }
+
+    counterForShootFork()
 
     checkIfEndOfRow() // remove this function  call later
 
     stopMoving() // I don't think this function is working ...
   }
+
 
   // ! Trying to find min and max values of each of the food position arrays does not work because it cannot access the array items. why???
   // foodsObjectArray.forEach(item => {
