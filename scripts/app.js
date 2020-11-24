@@ -169,7 +169,6 @@ function init() {
   }
 
   // todo HOT SAUCE BOTTLE MOVEMENT SECTION
-  // ! to fix tomorrow --------------------------------------------------
   function removeHotSauce(position) {
     console.log('remove hot sauce function')
     cells[position].classList.remove(hotsauceClass)
@@ -183,6 +182,7 @@ function init() {
       cells[position].classList.add(hotsauceClass)
       removeHotSauce(position + gridWidth)
     } else if (position >= 0) {
+      cells[position + gridWidth].classList.remove(hotsauceClass)
       cells[position].classList.add(hotsauceClass)
       // removeHotSauce(position + gridWidth)
     }
