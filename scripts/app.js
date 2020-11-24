@@ -562,14 +562,18 @@ function init() {
       const fullArray = foodsObjectArray[1].positionOnGrid.concat(foodsObjectArray[2].positionOnGrid).concat(foodsObjectArray[3].positionOnGrid)
 
       if (fullArray.length === 0) {
+        window.clearInterval(timerIdFour)
         gameOver()
+      } else if (findMax() >= gameOverPosition) {
+        window.clearInterval(timerIdFour)
+        gameOverAlert()
       }
 
       trackTime ++
       
       //function call to function which moves foods
       foodsBlockMovement(movingRight)
-    }, 900)      
+    }, 900)     
       
     console.log('track time is ', trackTime)
  
