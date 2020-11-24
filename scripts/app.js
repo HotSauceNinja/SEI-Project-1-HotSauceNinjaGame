@@ -20,10 +20,16 @@ function init() {
   // Get hot sauce & fork classes
   const hotsauceClass = 'hotsauce' 
   const forkClass = 'fork'
+  const pizzaClass = 'pizzaOdd'
 
   // Establish number of foods per row and their start position
   const numberOfFoodsPerRow = gridWidth - Math.floor(gridWidth / 2.5)
   const foodStartPositionOnRow = (gridWidth - numberOfFoodsPerRow) / 2
+
+  // Linking score with the website score display
+  const scoreDisplay = document.getElementsByClassName('display-current-score')[0]
+
+
 
   // ! Establish the position a food item must reach to trigger game over 
   const gameOverPosition = (gridLength - 2) * gridWidth
@@ -70,18 +76,7 @@ function init() {
   function startGame() {
     createGrid(ninjaPosition) // to create grid 
 
-    // ! This version does not move the block
-    // const timerIdGlobal = setInterval(() => {
-    //   //   console.log('do action every second', i)
-    //   startFoodsBlockMovement()
-    // }, 100)
-    
-    // setTimeout(() => {
-    //   clearInterval(timerIdGlobal)
-    // }, 9000) // stop after 5 seconds
-
-    //! this version seems to be the good one
-    startFoodsBlockMovement() // to start moving the food block
+    startFoodsBlockMovement(movingRight) // to start moving the food block
   }
 
   // Creating the initial Gameplay Area, adding characters
@@ -224,12 +219,10 @@ function init() {
     } else {
       console.log('missed!')
     }
+    scoreDisplay.innerHTML = score
+    // replace them with a boom class on a 1 second counter
   }
 
-    
-  // todo HOT SAUCE BOTTLE HITS FOOD
-  // replace them with a boom class on a 1 second counter
-  // increase score with 100
 
   function counterForHotsauce (hotsaucePosition) {
     // console.log('counter for hot sauce bottle function')
@@ -243,6 +236,9 @@ function init() {
       if (cells[hotsaucePosition].classList.contains('foodsClass')) {
         
         scoreHit(hotsaucePosition)
+
+        // ! show a boom +++++++++++++++++++++++++++
+        showBoom(hotsaucePosition)
 
         // check each food object in the foodsObjectArray
         foodsObjectArray.forEach(item => {
@@ -259,6 +255,7 @@ function init() {
         })
 
         // then remove both food item and bottle from the grid 
+        
         removeItemFromGrid(hotsaucePosition)
         removeHotSauce(hotsaucePosition - gridWidth)
 
@@ -274,6 +271,11 @@ function init() {
         window.clearInterval(timerIdOne)
       }
     }, 200)
+  }
+
+  function showBoom (position) {
+    // removeItemFromGrid(position)
+    cells[position].classList.add(pizzaClass)
   }
 
   // todo FOODS SECTION
@@ -365,6 +367,7 @@ function init() {
   
   function counterForFork(forkPosition) {
     let count = 0
+
     const timerIdTwo = window.setInterval(() => {
       // repeat fork movement and increase count each time
       // console.log({ count })
@@ -385,7 +388,13 @@ function init() {
         window.clearInterval(timerIdTwo)
 
         // then add ninja back on board
-        addNinja(94)
+        if (lives > 0) {
+          addNinja(94)
+          window.clearInterval(timerIdTwo)
+        } else {
+          gameOverAlert()
+          window.clearInterval(timerIdTwo)
+        }
       }
 
       // if fork reaches end of grid, make it disappear and stop counting
@@ -603,13 +612,19 @@ function init() {
       }
     }, 900)
   }
-// ! +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  // ! +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   function gameOver() {
     const max = findMax()
     if (max >= gameOverPosition) {
       return true
     }
 
+  }
+
+  function gameOverAlert() {
+    window.clearInterval(timerIdOne)
+
+    window.alert(`Game Over, your score is ${score}`)
   }
 
   // todo ==================CALLING THE FUNCTIONS===================
