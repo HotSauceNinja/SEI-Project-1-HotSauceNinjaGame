@@ -76,7 +76,7 @@ function init() {
 
   // todo =======================FUNCTIONS=========================
   function startGame() {
-    nameDisplay.innerText = name
+    nameDisplay.innerText = playerName
     
     createGrid(ninjaPosition) // to create grid 
 
@@ -635,7 +635,7 @@ function init() {
 
   function youWonAlert() {
     // window.alert(`You won, you swift spicy lightining! Your score is ${score} and you have ${lives} lives left`)
-    let goAgain = window.prompt(`You won, you swift spicy ${name} lightining! Your score is ${score} and you have ${lives} lives left! Do you want to go again? Y / N`)
+    let goAgain = window.prompt(`You won, you swift spicy ${playerName} lightining! Your score is ${score} and you have ${lives} lives left! Do you want to go again? Y / N`)
     if ((goAgain === 'Y') || (goAgain === 'y') ) { 
       window.location.reload()
     } else {
@@ -644,11 +644,12 @@ function init() {
   }
 
   // todo ==================CALLING THE FUNCTIONS===================
-  const name = window.prompt('What\'s your name?')
-  if (name === '') {
+  let playerName = window.prompt('What\'s your name?')
+  if (playerName === '') {
+    playerName = 'Stranger'
     const readyToGo = window.alert('Hello stranger, press Ok when you are ready to splash')
   } else {
-    const readyToGo = window.alert(`Hello ${name}, press Ok when you are ready to splash`)
+    const readyToGo = window.alert(`Hello ${playerName}, press Ok when you are ready to splash`)
   }
 
   startGame()
