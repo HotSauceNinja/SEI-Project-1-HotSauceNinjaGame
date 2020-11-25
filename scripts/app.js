@@ -625,7 +625,7 @@ function init() {
 
   function gameOverAlert() {
     // window.alert(`Game Over, your score is ${score} and you have ${lives} lives left. `)
-    let goAgain = window.prompt(`Game Over, your score is ${score} and you have ${lives} lives left. Do you want to go again? Y / N`)
+    const goAgain = window.prompt(`Game Over, your score is ${score} and you have ${lives} lives left. Do you want to go again? Y / N`)
     if ((goAgain === 'Y') || (goAgain === 'y') ) { 
       window.location.reload()
     } else {
@@ -635,7 +635,7 @@ function init() {
 
   function youWonAlert() {
     // window.alert(`You won, you swift spicy lightining! Your score is ${score} and you have ${lives} lives left`)
-    let goAgain = window.prompt(`You won, you swift spicy ${playerName} lightining! Your score is ${score} and you have ${lives} lives left! Do you want to go again? Y / N`)
+    const goAgain = window.prompt(`You won, you swift spicy ${playerName} lightining! Your score is ${score} and you have ${lives} lives left! Do you want to go again? Y / N`)
     if ((goAgain === 'Y') || (goAgain === 'y') ) { 
       window.location.reload()
     } else {
@@ -647,9 +647,9 @@ function init() {
   let playerName = window.prompt('What\'s your name?')
   if (playerName === '') {
     playerName = 'Stranger'
-    const readyToGo = window.alert('Hello stranger, press Ok when you are ready to splash')
+    window.alert('Hello stranger, press Ok when you are ready to splash')
   } else {
-    const readyToGo = window.alert(`Hello ${playerName}, press Ok when you are ready to splash`)
+    window.alert(`Hello ${playerName}, press Ok when you are ready to splash`)
   }
 
   startGame()
