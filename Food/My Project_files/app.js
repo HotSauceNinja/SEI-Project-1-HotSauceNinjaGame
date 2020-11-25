@@ -5,25 +5,6 @@ function init() {
   let lives = 3
   let movingRight = true
 
-  // todo BUTTONS
-  const startButton = document.querySelector('#start-button')
-
-  const welcomeDiv = document.querySelector('.welcome-div')
-
-  const playerName = document.querySelector('form')
-
-
-  function handleClick(event) {
-    event.preventDefault()
-
-    console.log(playerName.value)
-    console.log(event.target.value)
-    welcomeDiv.classList.add('hidden')
-
-    startGame()
-  }
-
-
   // todo ELEMENTS
   const grid = document.querySelector('.grid')
   const gridWidth = 10
@@ -95,7 +76,7 @@ function init() {
 
   // todo =======================FUNCTIONS=========================
   function startGame() {
-    // nameDisplay.innerText = playerName
+    nameDisplay.innerText = playerName
     
     createGrid(ninjaPosition) // to create grid 
 
@@ -144,7 +125,6 @@ function init() {
   }
   // Control ninja with keyboard
   function moveNinja(event) {
-    event.preventDefault()
     // console.log('move ninja function')
     const horizontalPosition = ninjaPosition % gridWidth
 
@@ -644,6 +624,7 @@ function init() {
   }
 
   function gameOverAlert() {
+    // window.alert(`Game Over, your score is ${score} and you have ${lives} lives left. `)
     const goAgain = window.prompt(`Game Over, your score is ${score} and you have ${lives} lives left. Do you want to go again? Y / N`)
     if ((goAgain === 'Y') || (goAgain === 'y') ) { 
       window.location.reload()
@@ -653,6 +634,7 @@ function init() {
   }
 
   function youWonAlert() {
+    // window.alert(`You won, you swift spicy lightining! Your score is ${score} and you have ${lives} lives left`)
     const goAgain = window.prompt(`You won, you swift spicy ${playerName} lightining! Your score is ${score} and you have ${lives} lives left! Do you want to go again? Y / N`)
     if ((goAgain === 'Y') || (goAgain === 'y') ) { 
       window.location.reload()
@@ -662,20 +644,20 @@ function init() {
   }
 
   // todo ==================CALLING THE FUNCTIONS===================
-  // let playerName = window.prompt('What\'s your name?')
-  // if (playerName === '') {
-  //   playerName = 'Stranger'
-  //   window.alert('Hello stranger, press Ok when you are ready to splash')
-  // } else {
-  //   window.alert(`Hello ${playerName}, press Ok when you are ready to splash`)
-  // }
+  let playerName = window.prompt('What\'s your name?')
+  if (playerName === '') {
+    playerName = 'Stranger'
+    window.alert('Hello stranger, press Ok when you are ready to splash')
+  } else {
+    window.alert(`Hello ${playerName}, press Ok when you are ready to splash`)
+  }
 
-  // startGame()
+  startGame()
 
   // todo ===========================EVENTS=========================
-  startButton.addEventListener('click', handleClick)
 
   document.addEventListener('keydown', moveNinja)
+  // document.addEventListener('keyup', throwHotSauce)
 }
 
 window.addEventListener('DOMContentLoaded', init)
