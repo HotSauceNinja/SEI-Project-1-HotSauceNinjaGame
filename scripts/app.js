@@ -26,11 +26,12 @@ function init() {
   const numberOfFoodsPerRow = gridWidth - Math.floor(gridWidth / 2.5)
   const foodStartPositionOnRow = (gridWidth - numberOfFoodsPerRow) / 2
 
-  // Linking score and lives left with the website score display
+  // Linking score, name and lives left with the website score display
   const scoreDisplay = document.getElementsByClassName('display-current-score')[0]
   scoreDisplay.innerHTML = 0
   const livesLeft = document.getElementsByClassName('display-lives-left')[0]
   livesLeft.innerHTML = lives
+  const nameDisplay = document.getElementsByClassName('display-player-name')[0]
 
   // ! Establish the position a food item must reach to trigger game over 
   const gameOverPosition = (gridLength - 2) * gridWidth
@@ -75,6 +76,8 @@ function init() {
 
   // todo =======================FUNCTIONS=========================
   function startGame() {
+    nameDisplay.innerText = name
+    
     createGrid(ninjaPosition) // to create grid 
 
     startFoodsBlockMovement(movingRight) // to start moving the food block
