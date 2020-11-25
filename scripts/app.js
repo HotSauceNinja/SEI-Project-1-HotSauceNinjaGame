@@ -6,23 +6,10 @@ function init() {
   let movingRight = true
 
   // todo BUTTONS
-  const startButton = document.querySelector('#start-button')
 
   const welcomeDiv = document.querySelector('.welcome-div')
 
   const playerName = document.querySelector('form')
-
-
-  function handleClick(event) {
-    event.preventDefault()
-
-    console.log(playerName.value)
-    console.log(event.target.value)
-    welcomeDiv.classList.add('hidden')
-
-    startGame()
-  }
-
 
   // todo ELEMENTS
   const grid = document.querySelector('.grid')
@@ -47,9 +34,15 @@ function init() {
 
   // Linking score, name and lives left with the website score display
   const scoreDisplay = document.getElementsByClassName('display-current-score')[0]
-  scoreDisplay.innerHTML = 0
+  scoreDisplay.innerText = 0
+  const scoreDisplayEnd = document.getElementsByClassName('display-current-score')[1]
+  scoreDisplayEnd.innerText = 0
+
   const livesLeft = document.getElementsByClassName('display-lives-left')[0]
-  livesLeft.innerHTML = lives
+  livesLeft.innerText = lives
+  const livesLeftEnd = document.getElementsByClassName('display-lives-left')[1]
+  livesLeftEnd.innerText = lives
+
   const nameDisplay = document.getElementsByClassName('display-player-name')[0]
 
   // ! Establish the position a food item must reach to trigger game over 
@@ -94,9 +87,24 @@ function init() {
 
 
   // todo =======================FUNCTIONS=========================
+  // Appears when loading the page, gets player name and starts the game when the user clicks the button
+  function handleSubmit(event) {
+    event.preventDefault()
+
+    const nameInputted = document.querySelector('#input-player-name').value
+
+    console.log('nameInputted', nameInputted)
+
+    welcomeDiv.classList.add('hidden')
+
+    nameDisplay.innerText = nameInputted
+
+    startGame()
+  } 
+
+  // triggers the start of the game
   function startGame() {
-    // nameDisplay.innerText = playerName
-    
+  
     createGrid(ninjaPosition) // to create grid 
 
     startFoodsBlockMovement(movingRight) // to start moving the food block
@@ -242,7 +250,8 @@ function init() {
     } else {
       console.log('missed!')
     }
-    scoreDisplay.innerHTML = score
+    scoreDisplay.innerText = score
+    scoreDisplayEnd.innerText = score
     // replace them with a boom class on a 1 second counter
   }
 
@@ -406,7 +415,8 @@ function init() {
         removeNinja(forkPosition)
         removeNinjaAfterThrow(forkPosition)
         lives--
-        livesLeft.innerHTML = lives
+        livesLeft.innerText = lives
+        livesLeftEnd.innerText = lives
         console.log({ lives })
 
         // and stop timer for this bottle movement
@@ -633,47 +643,46 @@ function init() {
   function gameOver() {
     const fullArray = foodsObjectArray[1].positionOnGrid.concat(foodsObjectArray[2].positionOnGrid).concat(foodsObjectArray[3].positionOnGrid)
 
-    if (findMax() >= gameOverPosition) {
-      gameOverAlert()
-    } else if (lives <= 0) {
-      gameOverAlert()
+    if ((findMax() >= gameOverPosition) || (lives <= 0)) {
+      // gameOverAlert()
+      displayGameOverBox()
     } else if (fullArray.length === 0) {
-      youWonAlert()
+      // youWonAlert()
+      displayGameOverBox()
     }
     return true
   }
 
-  function gameOverAlert() {
-    const goAgain = window.prompt(`Game Over, your score is ${score} and you have ${lives} lives left. Do you want to go again? Y / N`)
-    if ((goAgain === 'Y') || (goAgain === 'y') ) { 
-      window.location.reload()
-    } else {
-      window.alert('Thank you for playing!')
-    }
+  function displayGameOverBox () {
+    console.log('end')
+
   }
 
-  function youWonAlert() {
-    const goAgain = window.prompt(`You won, you swift spicy ${playerName} lightining! Your score is ${score} and you have ${lives} lives left! Do you want to go again? Y / N`)
-    if ((goAgain === 'Y') || (goAgain === 'y') ) { 
-      window.location.reload()
-    } else {
-      window.alert('Thank you for playing!')
-    }
-  }
-
-  // todo ==================CALLING THE FUNCTIONS===================
-  // let playerName = window.prompt('What\'s your name?')
-  // if (playerName === '') {
-  //   playerName = 'Stranger'
-  //   window.alert('Hello stranger, press Ok when you are ready to splash')
-  // } else {
-  //   window.alert(`Hello ${playerName}, press Ok when you are ready to splash`)
+  // function gameOverAlert() {
+  //   // const goAgain = window.prompt(`Game Over, your score is ${score} and you have ${lives} lives left. Do you want to go again? Y / N`)
+  //   // if ((goAgain === 'Y') || (goAgain === 'y') ) { 
+  //   //   window.location.reload()
+  //   // } else {
+  //   //   window.alert('Thank you for playing!')
+  //   // }
   // }
 
-  // startGame()
+  // function youWonAlert() {
+  //   // const goAgain = window.prompt(`You won, you swift spicy ${playerName} lightining! Your score is ${score} and you have ${lives} lives left! Do you want to go again? Y / N`)
+  //   // if ((goAgain === 'Y') || (goAgain === 'y') ) { 
+  //   //   window.location.reload()
+  //   // } else {
+  //   //   window.alert('Thank you for playing!')
+  //   // }
+  // }
+
+  // todo ==================CALLING THE FUNCTIONS===================
+
 
   // todo ===========================EVENTS=========================
-  startButton.addEventListener('click', handleClick)
+  // startButton.addEventListener('click', handleClick)
+
+  playerName.addEventListener('submit', handleSubmit)
 
   document.addEventListener('keydown', moveNinja)
 }

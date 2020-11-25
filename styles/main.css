@@ -87,6 +87,65 @@ button {
   font-family: 'Metal Mania', cursive;
 }
 
+/* GAME OVER DIV */
+.game-over {
+  background-color: rgba(255, 255, 255, 0.2); 
+  background-image: url('../Background/Bamboo_landing.jpg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  z-index: 1;
+  text-align: center;
+}
+
+.game-over-text {
+  padding-top: 140px;
+  padding-bottom: 30px;
+  margin-left: 250px;
+  font-size: 35px;
+  color: white;
+  text-shadow: 0px 3px #292727;
+}
+
+#game-over-info {
+  margin-left: 250px;
+  margin-bottom: 40px;
+  font-size: 30px;
+  color: white;
+  text-shadow: 0px 2px #292727;
+}
+
+
+div.game-over > div.display-current-score {
+  background-color: rgba(255, 255, 255, 0.2);
+  height: 40px;
+  width: 150px;
+  margin-left: 700px;
+  font-size: 35px;
+  color: white;
+  text-align: center;
+  font-weight: bold;
+}
+
+div.game-over > div.display-lives-left {
+  background-color: rgba(255, 255, 255, 0.2);
+  height: 40px;
+  width: 150px;
+  margin-left: 700px;
+  font-size: 35px;
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  padding-left: 65px;
+}
+
+#new-start-button {
+  margin-top: 100px;
+}
+
 /* GAMEPLAY AREA CSS */
 
 .game-wrapper {
@@ -228,7 +287,7 @@ aside.current-game {
   flex-direction: column;
 }
 
-.display-current-score {
+div.game-wrapper > aside.current-game > div.current-score > div {
   background-color: rgba(255, 255, 255, 0.2);
   display: flex;
   height: 40px;
@@ -237,6 +296,7 @@ aside.current-game {
 
 .display-player-name {
   display: flex;
+  flex-direction: column;
   background-color: rgba(255, 255, 255, 0.2);
   height: 40px;
   width: 150px;
