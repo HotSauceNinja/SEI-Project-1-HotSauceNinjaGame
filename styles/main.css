@@ -97,7 +97,7 @@ button {
   height: 100%;
   width: 100%;
   margin: 0;
-  z-index: 1;
+  z-index: 2;
   text-align: center;
 }
 
@@ -152,6 +152,7 @@ div.game-over > div.display-lives-left {
   display: flex;
   flex-flow: row;
   align-items: center;
+  z-index: 0;
 }
 
 .grid-wrapper {

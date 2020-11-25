@@ -5,13 +5,14 @@ function init() {
   let lives = 3
   let movingRight = true
 
-  // todo BUTTONS
-
-  const welcomeDiv = document.querySelector('.welcome-div')
-
-  const playerName = document.querySelector('form')
-
   // todo ELEMENTS
+  const welcomeDiv = document.querySelector('.welcome-div')
+  const playerName = document.querySelector('form')
+  const endDiv = document.querySelector('.game-over')
+  const restartButton = document.querySelector('#new-start-button')
+  const gameWrapper = document.querySelector('.game-wrapper')
+
+  // Game Grid
   const grid = document.querySelector('.grid')
   const gridWidth = 10
   const gridLength = 10
@@ -304,6 +305,7 @@ function init() {
     }, 200)
   }
 
+  // ! NOT WORKING AT THE MOMENT ======================
   function showBoom (position) {
     // removeItemFromGrid(position)
     cells[position].classList.add(pizzaClass)
@@ -312,7 +314,6 @@ function init() {
   // todo FOODS SECTION
   // Adding all food to grid in start position
   function addFoodToGridInStartPosition () {
-    // console.log('add food to grid in start position function')
     // set start position for each food in the foods object array
     for (let i = 1; i < foodsObjectArray.length; i++) {
       let position
@@ -592,7 +593,7 @@ function init() {
         gameOver()
       } else if (findMax() >= gameOverPosition) {
         window.clearInterval(timerIdFour)
-        gameOverAlert()
+        gameOver()
       }
 
       trackTime ++
@@ -655,7 +656,15 @@ function init() {
 
   function displayGameOverBox () {
     console.log('end')
+    gameWrapper.classList.add('hidden')
+    endDiv.classList.remove('hidden')
+  }
 
+  //! YOU WERE HERE ==================================
+  function handleRestart(event) {
+    console.log('now RESTART!!!!')
+
+    // window.location.reload()
   }
 
   // function gameOverAlert() {
@@ -680,7 +689,7 @@ function init() {
 
 
   // todo ===========================EVENTS=========================
-  // startButton.addEventListener('click', handleClick)
+  restartButton.addEventListener('submit', handleRestart)
 
   playerName.addEventListener('submit', handleSubmit)
 
