@@ -2,7 +2,7 @@ function init() {
   // todo ===========================VARIABLES=============================
   const foods = ['pizza', 'fries', 'egg', 'drumstick']  
   let score = 0
-  let lives = 3
+  let lives = 10
   let movingRight = true
 
   // todo ELEMENTS
@@ -28,7 +28,9 @@ function init() {
 
   // Linking score and lives left with the website score display
   const scoreDisplay = document.getElementsByClassName('display-current-score')[0]
+  scoreDisplay.innerHTML = 0
   const livesLeft = document.getElementsByClassName('display-lives-left')[0]
+  livesLeft.innerHTML = lives
 
   // ! Establish the position a food item must reach to trigger game over 
   const gameOverPosition = (gridLength - 2) * gridWidth
@@ -379,6 +381,7 @@ function init() {
       if (cells[forkPosition].classList.contains(ninjaClass)) {
         removeItemFromGrid(forkPosition)
         removeNinja(forkPosition)
+        removeNinjaAfterThrow(forkPosition)
         lives--
         livesLeft.innerHTML = lives
         console.log({ lives })
