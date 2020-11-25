@@ -11,6 +11,7 @@ function init() {
   const endDiv = document.querySelector('.game-over')
   const restartButton = document.querySelector('#new-start-button')
   const gameWrapper = document.querySelector('.game-wrapper')
+  const headerOne = document.querySelector('body > h1')
 
   // Game Grid
   const grid = document.querySelector('.grid')
@@ -656,15 +657,15 @@ function init() {
 
   function displayGameOverBox () {
     console.log('end')
-    gameWrapper.classList.add('hidden')
+    gameWrapper.setAttribute('class', 'hidden')
+    headerOne.setAttribute('class', 'hidden')
     endDiv.classList.remove('hidden')
   }
 
   //! YOU WERE HERE ==================================
-  function handleRestart(event) {
+  function handleRestart() {
     console.log('now RESTART!!!!')
-
-    // window.location.reload()
+    window.location.reload()
   }
 
   // function gameOverAlert() {
@@ -689,7 +690,7 @@ function init() {
 
 
   // todo ===========================EVENTS=========================
-  restartButton.addEventListener('submit', handleRestart)
+  restartButton.addEventListener('click', handleRestart)
 
   playerName.addEventListener('submit', handleSubmit)
 
