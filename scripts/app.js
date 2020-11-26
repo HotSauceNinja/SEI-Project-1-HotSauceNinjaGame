@@ -160,7 +160,7 @@ function init() {
     for (let i = 0; i < cellCount; i++) {
       const cell = document.createElement('div')
       cell.setAttribute('class', 'grid-div') // setting class to each cell -> space them out evenly & highlight borders
-      cell.textContent = i // ! In place to count the cells for easier navigation during game development, take out at the end
+      // cell.textContent = i // ! In place to count the cells for easier navigation during game development, take out at the end
 
       grid.appendChild(cell) // placing cell on grid
       cells.push(cell) // pushing each cell into the cells array

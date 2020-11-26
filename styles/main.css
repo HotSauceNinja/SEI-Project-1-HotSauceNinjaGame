@@ -196,7 +196,6 @@ div.game-over > div.display-lives-left {
 }
 
 .grid-wrapper {
-  /* height: 100vh; Commented out as it pushes grid too low down the page but don't remove yet */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -204,8 +203,7 @@ div.game-over > div.display-lives-left {
 }
 
 .grid {
-  /* background-color: rgb(167, 175, 95);  */
-  box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.4);
+  /* box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.4); */
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -216,7 +214,7 @@ div.game-over > div.display-lives-left {
 }
 
 .grid-div {
-  border: 1px solid rgb(207, 206, 137);
+  /* border: 1px solid rgb(207, 206, 137); */
   flex-grow: 1;
   height: 10%;
   width: 10%;
