@@ -103,10 +103,18 @@ button {
   margin: 0;
 }
 
+#game-over-title {
+  padding-top: 50px;
+  margin-left: 270px;
+  font-family: 'Metal Mania', cursive;
+  font-size: 48px;
+  color: rgb(232, 241, 204);
+  text-shadow: 0px 3px #ff0000;
+}
+
 .game-over-text {
-  padding-top: 100px;
   padding-bottom: 30px;
-  margin-left: 50px;
+  margin-left: 80px;
   font-size: 35px;
   color: white;
   text-shadow: 0px 3px #292727;
@@ -114,8 +122,8 @@ button {
 
 #game-over-info {
   margin-left: 275px;
-  margin-bottom: 40px;
-  font-size: 30px;
+  margin-bottom: 20px;
+  font-size: 20px;
   color: white;
   text-shadow: 0px 2px #292727;
 }
@@ -123,10 +131,10 @@ button {
 
 div.game-over > div.display-current-score {
   background-color: rgba(255, 255, 255, 0.2);
-  height: 40px;
+  height: 32px;
   width: 150px;
   margin-left: 275px;
-  font-size: 35px;
+  font-size: 28px;
   color: white;
   text-align: center;
   font-weight: bold;
@@ -134,10 +142,10 @@ div.game-over > div.display-current-score {
 
 div.game-over > div.display-lives-left {
   background-color: rgba(255, 255, 255, 0.2);
-  height: 40px;
+  height: 32px;
   width: 150px;
   margin-left: 275px;
-  font-size: 35px;
+  font-size: 28px;
   color: white;
   text-align: center;
   font-weight: bold;

@@ -14,6 +14,9 @@ function init() {
   const gameWrapper = document.querySelector('.game-wrapper')
   const headerOne = document.querySelector('body > h1')
 
+  const gameOverText = document.querySelector('.game-over-text')
+
+
   // Game Grid
   const grid = document.querySelector('.grid')
   const gridWidth = 10
@@ -687,7 +690,7 @@ function init() {
       // gameOverAlert()
       displayGameOverBox()
     } else if (fullArray.length === 0) {
-      // youWonAlert()
+      gameOverText.innerHTML = 'You won you swift spicy lighting!'
       displayGameOverBox()
     }
     audio.src = './sound/endBell.mp3'
@@ -697,6 +700,8 @@ function init() {
 
   function displayGameOverBox () {
     console.log('end')
+
+    
     gameWrapper.setAttribute('class', 'hidden')
     headerOne.setAttribute('class', 'hidden')
     endDiv.classList.remove('hidden')
