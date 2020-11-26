@@ -223,14 +223,14 @@ div.game-over > div.display-lives-left {
 
 /*todo=========== NINJA CHARACTER ===========*/
 .grid-div.ninja {
-  background-image: url('../Ninja/ninja_one_up.png');
+  background-image: url('../Ninja/eyeninja_left.png');
   background-repeat: no-repeat;
   background-size: contain;
   cursor: pointer;
 }
 
 .grid-div.ninja-down {
-  background-image: url('../Ninja/ninja_down.png');
+  background-image: url('../Ninja/eyeninja_back.png');
   background-repeat: no-repeat;
   background-size: contain;
   cursor: pointer;
