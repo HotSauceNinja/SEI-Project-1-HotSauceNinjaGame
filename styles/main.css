@@ -101,7 +101,7 @@ button {
 }
 
 #game-over-title {
-  padding-top: 50px;
+  padding-top: 120px;
   margin-left: 270px;
   font-family: 'Metal Mania', cursive;
   font-size: 48px;
@@ -341,7 +341,7 @@ aside.score-board {
   align-items: center;
 }
 
-.points-left-to-beat-best-score {
+.points-left-until-max-score {
   display: flex;
   flex-direction: column;
 }

@@ -4,6 +4,7 @@ function init() {
   let score = 0
   let lives = 3
   let movingRight = true
+  const maxScore = 3600
 
   // todo ELEMENTS
   const welcomeDiv = document.querySelector('.welcome-div')
@@ -13,10 +14,11 @@ function init() {
   const gameWrapper = document.querySelector('.game-wrapper')
   const headerOne = document.querySelector('body > h1')
   const gameOverText = document.querySelector('.game-over-text')
-  
-  // Linking score, name and lives left with the website score display
+
+  // Linking score, name and lives with the website display
   const scoreDisplay = document.getElementsByClassName('display-current-score')[0]
   scoreDisplay.innerText = 0
+
   const scoreDisplayEnd = document.getElementsByClassName('display-current-score')[1]
   scoreDisplayEnd.innerText = 0
 
@@ -26,6 +28,9 @@ function init() {
   livesLeftEnd.innerText = lives
 
   const nameDisplay = document.getElementsByClassName('display-player-name')[0]
+
+  const displayPointsLeft = document.querySelector('.display-points-left')
+  displayPointsLeft.innerHTML = Math.abs(score - maxScore)
 
   //todo Game Grid
   const grid = document.querySelector('.grid')
@@ -290,6 +295,8 @@ function init() {
     }
     scoreDisplay.innerText = score
     scoreDisplayEnd.innerText = score
+
+    displayPointsLeft.innerHTML = Math.abs(score - maxScore)
     // replace them with a boom class on a 1 second counter
   }
 
