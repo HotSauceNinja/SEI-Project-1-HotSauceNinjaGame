@@ -10,8 +10,17 @@
 </head>
 <body>
 
+  <div class="welcome-div">
+    <h2 class="welcome-text">Welcome to</h2><h1 class="welcome-logo">Hot  Sauce  Ninja  🌶 </h1>
+    <p id="controls-info">Move with ◄ ► &nbsp; &nbsp; Shoot with ↩️</p>
+    <form> 
+      <input id="input-player-name" type="text" placeholder="Your Name" default="stranger" autofocus /><br>
+      <button type="submit" id="start-button">START !</button>
+    </form>
+  </div>
+
   <div class="game-over hidden">
-    <h2 class="game-over-text">You won, you swift, spicy lighting!</h2>
+    <h2 class="game-over-text">Game Over, you swift, spicy lighting!</h2>
     <h3 id="game-over-info">Score:</h3>
     <div class="display-current-score"></div>
     <h3 id="game-over-info">Lives Left:</h3>
@@ -20,18 +29,6 @@
     <button id="new-start-button">GO AGAIN !</button>
   </div>
 
-  <div class="welcome-div">
-    <h2 class="welcome-text">Welcome to</h2><h1 class="welcome-logo">Hot  Sauce  Ninja  🌶 </h1>
-    <p id="controls-info">Move with ◄ ► &nbsp; &nbsp; Shoot with ↩️</p>
-
-
-    <form> 
-      <input id="input-player-name" type="text" placeholder="Your Name" name="playerName" default="stranger" autofocus /><br>
-      <button type="submit" id="start-button">START !</button>
-    </form>
-
-
-  </div>
 
   <h1>Hot Sauce Ninja 🌶 Battle Arena</h1>
   
@@ -77,6 +74,6 @@
   </aside>
 
 </div>
-
+<audio id="audio"></audio>
 </body>
 </html>

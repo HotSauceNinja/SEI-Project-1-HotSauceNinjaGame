@@ -8,10 +8,11 @@ function init() {
   // todo ELEMENTS
   const welcomeDiv = document.querySelector('.welcome-div')
   const playerName = document.querySelector('form')
+
   const endDiv = document.querySelector('.game-over')
   const restartButton = document.querySelector('#new-start-button')
-  const gameWrapper = document.querySelector('.game-wrapper')
-  const headerOne = document.querySelector('body > h1')
+  // const gameWrapper = document.querySelector('.game-wrapper')
+  // const headerOne = document.querySelector('body > h1')
 
   // Game Grid
   const grid = document.querySelector('.grid')
@@ -87,6 +88,43 @@ function init() {
     foodsObjectArray.push(new foodsObject(foods[i]))
   }
 
+  // ! AUDIO
+  const audio = document.querySelector('#audio')
+
+  // Play audio on keypress
+  function playAudioKey(event) {
+    switch (event.keyCode) {
+      // case 37: // left with left arrow
+      //   audio.src = './sound/moveRightToLeft.mp3'
+      //   break
+      // case 65: // left with a key
+      //   audio.src = './sound/moveRightToLeft.mp3'
+      //   break
+      // case 39: // right with right arrow
+      //   audio.src = './sound/moveLeftToRight.mp3'
+      //   break
+      // case 68: // right with d key
+      //   audio.src = './sound/moveLeftToRight.mp3'
+      //   break
+      case 13: // Shoot with enter key
+        audio.src = './sound/throwHotSauce.mp3'
+        break
+      case 32: // Shoot with space key
+        audio.src = './sound/throwHotSauce.mp3'
+        break
+      default:
+        console.log('Invalid key')
+    }  
+    audio.play()
+  }
+
+  function playAudioStart () {
+    audio.src = './sound/gong.mp3'
+    audio.play()
+  }
+
+  document.addEventListener('keydown', playAudioKey)
+  playerName.addEventListener('click', playAudioStart)
 
   // todo =======================FUNCTIONS=========================
   // Appears when loading the page, gets player name and starts the game when the user clicks the button
@@ -652,13 +690,15 @@ function init() {
       // youWonAlert()
       displayGameOverBox()
     }
+    audio.src = './sound/endBell.mp3'
+    audio.play()
     return true
   }
 
   function displayGameOverBox () {
     console.log('end')
-    gameWrapper.setAttribute('class', 'hidden')
-    headerOne.setAttribute('class', 'hidden')
+    // gameWrapper.setAttribute('class', 'hidden')
+    // headerOne.setAttribute('class', 'hidden')
     endDiv.classList.remove('hidden')
   }
 
