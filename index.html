@@ -6,12 +6,12 @@
   <link rel="stylesheet" href="styles/main.css">
   <link href="https://fonts.googleapis.com/css2?family=Metal+Mania&family=Roboto:wght@900&display=swap" rel="stylesheet">
   <script src="scripts/app.js" charset="utf-8"></script>
-  <title>My Project</title>
+  <title>🌶 Hot Sauce Ninja</title>
 </head>
 <body>
 
   <!-- ! REMOVE HIDDEN WHEN READY -->
-  <div class="welcome-div "> 
+  <div class="welcome-div hidden"> 
     <h2 class="welcome-text">Welcome to</h2><h1 class="welcome-logo">Hot  Sauce  Ninja  🌶 </h1>
     <p id="controls-info">Move with ◄ ► &nbsp; &nbsp; Shoot with ↩️</p>
     <form> 
@@ -32,16 +32,16 @@
   </div>
 
 
-  <h1 class="welcome-logo">Hot Sauce Ninja 🌶 Battle Arena</h1>
+  <h1 class="title">Hot Sauce Ninja 🌶 Battle Arena</h1>
   
+  <div class="parent">
+
+    <div class="left-empty"></div>
+
   <div class="game-wrapper">
 
   <!-- LEFT SIDE SECTION | containing PLAYER INFO and score -->
     <aside class="current-game">
-      <div class="current-score">
-        <h3>Current Score</h3>
-        <div class="display-current-score"></div>
-      </div>
 
       <div class="player-info">
         <h3>Player Name</h3>
@@ -55,29 +55,39 @@
     </aside>
 
     
-  <!-- GAMEPLAY AREA | contaning grid-wrapper div -->
+  <!-- ! GAMEPLAY AREA | contaning grid-wrapper div -->
+
     <div class="grid-wrapper">
       <div class="grid"></div>
     </div>
 
-
     <!-- RIGHT SIDE SECTION | containing SCORE BOARD -->
 
- <aside class='score-board'>
+<aside class='score-board'>
+    <div class="current-score">
+      <h3>Current Score</h3>
+      <div class="display-current-score"></div>
+    </div>
+    
     <div class="points-left-until-max-score">
       <h3>Points left <br>until max score</h3>
       <div class="display-points-left"></div>
     </div>
 
-    <div class="best-scores">
+    
+    <!-- <div class="best-scores">
       <h3>Hit Value Board</h3>
       <div class="display-best-scores">
 
       </div>
-    </div>
+    </div> -->
   </aside> 
 
 </div>
+
+<div class="right-empty"></div>
+</div>
+
 <audio id="audio"></audio>
 </body>
 </html>

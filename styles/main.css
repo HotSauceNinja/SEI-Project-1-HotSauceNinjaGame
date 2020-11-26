@@ -11,6 +11,15 @@ body {
   text-align: center;
   font-size: 14px;
   font-weight: 10;
+  /* display: flex; */
+}
+
+.title {
+  font-family: 'Metal Mania', cursive;
+  font-size: 48px;
+  color: rgb(232, 241, 204);
+  text-shadow: 0px 3px #ff0000;
+  text-align: center;
 }
 
 /*todo=========== WELCOME TO THE GAME DIV ===========*/
@@ -155,19 +164,35 @@ div.game-over > div.display-lives-left {
 
 /*todo=========== GAMEPLAY AREA CSS ===========*/
 
+.parent {
+  display: flex;
+  flex-direction: row;
+}
+
+.left-empty {
+  flex-grow: 1;
+}
+
+.right-empty {
+  flex-grow: 1;
+}
+
 .game-wrapper {
   background-color: rgba(255, 255, 255, 0.2);
-  background-image: url('../Background/game_background.png');
+  background-image: url('../Background/background_final.png');
   background-size: cover;
   background-position-x: center;
   background-position-y: center;
   width: 1000px;
+  height: 100%;
   display: flex;
-  flex-flow: row;
+  flex-direction: row;
   align-items: center;
   z-index: 0;
   padding-bottom: 120px;
   padding-top: 80px;
+  flex-grow: 10;
+  max-height: 1050;
 }
 
 .grid-wrapper {
@@ -304,29 +329,49 @@ aside.current-game {
 }
 
 h3 {
+  font-size: 24px;
   color: white;
+  text-shadow: 0px 3px #292727;
 }
 
-div.game-wrapper > aside.current-game > div.current-score > div {
+div.game-wrapper > aside.score-board > div.current-score > div {
   background-color: rgba(255, 255, 255, 0.2);
   display: flex;
-  height: 40px;
+  height: 30px;
   width: 150px;
+  font-size: 25px;
+  color: rgb(232, 241, 204);
+  text-shadow: 0px 3px #ff0000;
+  text-align: center;
+  font-weight: bold;
+  padding-left: 65px;
 }
 
 .display-player-name {
   display: flex;
   flex-direction: column;
   background-color: rgba(255, 255, 255, 0.2);
-  height: 40px;
+  height: 30px;
   width: 150px;
+  font-size: 25px;
+  color: rgb(232, 241, 204);
+  text-shadow: 0px 3px #ff0000;
+  text-align: center;
+  font-weight: bold;
+  padding-left: 65px;
 }
 
 .display-lives-left {
   background-color: rgba(255, 255, 255, 0.2);
   display: flex;
-  height: 40px;
+  height: 30px;
   width: 150px;
+  font-size: 25px;
+  color: rgb(232, 241, 204);
+  text-shadow: 0px 3px #ff0000;
+  text-align: center;
+  font-weight: bold;
+  padding-left: 65px;
 }
 
 /*todo====== RIGHT SIDE SECTION | SCORE BOARD CSS ======*/
@@ -349,8 +394,14 @@ aside.score-board {
 .display-points-left {
   background-color: rgba(255, 255, 255, 0.2);
   display: flex;
-  height: 40px;
+  height: 30px;
   width: 150px;
+  font-size: 25px;
+  color: rgb(232, 241, 204);
+  text-shadow: 0px 3px #ff0000;
+  text-align: center;
+  font-weight: bold;
+  padding-left: 45px;
 }
 
 .display-best-scores {
@@ -358,5 +409,13 @@ aside.score-board {
   height: 100px;
   width: 150px;
   background-color: rgba(255, 255, 255, 0.2);
+  height: 30px;
+  width: 150px;
+  font-size: 25px;
+  color: rgb(232, 241, 204);
+  text-shadow: 0px 3px #ff0000;
+  text-align: center;
+  font-weight: bold;
+  padding-left: 40px;
 }
 
