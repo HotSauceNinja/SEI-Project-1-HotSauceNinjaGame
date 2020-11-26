@@ -8,16 +8,26 @@ function init() {
   // todo ELEMENTS
   const welcomeDiv = document.querySelector('.welcome-div')
   const playerName = document.querySelector('form')
-
   const endDiv = document.querySelector('.game-over')
   const restartButton = document.querySelector('#new-start-button')
   const gameWrapper = document.querySelector('.game-wrapper')
   const headerOne = document.querySelector('body > h1')
-
   const gameOverText = document.querySelector('.game-over-text')
+  
+  // Linking score, name and lives left with the website score display
+  const scoreDisplay = document.getElementsByClassName('display-current-score')[0]
+  scoreDisplay.innerText = 0
+  const scoreDisplayEnd = document.getElementsByClassName('display-current-score')[1]
+  scoreDisplayEnd.innerText = 0
 
+  const livesLeft = document.getElementsByClassName('display-lives-left')[0]
+  livesLeft.innerText = lives
+  const livesLeftEnd = document.getElementsByClassName('display-lives-left')[1]
+  livesLeftEnd.innerText = lives
 
-  // Game Grid
+  const nameDisplay = document.getElementsByClassName('display-player-name')[0]
+
+  //todo Game Grid
   const grid = document.querySelector('.grid')
   const gridWidth = 10
   const gridLength = 10
@@ -38,22 +48,10 @@ function init() {
   const numberOfFoodsPerRow = gridWidth - Math.floor(gridWidth / 2.5)
   const foodStartPositionOnRow = (gridWidth - numberOfFoodsPerRow) / 2
 
-  // Linking score, name and lives left with the website score display
-  const scoreDisplay = document.getElementsByClassName('display-current-score')[0]
-  scoreDisplay.innerText = 0
-  const scoreDisplayEnd = document.getElementsByClassName('display-current-score')[1]
-  scoreDisplayEnd.innerText = 0
-
-  const livesLeft = document.getElementsByClassName('display-lives-left')[0]
-  livesLeft.innerText = lives
-  const livesLeftEnd = document.getElementsByClassName('display-lives-left')[1]
-  livesLeftEnd.innerText = lives
-
-  const nameDisplay = document.getElementsByClassName('display-player-name')[0]
-
-  // ! Establish the position a food item must reach to trigger game over 
+  // Establish the position a food item must reach to trigger game over 
   const gameOverPosition = (gridLength - 2) * gridWidth
 
+  //todo FOOD OBJECTS ARRAY
   // Creating food object class for all food properties and methods
   class foodsObject {
     constructor(name) {
@@ -91,7 +89,7 @@ function init() {
     foodsObjectArray.push(new foodsObject(foods[i]))
   }
 
-  // ! AUDIO
+  //todo AUDIO
   const audio = document.querySelector('#audio')
 
   // Play audio on keypress
@@ -125,9 +123,6 @@ function init() {
     audio.src = './sound/gong.mp3'
     audio.play()
   }
-
-  document.addEventListener('keydown', playAudioKey)
-  playerName.addEventListener('click', playAudioStart)
 
   // todo =======================FUNCTIONS=========================
   // Appears when loading the page, gets player name and starts the game when the user clicks the button
@@ -390,7 +385,7 @@ function init() {
     cells[position].setAttribute('class', 'grid-div')
   }
 
-  // ! HERE DOWN - shoot forks function -------------------------------
+  //todo FORK MOVEMENT
   function shootFork() {
     // console.log('shoot fork function')
 
@@ -491,10 +486,7 @@ function init() {
     }, 200)
   }
 
-
-  // ? =================================================================
-
-  // todo FOODS MOVEMENT SECTION
+  // todo FOODS MOVEMENT
   // Foods block movement 
   function foodsBlockMovement(movingRight) {
 
@@ -690,38 +682,34 @@ function init() {
       // gameOverAlert()
       displayGameOverBox()
     } else if (fullArray.length === 0) {
-      gameOverText.innerHTML = 'You won you swift spicy lighting!'
+      gameOverText.innerHTML = 'You won, you swift, spicy lighting!'
       displayGameOverBox()
     }
     audio.src = './sound/endBell.mp3'
     audio.play()
-    return true
   }
 
   function displayGameOverBox () {
-    console.log('end')
-
-    
     gameWrapper.setAttribute('class', 'hidden')
     headerOne.setAttribute('class', 'hidden')
     endDiv.classList.remove('hidden')
   }
 
-  //! YOU WERE HERE ==================================
   function handleRestart() {
-    console.log('now RESTART!!!!')
     window.location.reload()
   }
 
-  // todo ==================CALLING THE FUNCTIONS===================
-
 
   // todo ===========================EVENTS=========================
-  restartButton.addEventListener('click', handleRestart)
+  document.addEventListener('keydown', moveNinja)
+
+  document.addEventListener('keydown', playAudioKey)
 
   playerName.addEventListener('submit', handleSubmit)
+  playerName.addEventListener('click', playAudioStart)
 
-  document.addEventListener('keydown', moveNinja)
+  restartButton.addEventListener('click', handleRestart)
+  
 }
 
 window.addEventListener('DOMContentLoaded', init)
