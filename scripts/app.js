@@ -349,7 +349,6 @@ function init() {
     }, 200)
   }
 
-  // ! NOT WORKING AT THE MOMENT ======================
   function showBoom (position) {
     // removeItemFromGrid(position)
     cells[position].classList.add(pizzaClass)
@@ -689,7 +688,7 @@ function init() {
       // gameOverAlert()
       displayGameOverBox()
     } else if (fullArray.length === 0) {
-      gameOverText.innerHTML = 'You won, you swift, spicy lighting!'
+      gameOverText.innerHTML = 'You won, you swift, spicy lightning!'
       displayGameOverBox()
     }
     audio.src = './sound/endBell.mp3'
