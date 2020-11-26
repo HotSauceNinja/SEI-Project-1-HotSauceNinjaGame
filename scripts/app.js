@@ -192,7 +192,7 @@ function init() {
   }
   // Control ninja with keyboard
   function moveNinja(event) {
-    event.preventDefault()
+    // event.preventDefault()
     // console.log('move ninja function')
     const horizontalPosition = ninjaPosition % gridWidth
 
@@ -707,24 +707,6 @@ function init() {
     console.log('now RESTART!!!!')
     window.location.reload()
   }
-
-  // function gameOverAlert() {
-  //   // const goAgain = window.prompt(`Game Over, your score is ${score} and you have ${lives} lives left. Do you want to go again? Y / N`)
-  //   // if ((goAgain === 'Y') || (goAgain === 'y') ) { 
-  //   //   window.location.reload()
-  //   // } else {
-  //   //   window.alert('Thank you for playing!')
-  //   // }
-  // }
-
-  // function youWonAlert() {
-  //   // const goAgain = window.prompt(`You won, you swift spicy ${playerName} lightining! Your score is ${score} and you have ${lives} lives left! Do you want to go again? Y / N`)
-  //   // if ((goAgain === 'Y') || (goAgain === 'y') ) { 
-  //   //   window.location.reload()
-  //   // } else {
-  //   //   window.alert('Thank you for playing!')
-  //   // }
-  // }
 
   // todo ==================CALLING THE FUNCTIONS===================
 
