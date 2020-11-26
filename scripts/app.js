@@ -11,8 +11,8 @@ function init() {
 
   const endDiv = document.querySelector('.game-over')
   const restartButton = document.querySelector('#new-start-button')
-  // const gameWrapper = document.querySelector('.game-wrapper')
-  // const headerOne = document.querySelector('body > h1')
+  const gameWrapper = document.querySelector('.game-wrapper')
+  const headerOne = document.querySelector('body > h1')
 
   // Game Grid
   const grid = document.querySelector('.grid')
@@ -697,8 +697,8 @@ function init() {
 
   function displayGameOverBox () {
     console.log('end')
-    // gameWrapper.setAttribute('class', 'hidden')
-    // headerOne.setAttribute('class', 'hidden')
+    gameWrapper.setAttribute('class', 'hidden')
+    headerOne.setAttribute('class', 'hidden')
     endDiv.classList.remove('hidden')
   }
 
