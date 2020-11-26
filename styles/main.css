@@ -16,7 +16,7 @@ body {
 /*todo=========== WELCOME TO THE GAME DIV ===========*/
 .welcome-div {
   background-color: rgb(117, 150, 64);
-  background-image: url('../Background/Bamboo_landing.jpg');
+  background-image: url('../Background/Bamboo_landing.png');
   background-repeat: no-repeat;
   background-size: 100%;
   cursor: pointer;
@@ -86,7 +86,7 @@ button {
 /*todo=========== GAME OVER DIV =========== */
 .game-over {
   background-color: rgba(255, 255, 255, 0.2); 
-  background-image: url('../Background/Bamboo_end.jpg');
+  background-image: url('../Background/Bamboo_end.png');
   background-repeat: no-repeat;
   background-size: 1000px;
   cursor: pointer;
@@ -154,10 +154,18 @@ div.game-over > div.display-lives-left {
 /*todo=========== GAMEPLAY AREA CSS ===========*/
 
 .game-wrapper {
+  background-color: rgba(255, 255, 255, 0.2);
+  background-image: url('../Background/game_background.png');
+  background-size: cover;
+  background-position-x: center;
+  background-position-y: center;
+  width: 1000px;
   display: flex;
   flex-flow: row;
   align-items: center;
   z-index: 0;
+  padding-bottom: 120px;
+  padding-top: 80px;
 }
 
 .grid-wrapper {
@@ -169,7 +177,7 @@ div.game-over > div.display-lives-left {
 }
 
 .grid {
-  background-color: rgb(167, 175, 95); 
+  /* background-color: rgb(167, 175, 95);  */
   box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.4);
   display: flex;
   flex-wrap: wrap;

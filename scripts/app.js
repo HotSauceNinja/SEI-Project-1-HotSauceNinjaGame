@@ -713,8 +713,3 @@ function init() {
 }
 
 window.addEventListener('DOMContentLoaded', init)
-
-// Explaining what following code does
-// todo Developer notes, code to be taken out before submitting project
-// ! Important note, remember to take this out
-// ? Can also use this colour for something
