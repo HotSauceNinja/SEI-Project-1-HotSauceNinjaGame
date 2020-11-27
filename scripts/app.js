@@ -102,26 +102,31 @@ function init() {
     switch (event.keyCode) {
       // case 37: // left with left arrow
       //   audio.src = './sound/moveRightToLeft.mp3'
+      //   audio.play()
       //   break
       // case 65: // left with a key
       //   audio.src = './sound/moveRightToLeft.mp3'
+      //   audio.play()
       //   break
       // case 39: // right with right arrow
       //   audio.src = './sound/moveLeftToRight.mp3'
+      //   audio.play()
       //   break
       // case 68: // right with d key
       //   audio.src = './sound/moveLeftToRight.mp3'
+      //   audio.play()
       //   break
       case 13: // Shoot with enter key
         audio.src = './sound/throwHotSauce.mp3'
+        audio.play()
         break
       case 32: // Shoot with space key
         audio.src = './sound/throwHotSauce.mp3'
+        audio.play()
         break
       default:
         console.log('Invalid key')
     }  
-    audio.play()
   }
 
   function playAudioStart () {
@@ -257,27 +262,43 @@ function init() {
 
     if (positionOfFood.contains('drumstickEven')) {
       score = score + 100
+      audio.src = './sound/foodHit.mp3'
+      audio.play()
 
     } else if (positionOfFood.contains('drumstickOdd')) {
       score = score + 100
+      audio.src = './sound/foodHit.mp3'
+      audio.play()
 
     } else if (positionOfFood.contains('eggEven')) {
       score = score + 200
+      audio.src = './sound/foodHit.mp3'
+      audio.play()
 
     } else if (positionOfFood.contains('eggOdd')) {
       score = score + 200
+      audio.src = './sound/foodHit.mp3'
+      audio.play()
 
     } else if (positionOfFood.contains('friesEven')) {
       score = score + 300
+      audio.src = './sound/foodHit.mp3'
+      audio.play()
 
     } else if (positionOfFood.contains('friesOdd')) {
       score = score + 300
+      audio.src = './sound/foodHit.mp3'
+      audio.play()
 
     } else if (positionOfFood.contains('pizzaEven')) {
       score = score + Math.floor(Math.random() * 500)
+      audio.src = './sound/foodHit.mp3'
+      audio.play()
 
     } else if (positionOfFood.contains('pizzaOdd')) {
       score = score + Math.floor(Math.random() * 500)
+      audio.src = './sound/foodHit.mp3'
+      audio.play()
   
     } else {
       console.log('missed!')
@@ -433,6 +454,8 @@ function init() {
 
       // if forkPosition includes ninjaClass remove both items and decrease ninjaLives with 1
       if (cells[forkPosition].classList.contains(ninjaClass)) {
+        audio.src = './sound/ninjaHit.mp3'
+        audio.play()
         removeItemFromGrid(forkPosition)
         removeNinja(forkPosition)
         removeNinjaAfterThrow(forkPosition)
