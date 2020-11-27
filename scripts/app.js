@@ -1,5 +1,5 @@
 function init() {
-  // todo ===========================VARIABLES=============================
+  //todo ===========================VARIABLES=============================
   const foods = ['pizza', 'fries', 'egg', 'drumstick']  
   let score = 0
   let lives = 3
@@ -7,7 +7,7 @@ function init() {
   const maxScore = 3600
   let speed
 
-  // todo ELEMENTS
+  //todo ELEMENTS
   const welcomeDiv = document.querySelector('.welcome-div')
   const playerName = document.querySelector('form')
   const endDiv = document.querySelector('.game-over')
@@ -33,7 +33,7 @@ function init() {
   const displayPointsLeft = document.querySelector('.display-points-left')
   displayPointsLeft.innerHTML = Math.abs(score - maxScore)
 
-  //todo Game Grid
+  //todo GAME GRID
   const grid = document.querySelector('.grid')
   const gridWidth = 10
   const gridLength = 10
@@ -100,6 +100,8 @@ function init() {
   // Play audio on keypress
   function playAudioKey(event) {
     switch (event.keyCode) {
+      // leaving ninja left & right movements out to declutter sound
+      
       // case 37: // left with left arrow
       //   audio.src = './sound/moveRightToLeft.mp3'
       //   audio.play()
@@ -134,7 +136,7 @@ function init() {
     audio.play()
   }
 
-  // todo =======================FUNCTIONS=========================
+  //todo =======================FUNCTIONS=========================
   // Appears when loading the page, gets player name and starts the game when the user clicks the button
   function handleSubmit(event) {
     event.preventDefault()
