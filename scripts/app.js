@@ -469,8 +469,7 @@ function init() {
     }, 200)
   }
 
-  // todo FOODS MOVEMENT
-  
+  // todo FOODS MOVEMENT 
   // Foods block movement 
   function foodsBlockMovement(movingRight) {
     speedUpFood()
@@ -480,7 +479,6 @@ function init() {
     } else if (movingRight === false) {
       setTimeout(foodsMoveOneLeft, speed)
     }
-
   }
 
   function speedUpFood (speed) {
@@ -488,8 +486,8 @@ function init() {
 
     // if there are over 10 food items, move every 2000 milliseconds, else reduce as per below
     if (fullArray.length >= 10) {
-      speed = 1500
-    } else if (fullArray.length >= 5) {
+      speed = 2500
+    } else if (fullArray.length >= 9) {
       speed = 800 
     } else {
       speed = 200
