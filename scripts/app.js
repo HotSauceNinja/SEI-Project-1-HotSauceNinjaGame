@@ -5,6 +5,7 @@ function init() {
   let lives = 3
   let movingRight = true
   const maxScore = 3600
+  let speed
 
   // todo ELEMENTS
   const welcomeDiv = document.querySelector('.welcome-div')
@@ -160,7 +161,7 @@ function init() {
     for (let i = 0; i < cellCount; i++) {
       const cell = document.createElement('div')
       cell.setAttribute('class', 'grid-div') // setting class to each cell -> space them out evenly & highlight borders
-      // cell.textContent = i // ! In place to count the cells for easier navigation during game development, take out at the end
+      // cell.textContent = i // ! In place to count the cells for easier navigation during game development
 
       grid.appendChild(cell) // placing cell on grid
       cells.push(cell) // pushing each cell into the cells array
@@ -493,14 +494,26 @@ function init() {
   }
 
   // todo FOODS MOVEMENT
+  
   // Foods block movement 
   function foodsBlockMovement(movingRight) {
+    const fullArray = foodsObjectArray[1].positionOnGrid.concat(foodsObjectArray[2].positionOnGrid).concat(foodsObjectArray[3].positionOnGrid)
+
+    // if there are over 10 food items, move every 2000 milliseconds, else reduce as per below
+    if (fullArray.length >= 10) {
+      speed = 1500
+    } else if (fullArray.length >= 5) {
+      speed = 800 
+    } else {
+      speed = 200
+    }
 
     if (movingRight === true) {
-      setTimeout(foodsMoveOneRight, 1000)
+      setTimeout(foodsMoveOneRight, speed)
     } else if (movingRight === false) {
-      setTimeout(foodsMoveOneLeft, 1000)
+      setTimeout(foodsMoveOneLeft, speed)
     }
+
   }
   
   // move foods to the right
