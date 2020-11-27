@@ -16,7 +16,7 @@ function init() {
   const headerOne = document.querySelector('body > h1')
   const gameOverText = document.querySelector('.game-over-text')
 
-  // Linking score, name and lives with the website display
+  // Linking score, name and lives with the page display
   const scoreDisplay = document.getElementsByClassName('display-current-score')[0]
   scoreDisplay.innerText = 0
 
@@ -100,8 +100,7 @@ function init() {
   // Play audio on keypress
   function playAudioKey(event) {
     switch (event.keyCode) {
-      // leaving ninja left & right movements out to declutter sound
-      
+      // ! leaving audio for ninja left & right movements out to declutter sound
       // case 37: // left with left arrow
       //   audio.src = './sound/moveRightToLeft.mp3'
       //   audio.play()
@@ -136,26 +135,30 @@ function init() {
     audio.play()
   }
 
-  //todo =======================FUNCTIONS=========================
+  //todo =======================INITIATE GAME FUNCTIONS=========================
   // Appears when loading the page, gets player name and starts the game when the user clicks the button
   function handleSubmit(event) {
     event.preventDefault()
-
+    // gets player name
     const nameInputted = document.querySelector('#input-player-name').value
 
+    // removes the start box
     welcomeDiv.classList.add('hidden')
 
+    // add the player name to the respective area
     nameDisplay.innerText = nameInputted
 
+    // and starts game
     startGame()
   } 
 
   // triggers the start of the game
   function startGame() {
-  
-    createGrid(ninjaPosition) // to create grid 
+    // creating grid 
+    createGrid(ninjaPosition) 
 
-    startFoodsBlockMovement(movingRight) // to start moving the food block
+    // starts moving the food block
+    startFoodsBlockMovement(movingRight) 
   }
 
   // Creating the initial Gameplay Area, adding characters
@@ -164,7 +167,9 @@ function init() {
     // Creating the cells and adding them on the board
     for (let i = 0; i < cellCount; i++) {
       const cell = document.createElement('div')
-      cell.setAttribute('class', 'grid-div') // setting class to each cell -> space them out evenly & highlight borders
+      
+      // setting class to each cell -> space them out evenly & highlight borders
+      cell.setAttribute('class', 'grid-div') 
       // cell.textContent = i // ! In place to count the cells for easier navigation during game development
 
       grid.appendChild(cell) // placing cell on grid
@@ -178,26 +183,31 @@ function init() {
     addFoodToGridInStartPosition()
   }
 
-  // todo NINJA SECTION
+  //todo =======================NINJA MOVEMENT FUNCTIONS=======================
   // Adding the ninja to grid
   function addNinja(position) {
     cells[position].classList.add(ninjaClass)
   }
+
   // Removing ninja from grid
   function removeNinja(position) {
     cells[position].classList.remove(ninjaClass)
   }
+
   // Adding the ninja after throw to grid
   function addNinjaAfterThrow(position) {
     cells[position].classList.add(ninjaAfterThrow)
   }
+
   // Removing ninja after throw from grid
   function removeNinjaAfterThrow(position) {
     cells[position].classList.remove(ninjaAfterThrow)
   }
+
   // Control ninja with keyboard
   function moveNinja(event) {
-    // event.preventDefault()
+    // event.preventDefault() // causes name input area to become unresponsive
+
     const horizontalPosition = ninjaPosition % gridWidth
 
     removeNinja(ninjaPosition)
@@ -230,14 +240,14 @@ function init() {
     addNinja(ninjaPosition)
   }
 
-  // todo HOT SAUCE BOTTLE MOVEMENT SECTION
+  //todo =======================HOT SAUCE BOTTLE MOVEMENT=======================
   function removeHotSauce(position) {
     cells[position].classList.remove(hotsauceClass)
   }
 
   function moveHotSauce(position) {
     position = position - gridWidth
-    
+    // add bottle to next row and remove the previous one
     if (position >= 10) {
       cells[position].classList.add(hotsauceClass)
       removeHotSauce(position + gridWidth)
@@ -246,7 +256,6 @@ function init() {
       cells[position].classList.add(hotsauceClass)
       // removeHotSauce(position + gridWidth)
     }
-    
   }
 
   function addHotSauce(position) {
@@ -309,7 +318,6 @@ function init() {
     scoreDisplayEnd.innerText = score
 
     displayPointsLeft.innerHTML = Math.abs(score - maxScore)
-    // replace them with a boom class on a 1 second counter
   }
 
   function counterForHotsauce (hotsaucePosition) {
@@ -323,10 +331,8 @@ function init() {
       if (cells[hotsaucePosition].classList.contains('foodsClass')) {
         
         scoreHit(hotsaucePosition)
-
-        // ! show a boom +++++++++++++++++++++++++++
         showBoom(hotsaucePosition)
-
+        
         // check each food object in the foodsObjectArray
         foodsObjectArray.forEach(item => {
 
@@ -342,14 +348,12 @@ function init() {
         })
 
         // then remove both food item and bottle from the grid 
-        
         removeItemFromGrid(hotsaucePosition)
         removeHotSauce(hotsaucePosition - gridWidth)
 
         // and stop timer for this bottle movement
         window.clearInterval(timerIdOne)
       }
-    
       count ++
 
       // If bottle reaches end of grid, make it disappear and stop counting
@@ -361,11 +365,10 @@ function init() {
   }
 
   function showBoom (position) {
-    // removeItemFromGrid(position)
     cells[position].classList.add(pizzaClass)
   }
 
-  // todo FOODS SECTION
+  //todo =======================ADDING FOODS IN START POSITION=======================
   // Adding all food to grid in start position
   function addFoodToGridInStartPosition () {
     // set start position for each food in the foods object array
@@ -400,7 +403,7 @@ function init() {
     cells[position].setAttribute('class', 'grid-div')
   }
 
-  //todo FORK MOVEMENT
+  //todo =======================INITIATING FORK MOVEMENT=======================
   function shootFork() {
 
     // using math random generate random forks 
@@ -494,11 +497,13 @@ function init() {
     }, 200)
   }
 
-  // todo FOODS MOVEMENT 
+  //todo=======================FOODS MOVEMENT=======================
   // Foods block movement 
   function foodsBlockMovement(movingRight) {
+    // speeds up food when a certain number of items was shot down
     speedUpFood()
 
+    // determins direction of movement
     if (movingRight === true) {
       setTimeout(foodsMoveOneRight, speed)
     } else if (movingRight === false) {
@@ -506,6 +511,7 @@ function init() {
     }
   }
 
+  // speeds up food when a certain number of items was shot down
   function speedUpFood (speed) {
     const fullArray = foodsObjectArray[1].positionOnGrid.concat(foodsObjectArray[2].positionOnGrid).concat(foodsObjectArray[3].positionOnGrid)
 
@@ -572,7 +578,7 @@ function init() {
     for (let i = foodsObjectArray.length - 1; i > 0; i--) {
   
       // looping through all food positions from the right to the left
-   
+  
       for (let j = foodsObjectArray[i].positionOnGrid.length - 1; j >= 0; j--) {
         removeItemFromGrid(foodsObjectArray[i].positionOnGrid[j])
         foodsObjectArray[i].positionOnGrid[j] = foodsObjectArray[i].positionOnGrid[j] + gridWidth
@@ -598,7 +604,6 @@ function init() {
   }
 
   // Check if min item is at the left end of the grid
-  
   function checkIfMinItemIsAtLeftEndOfRow(position) {
     const horizontalPosition = position % gridWidth
 
@@ -621,7 +626,7 @@ function init() {
   }
 
   //todo ==========================TIMERS===========================
-  // function to MOVE FOODS
+  // function to start food block movement
   function startFoodsBlockMovement() {
 
     // keep looping until game over (currently set to if any food reaches game over position)
@@ -637,7 +642,7 @@ function init() {
         gameOver()
       }
 
-      //! speed function
+      speedUpFood()
       //function call to function which moves foods
       foodsBlockMovement(movingRight)
     }, 900)     
@@ -652,6 +657,7 @@ function init() {
     const max = Math.max(...fullArray)
     return max
   }
+
   function findMin() {
     const fullArray = foodsObjectArray[1].positionOnGrid.concat(foodsObjectArray[2].positionOnGrid).concat(foodsObjectArray[3].positionOnGrid)
 
@@ -671,6 +677,7 @@ function init() {
     }, 900)
   }
 
+  //todo =======================END OF GAME FUNCTIONS=======================
   function gameOver() {
     const fullArray = foodsObjectArray[1].positionOnGrid.concat(foodsObjectArray[2].positionOnGrid).concat(foodsObjectArray[3].positionOnGrid)
 
@@ -705,7 +712,6 @@ function init() {
   playerName.addEventListener('click', playAudioStart)
 
   restartButton.addEventListener('click', handleRestart)
-  
 }
 
 window.addEventListener('DOMContentLoaded', init)

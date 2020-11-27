@@ -1,85 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./styles/main.css">
-  <link href="https://fonts.googleapis.com/css2?family=Metal+Mania&family=Roboto:wght@900&display=swap" rel="stylesheet">
-  <script src="./scripts/app.js" charset="utf-8"></script>
-  <title>🌶 Hot Sauce Ninja</title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Metal+Mania&family=Roboto:wght@900&display=swap" rel="stylesheet">
+    <script src="./scripts/app.js" charset="utf-8"></script>
+    <title>🌶 Hot Sauce Ninja</title>
+  </head>
+  <body>
 
-  <!-- ! REMOVE HIDDEN WHEN READY -->
-  <div class="welcome-div"> 
-    <h2 class="welcome-text">Welcome to</h2><h1 class="welcome-logo">Hot  Sauce  Ninja  🌶 </h1>
-    <p id="controls-info">Move with ◄ ► &nbsp; &nbsp; Shoot with ↩️</p>
-    <form> 
-      <input id="input-player-name" type="text" placeholder="Your Name" default="stranger" autofocus /><br>
-      <button type="submit" id="start-button">START !</button>
-    </form>
-  </div>
-
-  <div class="game-over hidden">
-    <h2 id="game-over-title">Game Over</h2>
-    <h2 class="game-over-text">Success will come with more training</h2>
-    <h3 id="game-over-info">Your Score:</h3>
-    <div class="display-current-score"></div>
-    <h3 id="game-over-info">Lives Left:</h3>
-    <div class="display-lives-left"></div>
- 
-    <button id="new-start-button">GO AGAIN !</button>
-    <p>With love and thanks to Ally McCrum <br> for his help with visuals</p>
-  </div>
-
-  <h1 class="title">Hot Sauce Ninja 🌶 Battle Arena</h1>
-  
-  <div class="parent">
-
-    <div class="left-empty"></div>
-
-  <div class="game-wrapper">
-
-  <!-- LEFT SIDE SECTION | containing PLAYER INFO and score -->
-    <aside class="current-game">
-
-      <div class="player-info">
-        <h3>Player Name</h3>
-        <div class="display-player-name">Sandra</div>
-      </div>
-
-      <div class="lives-left">
-        <h3>Lives Left</h3>
-        <div class="display-lives-left"></div>
-      </div>
-    </aside>
-
-    
-  <!-- GAMEPLAY AREA | contaning grid-wrapper div -->
-
-    <div class="grid-wrapper">
-      <div class="grid"></div>
+    <!-- WELCOME AREA -->
+    <div class="welcome-div"> 
+      <h2 class="welcome-text">Welcome to</h2><h1 class="welcome-logo">Hot  Sauce  Ninja  🌶 </h1>
+      <p id="controls-info">Move with ◄ ► &nbsp; &nbsp; Shoot with ↩️</p>
+      <form> 
+        <input id="input-player-name" type="text" placeholder="Your Name" default="stranger" autofocus /><br>
+        <button type="submit" id="start-button">START !</button>
+      </form>
     </div>
 
-    <!-- RIGHT SIDE SECTION | containing SCORE BOARD -->
-
-<aside class='score-board'>
-    <div class="current-score">
-      <h3>Current Score</h3>
+    <!-- GAME OVER AREA -->
+    <div class="game-over hidden">
+      <h2 id="game-over-title">Game Over</h2>
+      <h2 class="game-over-text">Success will come with more training</h2>
+      <h3 id="game-over-info">Your Score:</h3>
       <div class="display-current-score"></div>
+      <h3 id="game-over-info">Lives Left:</h3>
+      <div class="display-lives-left"></div>
+
+      <button id="new-start-button">GO AGAIN !</button>
+      <p>With love and thanks to Ally McCrum <br> for his help with visuals</p>
     </div>
+
+    <!-- GAME AREA -->
+    <h1 class="title">Hot Sauce Ninja 🌶 Battle Arena</h1>
     
-    <div class="points-left-until-max-score">
-      <h3>Points left <br>until max score</h3>
-      <div class="display-points-left"></div>
+    <div class="parent">
+      <div class="left-empty"></div>
+
+      <div class="game-wrapper">
+
+      <!-- LEFT SIDE SECTION | containing PLAYER INFO and score -->
+        <aside class="current-game">
+
+          <div class="player-info">
+            <h3>Player Name</h3>
+            <div class="display-player-name">Sandra</div>
+          </div>
+
+          <div class="lives-left">
+            <h3>Lives Left</h3>
+            <div class="display-lives-left"></div>
+          </div>
+        </aside>
+
+      
+      <!-- GAMEPLAY AREA | contaning grid-wrapper div -->
+        <div class="grid-wrapper">
+          <div class="grid"></div>
+        </div>
+
+      <!-- RIGHT SIDE SECTION | containing SCORE BOARD -->
+        <aside class='score-board'>
+          <div class="current-score">
+            <h3>Current Score</h3>
+            <div class="display-current-score"></div>
+          </div>
+          
+          <div class="points-left-until-max-score">
+            <h3>Points left <br>until max score</h3>
+            <div class="display-points-left"></div>
+          </div>
+        </aside> 
+
+  </div>
+
+  <div class="right-empty"></div>
     </div>
-  </aside> 
 
-</div>
-
-<div class="right-empty"></div>
-</div>
-
-<audio id="audio"></audio>
-</body>
+    <audio id="audio"></audio>
+  </body>
 </html>
