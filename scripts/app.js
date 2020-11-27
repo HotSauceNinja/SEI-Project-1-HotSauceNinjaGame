@@ -74,7 +74,6 @@ function init() {
       if (((gridWidth * this.getIndexNumber() + foodStartPositionOnRow - gridWidth) > 0)) {
         return (gridWidth * this.getIndexNumber()) + foodStartPositionOnRow - gridWidth
       } else {
-        console.log('this is hidden')
         return null
       }
     }
@@ -137,8 +136,6 @@ function init() {
 
     const nameInputted = document.querySelector('#input-player-name').value
 
-    console.log('nameInputted', nameInputted)
-
     welcomeDiv.classList.add('hidden')
 
     nameDisplay.innerText = nameInputted
@@ -155,7 +152,7 @@ function init() {
   }
 
   // Creating the initial Gameplay Area, adding characters
-  function createGrid(ninjaPosition) {// console.log('create grid function')
+  function createGrid(ninjaPosition) {
 
     // Creating the cells and adding them on the board
     for (let i = 0; i < cellCount; i++) {
@@ -176,28 +173,24 @@ function init() {
 
   // todo NINJA SECTION
   // Adding the ninja to grid
-  function addNinja(position) {// console.log('add ninja function')
+  function addNinja(position) {
     cells[position].classList.add(ninjaClass)
   }
   // Removing ninja from grid
   function removeNinja(position) {
-    // console.log('remove ninja function')
     cells[position].classList.remove(ninjaClass)
   }
   // Adding the ninja after throw to grid
   function addNinjaAfterThrow(position) {
-    // console.log('add ninja after throw function')
     cells[position].classList.add(ninjaAfterThrow)
   }
   // Removing ninja after throw from grid
   function removeNinjaAfterThrow(position) {
-    // console.log('remove ninja after throw function')
     cells[position].classList.remove(ninjaAfterThrow)
   }
   // Control ninja with keyboard
   function moveNinja(event) {
     // event.preventDefault()
-    // console.log('move ninja function')
     const horizontalPosition = ninjaPosition % gridWidth
 
     removeNinja(ninjaPosition)
@@ -217,12 +210,10 @@ function init() {
         if (horizontalPosition < gridWidth - 1) ninjaPosition++
         break
       case 13: // Shoot with enter key
-        console.log('Hot Sauce enter!')
         addHotSauce(ninjaPosition)
         addNinjaAfterThrow(ninjaPosition)
         break
       case 32: // Shoot with space key
-        console.log('Hot Sauce space!')
         addHotSauce(ninjaPosition)
         addNinjaAfterThrow(ninjaPosition)
         break
@@ -234,12 +225,10 @@ function init() {
 
   // todo HOT SAUCE BOTTLE MOVEMENT SECTION
   function removeHotSauce(position) {
-    // console.log('remove hot sauce function')
     cells[position].classList.remove(hotsauceClass)
   }
 
   function moveHotSauce(position) {
-    // console.log('move hotsauce function')
     position = position - gridWidth
     
     if (position >= 10) {
@@ -254,7 +243,6 @@ function init() {
   }
 
   function addHotSauce(position) {
-    // console.log('add hot sauce function')
     // when player presses key put the image of hot sauce on position above player
     cells[position - gridWidth].classList.add(hotsauceClass)
     // removeHotSauce(position) // not sure this is required
@@ -302,7 +290,6 @@ function init() {
   }
 
   function counterForHotsauce (hotsaucePosition) {
-    // console.log('counter for hot sauce bottle function')
     let count = 0
     const timerIdOne = window.setInterval(() => {
       // repeat bottle movement and increase count each time
@@ -375,7 +362,6 @@ function init() {
   }
 
   function addClassOfItem(object, position) {
-    // console.log('add class of item function')
     // add different classlist depending on if column is odd or even
     if (position % 2 === 0) {
       cells[position].classList.add(object.linkEvenClass())
@@ -388,22 +374,18 @@ function init() {
 
   // Removing item from a position on grid
   function removeItemFromGrid(position) {
-    // console.log('remove item from grid function')
     cells[position].setAttribute('class', 'grid-div')
   }
 
   //todo FORK MOVEMENT
   function shootFork() {
-    // console.log('shoot fork function')
 
     // using math random generate random forks 
     // accessing objects using math.ceil and (Math.random + 1) because I don't want to catch object 0 'Pizza', which behaves differently from rest
     const foodsObjectArrayNumber = Math.ceil((Math.random() + 0.001) * (foodsObjectArray.length - 1)) // returns number btw 1 and 3
-    // console.log('foods object array is ', foodsObjectArrayNumber)
 
     // accessing random food elements through their position using math.random
     const positionOnGridNumber = Math.floor(Math.random() * foodsObjectArray[foodsObjectArrayNumber].positionOnGrid.length)
-    // console.log('the index in the array is ', positionOnGridNumber)
 
     // generating random food element that will throw a fork 
     let randomShot = foodsObjectArray[foodsObjectArrayNumber].positionOnGrid[positionOnGridNumber]
@@ -442,17 +424,12 @@ function init() {
   }
   
   function counterForFork(forkPosition) {
-    let count = 0
-    console.log(count)
 
     const timerIdTwo = window.setInterval(() => {
       // repeat fork movement and increase count each time
-      // console.log({ count })
       
       forkPosition = forkPosition + gridWidth
       moveFork(forkPosition)
-
-      count++
 
       // if forkPosition includes ninjaClass remove both items and decrease ninjaLives with 1
       if (cells[forkPosition].classList.contains(ninjaClass)) {
@@ -462,7 +439,6 @@ function init() {
         lives--
         livesLeft.innerText = lives
         livesLeftEnd.innerText = lives
-        console.log({ lives })
 
         // and stop timer for this bottle movement
         window.clearInterval(timerIdTwo)
@@ -497,6 +473,17 @@ function init() {
   
   // Foods block movement 
   function foodsBlockMovement(movingRight) {
+    speedUpFood()
+
+    if (movingRight === true) {
+      setTimeout(foodsMoveOneRight, speed)
+    } else if (movingRight === false) {
+      setTimeout(foodsMoveOneLeft, speed)
+    }
+
+  }
+
+  function speedUpFood (speed) {
     const fullArray = foodsObjectArray[1].positionOnGrid.concat(foodsObjectArray[2].positionOnGrid).concat(foodsObjectArray[3].positionOnGrid)
 
     // if there are over 10 food items, move every 2000 milliseconds, else reduce as per below
@@ -507,18 +494,11 @@ function init() {
     } else {
       speed = 200
     }
-
-    if (movingRight === true) {
-      setTimeout(foodsMoveOneRight, speed)
-    } else if (movingRight === false) {
-      setTimeout(foodsMoveOneLeft, speed)
-    }
-
+    return speed
   }
   
   // move foods to the right
   function foodsMoveOneRight() {
-    console.log('foods move right function')
 
     // check if max element is at right end of the grid
     const maxElement = findMax()
@@ -541,11 +521,9 @@ function init() {
   }
   // move foods to the left
   function foodsMoveOneLeft() {
-    console.log('foods move left function')
 
     // check if min element is at left end of grid
     const minElement = findMin()
-    console.log('minimum element is', minElement)
 
     if (checkIfMinItemIsAtLeftEndOfRow(minElement)) {
       foodsMoveOneDown(movingRight)
@@ -566,7 +544,6 @@ function init() {
 
   // move foods one down
   function foodsMoveOneDown() {
-    console.log('foods move down function')
 
     // looping through all food objects except pizza which is at index 0
     for (let i = foodsObjectArray.length - 1; i > 0; i--) {
@@ -582,24 +559,18 @@ function init() {
 
     // check if max element is at right end of the grid
     const maxElement = findMax()
-    // console.log('maximum element is', maxElement)
 
     // check if min element is at left end of the grid
     const minElement = findMin()
-    // console.log('minimum element is', minElement)
 
     // if max element is at right end of the grid, move left
     if (checkIfMaxItemIsAtRightEndOfRow(maxElement)) {
-      console.log('Moving right var set to false and going in the decisional block')
       movingRight = false
 
       // if min element is at left end of the grid, move right
     } else if (checkIfMinItemIsAtLeftEndOfRow(minElement)) {
-      console.log('Moving right var set to true and going in the decisional block')
       movingRight = true
     }
-
-    console.log('now going in decisional block')
     foodsBlockMovement(movingRight)
   }
 
@@ -610,7 +581,6 @@ function init() {
 
     // if item is at left end of row
     if (horizontalPosition % 10 === 0) {
-      console.log('left end')
       return true
     }
     return false
@@ -622,7 +592,6 @@ function init() {
 
     // if item is at right end of row
     if (horizontalPosition === gridWidth - 1) {
-      console.log('right end')
       return true
     }
     return false
@@ -631,10 +600,6 @@ function init() {
   //todo ==========================TIMERS===========================
   // function to MOVE FOODS
   function startFoodsBlockMovement() {
-    console.log('foods block movement function')
-
-    // track time variable declared to store the number of cycles the movement goes through and stop when it gets to bottom of grid 
-    let trackTime = 0
 
     // keep looping until game over (currently set to if any food reaches game over position)
     const timerIdFour = window.setInterval(() => {
@@ -649,13 +614,10 @@ function init() {
         gameOver()
       }
 
-      trackTime ++
-      
+      //! speed function
       //function call to function which moves foods
       foodsBlockMovement(movingRight)
     }, 900)     
-      
-    console.log('track time is ', trackTime)
  
     counterForShootFork()
   }
@@ -663,30 +625,22 @@ function init() {
   // functions finding min and max to store the outermost elements on the left(min) and on the right(max) of the moving positionOnGrid arrays 
   function findMax () {
     const fullArray = foodsObjectArray[1].positionOnGrid.concat(foodsObjectArray[2].positionOnGrid).concat(foodsObjectArray[3].positionOnGrid)
-    // console.log('full array is ', fullArray)
 
     const max = Math.max(...fullArray)
     return max
   }
   function findMin() {
     const fullArray = foodsObjectArray[1].positionOnGrid.concat(foodsObjectArray[2].positionOnGrid).concat(foodsObjectArray[3].positionOnGrid)
-    // console.log('full array is ', fullArray)
 
     const min = Math.min(...fullArray)
     return min
   }
 
   function counterForShootFork() {
-    // console.log('counter for the shoot fork function')
     const fullArray = foodsObjectArray[1].positionOnGrid.concat(foodsObjectArray[2].positionOnGrid).concat(foodsObjectArray[3].positionOnGrid)
-
-    let count = 0
-    console.log(count)
     
     const timerIdThree = window.setInterval(() => {
       shootFork()
-      // console.log('shoot fork counter is ', count)
-      count++
 
       if ((lives === 0) || (findMax() >= gameOverPosition) || (fullArray.length === 0)) {
         window.clearInterval(timerIdThree)
