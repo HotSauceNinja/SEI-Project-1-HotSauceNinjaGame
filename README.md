@@ -4,10 +4,6 @@ by [Sandra Spighel](https://www.linkedin.com/in/sandraspighel/) - [HotSauceNinja
 ![Ninja](https://github.com/HotSauceNinja/SEI-Project-1-HotSauceNinjaGame/blob/main/Ninja/eyeninja_left.png?raw=true)
 
 Deployed Project available [here](https://hotsauceninja.github.io/SEI-Project-1-HotSauceNinjaGame/)
-<<<<<<< HEAD
-=======
-
->>>>>>> cc8a5a6a3468e65b3817a6d4e31e3ce994963cbf
 ## Brief
   9 days to create a Space Invaders-type game using Vanilla Javascript, HTML and CSS.
 ## Overview
