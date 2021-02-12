@@ -4,6 +4,7 @@ by [Sandra Spighel](https://www.linkedin.com/in/sandraspighel/) - [HotSauceNinja
 ![Ninja](https://github.com/HotSauceNinja/SEI-Project-1-HotSauceNinjaGame/blob/main/Ninja/eyeninja_left.png?raw=true)
 
 Deployed Project available [here](https://hotsauceninja.github.io/SEI-Project-1-HotSauceNinjaGame/)
+
 ## Brief
   9 days to create a Space Invaders-type game using Vanilla Javascript, HTML and CSS.
 ## Overview
@@ -39,7 +40,7 @@ Wrote end game conditions - player wins if ninja clears all food items, or loses
 
 Then implemented audio, the new visuals done in collaboration with a friend, a start page where the player can add their name and start the game when they are ready, and an end game page displaying the score.
 
-A comprehensive ReadMe inclusive of project planning, build process, screenshots and detailed code is [available here](https://docs.google.com/document/d/1gYCbjeMwoDVXMoXbjuOj6MHwY5NWDhV4KvNyss24JwQ/edit?usp=sharing)
+# A comprehensive ReadMe inclusive of project planning, build process, screenshots and detailed code is [available here](https://docs.google.com/document/d/1gYCbjeMwoDVXMoXbjuOj6MHwY5NWDhV4KvNyss24JwQ/edit?usp=sharing)
 
 ## Wins
 * Look of the game
