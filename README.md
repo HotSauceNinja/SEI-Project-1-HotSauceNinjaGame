@@ -4,6 +4,10 @@ by [Sandra Spighel](https://www.linkedin.com/in/sandraspighel/) - [HotSauceNinja
 ![Ninja](https://github.com/HotSauceNinja/SEI-Project-1-HotSauceNinjaGame/blob/main/Ninja/eyeninja_left.png?raw=true)
 
 Deployed Project available [here](https://hotsauceninja.github.io/SEI-Project-1-HotSauceNinjaGame/)
+<<<<<<< HEAD
+=======
+
+>>>>>>> cc8a5a6a3468e65b3817a6d4e31e3ce994963cbf
 ## Brief
   9 days to create a Space Invaders-type game using Vanilla Javascript, HTML and CSS.
 ## Overview
@@ -39,7 +43,11 @@ Wrote end game conditions - player wins if ninja clears all food items, or loses
 
 Then implemented audio, the new visuals done in collaboration with a friend, a start page where the player can add their name and start the game when they are ready, and an end game page displaying the score.
 
+<<<<<<< HEAD
 A comprehensive ReadMe inclusive of project planning, build process, screenshots and detailed code is [available here](https://docs.google.com/document/d/1gYCbjeMwoDVXMoXbjuOj6MHwY5NWDhV4KvNyss24JwQ/edit?usp=sharing)
+=======
+# A comprehensive ReadMe inclusive of project planning, build process, screenshots and detailed code is [available here](https://docs.google.com/document/d/1gYCbjeMwoDVXMoXbjuOj6MHwY5NWDhV4KvNyss24JwQ/edit?usp=sharing)
+>>>>>>> cc8a5a6a3468e65b3817a6d4e31e3ce994963cbf
 
 ## Wins
 * Look of the game
@@ -64,3 +72,7 @@ A comprehensive ReadMe inclusive of project planning, build process, screenshots
 ## License & copyright
 This project was build for educational purposes. No copyright infringement is intended and all content is used under educational license. 
 ©️ [Sandra Spighel](https://www.linkedin.com/in/sandraspighel/)
+<<<<<<< HEAD
+=======
+
+>>>>>>> cc8a5a6a3468e65b3817a6d4e31e3ce994963cbf
