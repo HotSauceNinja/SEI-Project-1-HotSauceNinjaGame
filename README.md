@@ -1,7 +1,7 @@
 # SEI-Project-1
 # Hot Sauce Ninja
 by [Sandra Spighel](https://www.linkedin.com/in/sandraspighel/) - [HotSauceNinja](https://github.com/HotSauceNinja)
-![Ninja](https://github.com/HotSauceNinja/SEI-Project-1-HotSauceNinjaGame/blob/main/Ninja/eyeninja_left.png?raw=true)
+![Gameplay](https://github.com/HotSauceNinja/SEI-Project-1-HotSauceNinjaGame/blob/main/Screengrabs/HotSauceNinja_gameplay.gif?raw=true)
 
 Deployed Project available [here](https://hotsauceninja.github.io/SEI-Project-1-HotSauceNinjaGame/)
 ## Brief
