@@ -21,7 +21,7 @@ The website is accessible through the web browser and does not require installin
 The game can be played using the keyboard (Arrows and Space bar, or WASD keys and Enter). 
 
 ## Approach taken
-I first built the game grid by using a for loop to create each cell as a div, and then pushing it into the cells array. A minimal CSS was also written to place the corec game elements on the page, with the game grid in the middle.
+I first built the game grid by using a for loop to create each cell as a div, and then pushing it into the cells array. A minimal CSS was also written to place the game elements on the page, with the game grid in the middle.
 
 ```
   // GAME GRID
@@ -48,19 +48,158 @@ I first built the game grid by using a for loop to create each cell as a div, an
     } 
 ```
 
-Then tackled the player movement by using a switch stament generating outcomes based on key strokes (using ASCII key codes).
+The player movement was created by using a switch stament generating outcomes based on key strokes (using ASCII key codes).
+
+```
+  // Control ninja with keyboard
+  function moveNinja(event) {
+    // event.preventDefault() // causes name input area to become unresponsive
+
+    const horizontalPosition = ninjaPosition % gridWidth
+
+    removeNinja(ninjaPosition)
+    removeNinjaAfterThrow(ninjaPosition)
+
+    switch (event.keyCode) {
+      case 37: // left with left arrow
+        if (horizontalPosition > 0) ninjaPosition--
+        break
+      case 65: // left with a key
+        if (horizontalPosition > 0) ninjaPosition--
+        break
+      case 39: // right with right arrow
+        if (horizontalPosition < gridWidth - 1) ninjaPosition++
+        break
+      case 68: // right with d key
+        if (horizontalPosition < gridWidth - 1) ninjaPosition++
+        break
+      case 13: // Shoot with enter key
+        addHotSauce(ninjaPosition)
+        addNinjaAfterThrow(ninjaPosition)
+        break
+      case 32: // Shoot with space key
+        addHotSauce(ninjaPosition)
+        addNinjaAfterThrow(ninjaPosition)
+        break
+      default:
+        console.log('Invalid key')
+    }  
+    addNinja(ninjaPosition)
+  }
+  ```
 
 Used an array of objects to store all food items, and automated finding the start position and adding the food items to the grid at the start of the game. To create illusion of movement I am switching in between two different images of each food item based on their grid position: one for odd-numbered columns, and another one for even-numbered columns. 
 
-Initially hard coded the food movement until I could work out a better way to automatise this. 
+```
+  function addClassOfItem(object, position) {
+    // add different classlist depending on if column is odd or even
+    if (position % 2 === 0) {
+      cells[position].classList.add(object.linkEvenClass())
+      cells[position].classList.add('foodsClass')
+    } else {
+      cells[position].classList.add(object.linkOddClass())
+      cells[position].classList.add('foodsClass')
+    }
+  }
+```
+
+I initially hard coded the food movement until I could work out a better way to automatise this. 
 
 Wrote functions to handle interactions: when the hot sauce hits a food item, the item and the hot sauce bottle disappear from the board (all through adding and removing class names, using counters and pushing items out of the foods array).
+
+```
+      //if hotsaucePosition includes foodsClass remove both items
+      if (cells[hotsaucePosition].classList.contains('foodsClass')) {
+        scoreHit(hotsaucePosition)
+        showBoom(hotsaucePosition)
+        
+        // check each food object in the foodsObjectArray
+        foodsObjectArray.forEach(item => {
+
+          // if the item positions array includes the position where the bottle hit
+          if (item.positionOnGrid.includes(hotsaucePosition)) {
+
+            // find the index of that position
+            const elementToRemoveIndex = item.positionOnGrid.indexOf(hotsaucePosition)
+
+            // and take the element out of the array
+            item.positionOnGrid.splice(elementToRemoveIndex, 1)
+          }
+        })
+
+        // then remove both food item and bottle from the grid 
+        removeItemFromGrid(hotsaucePosition)
+        removeHotSauce(hotsaucePosition - gridWidth)
+```
 
 Wrote function to randomise throwing forks from different food items still on the board. If a fork hits the ninja, the player loses one life.
 
 Automated the food movement implementing checking if outermost elements on the left and right of the food block are at the end of the row, in which case the food goes down one row and starts moving in the opposite direction. 
 
+```
+  // Check if max item is at the right end of the grid
+  function checkIfMaxItemIsAtRightEndOfRow(position) {    
+    const horizontalPosition = position % gridWidth
+
+    // if item is at right end of row
+    if (horizontalPosition === gridWidth - 1) {
+      return true
+    }
+    return false
+  }
+
+  // move foods to the right
+  function foodsMoveOneRight() {
+
+    // check if max element is at right end of the grid
+    const maxElement = findMax()
+  
+    if (checkIfMaxItemIsAtRightEndOfRow(maxElement)) {
+      return foodsMoveOneDown(movingRight)
+
+    } else {
+      // looping through all food objects except pizza which is at index 0
+      for (let i = 1; i < foodsObjectArray.length; i++) {
+
+        // increases the index number of each with 1 to push the element to the next position on grid
+        for (let j = foodsObjectArray[i].positionOnGrid.length - 1; j >= 0; j--) {
+          removeItemFromGrid(foodsObjectArray[i].positionOnGrid[j])
+          foodsObjectArray[i].positionOnGrid[j] ++
+          addClassOfItem(foodsObjectArray[i], foodsObjectArray[i].positionOnGrid[j])
+        }
+      }
+    }
+  }
+```
+
 Wrote end game conditions - player wins if ninja clears all food items, or loses if they reach the bottom of the screen or if lives get to 0.
+
+```
+// =======================END OF GAME FUNCTIONS=======================
+  function gameOver() {
+    const fullArray = foodsObjectArray[1].positionOnGrid.concat(foodsObjectArray[2].positionOnGrid).concat(foodsObjectArray[3].positionOnGrid)
+
+    if ((findMax() >= gameOverPosition) || (lives <= 0)) {
+      // gameOverAlert()
+      displayGameOverBox()
+    } else if (fullArray.length === 0) {
+      gameOverText.innerHTML = 'You won, you swift, spicy lightning!'
+      displayGameOverBox()
+    }
+    audio.src = './Sound/endBell.mp3'
+    audio.play()
+  }
+
+  function displayGameOverBox () {
+    gameWrapper.setAttribute('class', 'hidden')
+    headerOne.setAttribute('class', 'hidden')
+    endDiv.classList.remove('hidden')
+  }
+
+  function handleRestart() {
+    window.location.reload()
+  }
+```
 
 Then implemented audio, the new visuals done in collaboration with a friend, a start page where the player can add their name and start the game when they are ready, and an end game page displaying the score.
 
