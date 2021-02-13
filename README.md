@@ -9,19 +9,44 @@ Deployed Project available [here](https://hotsauceninja.github.io/SEI-Project-1-
 ## Overview
 Inspired by Space Invaders, this game features a ninja fighting incoming food enemies by throwing bottles of hot sauce. 
 
-The player wins a level if they manage to shoot down all incoming foods before these reach the bottom of the screen. Foods progress down in a zig zag block motion, shooting forks randomly throughout their movement. 
+The player wins a level if they manage to shoot down all incoming foods before these reach the bottom of the screen. Food items progress down in a zig zag block motion, shooting forks randomly throughout their movement. 
 
 If the ninja is hit by a fork, the player loses a life. The game is lost if the player loses all lives, or if a food item reaches the last row.
 
 ## Technologies used
-The game is using Vanilla JavaScript, HTML and CSS, and was deployed with GitHub Pages.
+The game is using Vanilla [JavaScript](https://www.javascript.com/), [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) and [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS), and was deployed with [GitHub Pages](https://pages.github.com/).
 
 ## Get Started
 The website is accessible through the web browser and does not require installing any dependencies. 
 The game can be played using the keyboard (Arrows and Space bar, or WASD keys and Enter). 
 
 ## Approach taken
-First built the game grid by using a for loop to create each cell as a div, and then pushing it into the cells array. A minimal CSS was also written to place the corec game elements on the page, with the game grid in the middle.
+I first built the game grid by using a for loop to create each cell as a div, and then pushing it into the cells array. A minimal CSS was also written to place the corec game elements on the page, with the game grid in the middle.
+
+```
+  // GAME GRID
+  const grid = document.querySelector('.grid')
+  const gridWidth = 10
+  const gridLength = 10
+  const cellCount = gridWidth * gridLength
+  const cells = []
+
+  // Creating the initial Gameplay Area, adding characters
+  function createGrid(ninjaPosition) {
+
+    // Creating the cells and adding them on the board
+    for (let i = 0; i < cellCount; i++) {
+      const cell = document.createElement('div')
+      
+      // setting class to each cell -> space them out evenly & highlight borders
+      cell.setAttribute('class', 'grid-div') 
+
+      cell.textContent = i // ! In place to count the cells for easier navigation during game development
+
+      grid.appendChild(cell) // placing cell on grid
+      cells.push(cell) // pushing each cell into the cells array
+    } 
+```
 
 Then tackled the player movement by using a switch stament generating outcomes based on key strokes (using ASCII key codes).
 
