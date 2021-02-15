@@ -17,6 +17,7 @@ by [Sandra Spighel](https://www.linkedin.com/in/sandraspighel/) - [HotSauceNinja
   - [Final Thoughts & Project Wrap](#final-thoughts-and-project-wrap)
     - [Wins](#wins)
     - [Known Bugs / Blockers](#known-bugs-/-blockers)
+    - [Key Learnings](#key-learnings)
     - [Possible future features](#possible-future-features)
   - [License](#license)
   
@@ -234,6 +235,9 @@ Then implemented audio, the new visuals done in collaboration with a friend, a s
 * Cancel an incoming fork with a hot sauce bottle does not work, but left the code in to illustrate a potential new feature
 * The food block movement is not 100% as I wanted it to be, but had to cut my losses as it does work and I had already spent too much time on this without progressing.
 
+### Key Learnings
+* Being my first ever project, I feel I had a steep learning curve and made a lot of progress. My understanding of JavaScript has strengthened and I understand better some of its inner workings. 
+* My favourite part, and one of my biggest achievements in this project was working with objects. I did not feel 100% clear how I could use objects outside the controlled examples of homework exercises, but this project was the perfect sandbox!
 ### Possible future features
 * More levels
 * scoreboard that persists, showing top 10 players with best scores (Spicy Board)
