@@ -1,26 +1,42 @@
-# SEI-Project-1
-# Hot Sauce Ninja
+# SEI-Project-1: Hot Sauce Ninja ![img](https://img.shields.io/badge/version-v%201.0.0-blue)
+
 by [Sandra Spighel](https://www.linkedin.com/in/sandraspighel/) - [HotSauceNinja](https://github.com/HotSauceNinja)
+
 ![Gameplay](https://github.com/HotSauceNinja/SEI-Project-1-HotSauceNinjaGame/blob/main/Screengrabs/HotSauceNinja_gameplay.gif?raw=true)
 
-Deployed Project available [here](https://hotsauceninja.github.io/SEI-Project-1-HotSauceNinjaGame/)
-## Brief
-  9 days to create a Space Invaders-type game using Vanilla Javascript, HTML and CSS.
-## Overview
+👉 [<b>TRY ME</b>](https://hotsauceninja.github.io/SEI-Project-1-HotSauceNinjaGame/) 👈
+
+# Table of Contents
+
+  - [Short Brief](#short-brief)
+  - [Description](#description)
+  - [Technology Used](#technology-used)
+  - [Get Started](#get-started)
+  - [Project Development](#project-development)
+    - [Comprehensive README](https://docs.google.com/document/d/1gYCbjeMwoDVXMoXbjuOj6MHwY5NWDhV4KvNyss24JwQ/edit?usp=sharing)
+  - [Final Thoughts & Project Wrap](#final-thoughts-and-project-wrap)
+    - [Wins](#wins)
+    - [Known Bugs / Blockers](#known-bugs-/-blockers)
+    - [Possible future features](#possible-future-features)
+  - [License](#license)
+  
+## Short Brief
+9 days to create a Space Invaders-type game using Vanilla Javascript, HTML and CSS.
+## Description
 Inspired by Space Invaders, this game features a ninja fighting incoming food enemies by throwing bottles of hot sauce. 
 
 The player wins a level if they manage to shoot down all incoming foods before these reach the bottom of the screen. Food items progress down in a zig zag block motion, shooting forks randomly throughout their movement. 
 
 If the ninja is hit by a fork, the player loses a life. The game is lost if the player loses all lives, or if a food item reaches the last row.
 
-## Technologies used
+## Technology used
 The game is using Vanilla [JavaScript](https://www.javascript.com/), [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) and [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS), and was deployed with [GitHub Pages](https://pages.github.com/).
 
 ## Get Started
 The website is accessible through the web browser and does not require installing any dependencies. 
 The game can be played using the keyboard (Arrows and Space bar, or WASD keys and Enter). 
 
-## Approach taken
+## Project Development
 I first built the game grid by using a for loop to create each cell as a div, and then pushing it into the cells array. A minimal CSS was also written to place the game elements on the page, with the game grid in the middle.
 
 ```
@@ -203,19 +219,22 @@ Wrote end game conditions - player wins if ninja clears all food items, or loses
 
 Then implemented audio, the new visuals done in collaboration with a friend, a start page where the player can add their name and start the game when they are ready, and an end game page displaying the score.
 
-# A comprehensive ReadMe inclusive of project planning, build process, screenshots and detailed code is [available here](https://docs.google.com/document/d/1gYCbjeMwoDVXMoXbjuOj6MHwY5NWDhV4KvNyss24JwQ/edit?usp=sharing)
+---
+## A comprehensive README inclusive of project planning, build process, screenshots and detailed code is [available here](https://docs.google.com/document/d/1gYCbjeMwoDVXMoXbjuOj6MHwY5NWDhV4KvNyss24JwQ/edit?usp=sharing)
+---
 
-## Wins
+## Final Thoughts & Project Wrap
+### Wins
 * Look of the game
 * Automating the start game and food item placement
 * Using an array to store food objects
 
-# Known Bugs / Blockers
+### Known Bugs / Blockers
 * ShowBoom function (when the hot sauce hits the food items) does not show the visual, likely because it adds the class of boom to the item right before removing the item from the grid (so no time to display this visully)
 * Cancel an incoming fork with a hot sauce bottle does not work, but left the code in to illustrate a potential new feature
 * The food block movement is not 100% as I wanted it to be, but had to cut my losses as it does work and I had already spent too much time on this without progressing.
 
-# Possible future features:
+### Possible future features
 * More levels
 * scoreboard that persists, showing top 10 players with best scores (Spicy Board)
 * More food items, each with a different score
