@@ -240,7 +240,7 @@ Then implemented audio, the new visuals done in collaboration with a friend, a s
 * My favourite part, and one of my biggest achievements in this project was working with objects. I did not feel 100% clear how I could use objects outside the controlled examples of homework exercises, but this project was the perfect sandbox!
 ### Possible future features
 * More levels
-* scoreboard that persists, showing top 10 players with best scores (Spicy Board)
+* Scoreboard that persists, showing top 10 players with best scores (Spicy Board)
 * More food items, each with a different score
 * Trees/bushes in the middle protecting ninja from forks (but slowly deteriorating if hit)
 * Big boss food appearing once during each level
